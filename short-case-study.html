@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRIEF — Short Case Study</title>
+<meta name="description" content="Six-page case study — overview, screens, design language, results.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css?v=20260730-4">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css?v=20260730-18">
+<link rel="stylesheet" href="css/devices.css?v=20260726-2">
+<link rel="stylesheet" href="css/pages.css?v=20260730-4">
+<link rel="stylesheet" href="css/backgrounds.css?v=20260727-4">
+<link rel="stylesheet" href="css/free-images.css?v=20260727-1">
+<link rel="stylesheet" href="css/panel.css?v=20260730-10">
+</head>
+<body>
+
+<!-- ============================================================ 01 — COVER -->
+<section class="qo-page qo-cover">
+  <div class="qo-cover__mark">BRIEF</div>
+
+  <div>
+    <p class="qo-eyebrow">Case Study — 2026</p>
+    <div class="qo-cover__rule"></div>
+    <h1 class="qo-cover__title">Project Name</h1>
+    <p class="qo-page__lede" style="margin-top: var(--qo-space-lg); max-width: 38ch;">
+      One line on what was built, and for whom.
+    </p>
+  </div>
+
+  <div class="qo-cover__scene">
+    <div class="qo-device qo-device--tablet qo-view--3d-left" style="width:48mm; margin-right:-16mm; margin-bottom:12mm;">
+      <div class="qo-device__frame"><div class="qo-screen" data-spec="820 × 1180"></div></div>
+    </div>
+    <div class="qo-device qo-device--laptop qo-view--3d-right" style="width:104mm;">
+      <div class="qo-device__frame"><div class="qo-screen" data-spec="1440 × 900"></div></div>
+      <div class="qo-device__base"></div>
+    </div>
+    <div class="qo-device qo-device--phone qo-view--3d-float" style="width:32mm; margin-left:-26mm; margin-bottom:-3mm; position:relative; z-index:2;">
+      <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+    </div>
+  </div>
+
+  <div class="qo-cover__meta">
+    <span>Abrar Al Sayem — Visual Design &amp; Development</span>
+    <span>Issued July 2026</span>
+  </div>
+</section>
+
+<!-- ============================================================ 02 — OVERVIEW -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body" style="gap: var(--qo-space-3xl); justify-content:center;">
+    <div>
+      <p class="qo-eyebrow">01 — Overview</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-sm); max-width:18ch;">The problem, and what shipped.</h2>
+    </div>
+
+    <p class="qo-page__lede" style="max-width: 52ch;">
+      Two sentences on where it started. Two more on where it landed.
+    </p>
+
+    <dl class="qo-case__meta" style="gap: var(--qo-space-3xl);">
+      <div><dt>Client</dt><dd>Client name</dd></div>
+      <div><dt>Role</dt><dd>Design &amp; build</dd></div>
+      <div><dt>Timeline</dt><dd>8 weeks</dd></div>
+      <div><dt>Year</dt><dd>2026</dd></div>
+    </dl>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Overview</span>
+    <span class="qo-page__num">02</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 03 — SCREENS / DESKTOP -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body" style="gap: var(--qo-space-2xl);">
+    <div>
+      <p class="qo-eyebrow">02 — Screens</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-sm);">Desktop.</h2>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-3xl); flex:1; align-items:center; justify-content:center;">
+      <div class="qo-device qo-device--desktop qo-view--front" style="width:112mm;">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1920 × 1080"></div></div>
+        <div class="qo-device__neck"></div>
+        <div class="qo-device__foot"></div>
+      </div>
+
+      <div class="qo-device qo-device--laptop qo-view--right" style="width:74mm;">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1440 × 900"></div></div>
+        <div class="qo-device__base"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Screens — Desktop</span>
+    <span class="qo-page__num">03</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 04 — SCREENS / MOBILE -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body" style="gap: var(--qo-space-2xl);">
+    <div>
+      <p class="qo-eyebrow">02 — Screens</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-sm);">Mobile.</h2>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-3xl); flex:1; align-items:center; justify-content:center;">
+      <div class="qo-device qo-device--phone qo-view--front" style="width:36mm;">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--front" style="width:36mm;">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--front" style="width:36mm;">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Screens — Mobile</span>
+    <span class="qo-page__num">04</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 05 — DESIGN LANGUAGE -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body" style="gap: var(--qo-space-3xl); justify-content:center;">
+    <div>
+      <p class="qo-eyebrow">03 — Design Language</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-sm);">Colour &amp; type.</h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap: var(--qo-space-lg);">
+      <div class="qo-swatch" data-copy="#0A1830">
+        <span class="qo-swatch__fill" style="background:#0A1830; height:26mm;"></span>
+        <span class="qo-swatch__info"><span class="qo-swatch__hex" data-copy-label>#0A1830</span></span>
+      </div>
+      <div class="qo-swatch" data-copy="#0F2244">
+        <span class="qo-swatch__fill" style="background:#0F2244; height:26mm;"></span>
+        <span class="qo-swatch__info"><span class="qo-swatch__hex" data-copy-label>#0F2244</span></span>
+      </div>
+      <div class="qo-swatch" data-copy="#6B7A94">
+        <span class="qo-swatch__fill" style="background:#6B7A94; height:26mm;"></span>
+        <span class="qo-swatch__info"><span class="qo-swatch__hex" data-copy-label>#6B7A94</span></span>
+      </div>
+      <div class="qo-swatch" data-copy="#F7F7F9">
+        <span class="qo-swatch__fill" style="background:#F7F7F9; height:26mm;"></span>
+        <span class="qo-swatch__info"><span class="qo-swatch__hex" data-copy-label>#F7F7F9</span></span>
+      </div>
+      <div class="qo-swatch" data-copy="#2DD4BF">
+        <span class="qo-swatch__fill" style="background:#2DD4BF; height:26mm;"></span>
+        <span class="qo-swatch__info"><span class="qo-swatch__hex" data-copy-label>#2DD4BF</span></span>
+      </div>
+    </div>
+
+    <div class="qo-type qo-type--brand">
+      <div>
+        <p class="qo-type__name">Hanken Grotesk</p>
+        <span class="qo-spec__key qo-type__role">Brand · all UI</span>
+      </div>
+      <div class="qo-type__rows">
+        <div class="qo-type__row" style="--qo-w:400">
+          <span class="qo-spec__key">400</span><span class="qo-spec__key">Regular</span>
+          <span class="qo-type__sample">Designing systems that scale.</span>
+        </div>
+        <div class="qo-type__row" style="--qo-w:600">
+          <span class="qo-spec__key">600</span><span class="qo-spec__key">Semibold</span>
+          <span class="qo-type__sample">Designing systems that scale.</span>
+        </div>
+        <div class="qo-type__row" style="--qo-w:800">
+          <span class="qo-spec__key">800</span><span class="qo-spec__key">Extrabold</span>
+          <span class="qo-type__sample">Designing systems that scale.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Design Language</span>
+    <span class="qo-page__num">05</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 06 — RESULTS & CLOSE -->
+<section class="qo-page qo-cover">
+  <div class="qo-cover__mark">BRIEF</div>
+
+  <div>
+    <p class="qo-eyebrow">04 — Results</p>
+    <div class="qo-cover__rule"></div>
+    <h2 class="qo-cover__title" style="font-size:34pt; max-width:16ch;">What changed.</h2>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--qo-space-xl); margin-top: var(--qo-space-2xl); max-width:150mm;">
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric one</span>
+        <span class="qo-metric__value">00%</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric two</span>
+        <span class="qo-metric__value">0.0×</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric three</span>
+        <span class="qo-metric__value">000</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="qo-cover__meta">
+    <span>Abrar Al Sayem — abraralsayem97@gmail.com</span>
+    <span class="qo-page__num">06</span>
+  </div>
+</section>
+
+<script src="js/styleguide.js?v=20260730-3"></script>
+<script src="js/manifest.js"></script>
+<script src="js/token-derive.js?v=20260730-2"></script>
+<script src="js/project.js"></script>
+<script src="js/panel.js?v=20260730-15"></script>
+</body>
+</html>

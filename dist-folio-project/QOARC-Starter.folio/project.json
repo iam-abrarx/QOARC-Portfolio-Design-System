@@ -1,0 +1,15 @@
+{
+  "$schema": "https://folio.app/schema/project/1.json",
+  "id": "proj_qoarc_starter",
+  "name": "QOARC Starter Project",
+  "version": "1.0.0",
+  "createdAt": "2026-07-21T17:28:39.264Z",
+  "updatedAt": "2026-07-21T17:28:39.265Z",
+  "systems": [
+    "systems/qoarc.system.json"
+  ],
+  "documents": [
+    "documents/starter.doc.json"
+  ],
+  "assets": {}
+}

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://folio.app/schema/system/1.json",
+  "id": "sys_qoarc",
+  "name": "QOARC Design System",
+  "version": "1.2.0",
+  "tokens": {
+    "color": {
+      "deepSpace": {
+        "$type": "color",
+        "$value": "#0A1830"
+      },
+      "oxfordNavy": {
+        "$type": "color",
+        "$value": "#0F2244"
+      },
+      "slate": {
+        "$type": "color",
+        "$value": "#6B7A94"
+      },
+      "paperWhite": {
+        "$type": "color",
+        "$value": "#F7F7F9"
+      },
+      "signalTeal": {
+        "$type": "color",
+        "$value": "#2DD4BF",
+        "$extensions": {
+          "folio.derive": [
+            "hover",
+            "active",
+            "muted"
+          ]
+        }
+      }
+    },
+    "font": {
+      "brand": {
+        "$type": "fontFamily",
+        "$value": [
+          "Hanken Grotesk",
+          "sans-serif"
+        ]
+      },
+      "technical": {
+        "$type": "fontFamily",
+        "$value": [
+          "JetBrains Mono",
+          "monospace"
+        ]
+      },
+      "editorial": {
+        "$type": "fontFamily",
+        "$value": [
+          "Fraunces",
+          "serif"
+        ]
+      }
+    },
+    "scale": {
+      "type": {
+        "$type": "scale",
+        "$value": {
+          "ratio": 1.2,
+          "base": "16px",
+          "fluid": true
+        }
+      },
+      "space": {
+        "$type": "scale",
+        "$value": {
+          "base": "4px",
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            12,
+            16,
+            24,
+            32
+          ]
+        }
+      }
+    }
+  },
+  "themes": {
+    "dark": {
+      "bg": "{color.deepSpace}",
+      "surface": "{color.oxfordNavy}",
+      "text": "{color.paperWhite}",
+      "textMuted": "{color.slate}",
+      "accent": "{color.signalTeal}"
+    },
+    "light": {
+      "bg": "{color.paperWhite}",
+      "surface": "#FFFFFF",
+      "text": "{color.oxfordNavy}",
+      "textMuted": "{color.slate}",
+      "accent": "#0E9E8B"
+    }
+  },
+  "rules": [
+    {
+      "id": "one-accent-per-view",
+      "severity": "warn",
+      "description": "At most one element per page may use the accent role.",
+      "check": {
+        "type": "countRoleUsage",
+        "role": "accent",
+        "scope": "page",
+        "max": 1
+      }
+    },
+    {
+      "id": "contrast-aa",
+      "severity": "error",
+      "description": "Text contrast must pass WCAG AA.",
+      "check": {
+        "type": "contrast",
+        "level": "AA"
+      }
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIFOLIO — AI Project Portfolio Template</title>
+<meta name="description" content="Paged portfolio template for AI projects — model deployments, optimization, automation, and bot/agent systems.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css?v=20260730-4">
+<link rel="stylesheet" href="css/ai-tokens.css?v=20260730-1">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css?v=20260730-18">
+<link rel="stylesheet" href="css/devices.css?v=20260726-2">
+<link rel="stylesheet" href="css/pages.css?v=20260730-4">
+<link rel="stylesheet" href="css/backgrounds.css?v=20260727-4">
+<link rel="stylesheet" href="css/free-images.css?v=20260727-1">
+<link rel="stylesheet" href="css/panel.css?v=20260730-10">
+</head>
+<body>
+
+<!-- ============================================================ 01 — COVER -->
+<section class="qo-page qo-cover">
+  <div class="qo-cover__mark">AIFOLIO</div>
+
+  <div>
+    <p class="qo-eyebrow">AI Systems — Version 1.0</p>
+    <div class="qo-cover__rule"></div>
+    <h1 class="qo-cover__title">AI Project Portfolio</h1>
+    <p class="qo-page__lede" style="margin-top: var(--qo-space-lg); max-width: 40ch;">
+      Problem, architecture, evaluation — the story
+      behind a model that shipped.
+    </p>
+  </div>
+
+  <div class="qo-cover__scene">
+    <div class="qo-metric" style="width:36mm; transform: rotate(-4deg) translateY(6mm);">
+      <span class="qo-metric__value" style="font-size:16pt; white-space:nowrap;">94.2%</span>
+      <span class="qo-metric__label">Eval accuracy</span>
+    </div>
+    <div class="qo-metric" style="width:36mm; transform: translateY(-8mm);">
+      <span class="qo-metric__value" style="font-size:16pt; white-space:nowrap;">180ms</span>
+      <span class="qo-metric__label">P95 latency</span>
+    </div>
+    <div class="qo-metric" style="width:36mm; transform: rotate(4deg) translateY(2mm);">
+      <span class="qo-metric__value" style="font-size:16pt; white-space:nowrap;">−62%</span>
+      <span class="qo-metric__label">Triage hours</span>
+    </div>
+  </div>
+
+  <div class="qo-cover__meta">
+    <span>Abrar Al Sayem — Visual Design &amp; Development</span>
+    <span>Issued July 2026</span>
+  </div>
+</section>
+
+<!-- ============================================================ 02 — OVERVIEW -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">About this document</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">One system, every model shipped.</h2>
+    </div>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-3xl);">
+      <p class="qo-page__lede">
+        This is a reference, not a finished layout. Each AI case study
+        inherits everything defined here, so the work stays the subject and
+        the frame around it stays quiet and consistent.
+        <br><br>
+        Swap the numbers, diagrams, and conversation content for your own —
+        the structure, spacing, and accent rule hold regardless of what the
+        model actually does.
+      </p>
+
+      <div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">01</span>
+          <div>
+            <p class="qo-principle__title">The problem comes first</p>
+            <p class="qo-principle__body">Nobody cares about the model until they know what it replaced. State the cost of the old way before the architecture.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">02</span>
+          <div>
+            <p class="qo-principle__title">Show the pipeline, not just the model</p>
+            <p class="qo-principle__body">A model in isolation is a demo. Data in, decisions out, and everything that watches it in between is the actual system.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">03</span>
+          <div>
+            <p class="qo-principle__title">Metrics earn the claim</p>
+            <p class="qo-principle__body">Every result on these pages traces back to an evaluation page. No "significantly improved" without a number next to it.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">04</span>
+          <div>
+            <p class="qo-principle__title">The bot is a UI too</p>
+            <p class="qo-principle__body">A conversation flow deserves the same mockup discipline as a screenshot — shown in a frame, not summarized in a paragraph.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Overview</span>
+    <span class="qo-page__num">02</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 03 — CONTENTS -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">Table of contents</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Contents</h2>
+    </div>
+
+    <div class="qo-contents qo-contents--dense">
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">01</span>
+        <span class="qo-contents__name">Overview</span>
+        <span class="qo-contents__desc">The four principles behind it</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">02</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">02</span>
+        <span class="qo-contents__name">Problem &amp; Approach</span>
+        <span class="qo-contents__desc">The cost of the old way</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">04</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">03</span>
+        <span class="qo-contents__name">System Architecture</span>
+        <span class="qo-contents__desc">Data in, decision out</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">05</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">04</span>
+        <span class="qo-contents__name">Model &amp; Method</span>
+        <span class="qo-contents__desc">Model, tuning, serving</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">06</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">05</span>
+        <span class="qo-contents__name">Dataset &amp; Training</span>
+        <span class="qo-contents__desc">Sourcing and preparation</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">07</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">06</span>
+        <span class="qo-contents__name">Evaluation Metrics</span>
+        <span class="qo-contents__desc">The numbers behind every claim</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">08</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">07</span>
+        <span class="qo-contents__name">Deployment Pipeline</span>
+        <span class="qo-contents__desc">Build, gate, canary, rollback</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">09</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">08</span>
+        <span class="qo-contents__name">Automation &amp; Monitoring</span>
+        <span class="qo-contents__desc">Drift, alerting, auto-retrain</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">10</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">09</span>
+        <span class="qo-contents__name">Bot &amp; Agent Interaction</span>
+        <span class="qo-contents__desc">Conversation flow and dashboard</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">11</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">10</span>
+        <span class="qo-contents__name">Results — Before &amp; After</span>
+        <span class="qo-contents__desc">Metrics, before and after</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">13</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">11</span>
+        <span class="qo-contents__name">Impact &amp; Outcomes</span>
+        <span class="qo-contents__desc">What it changed for the business</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">14</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">12</span>
+        <span class="qo-contents__name">Usage</span>
+        <span class="qo-contents__desc">Swapping in your own work</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">15</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Contents</span>
+    <span class="qo-page__num">03</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 04 — PROBLEM & APPROACH -->
+<section class="qo-page">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">02 — Problem &amp; Approach</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Support triage ate 40 hours a week.</h2>
+    </div>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-3xl);">
+      <p class="qo-page__lede">
+        Every inbound support ticket was read, categorized, and routed by
+        hand before anyone could work on it. At volume, that triage step
+        alone consumed a full-time role's worth of hours every week — and
+        the backlog grew faster than the team could read it.
+        <br><br>
+        The fix isn't "add AI to support" as a headline. It's a
+        classification model narrow enough to trust, wired into the queue
+        at the one step that was actually the bottleneck.
+      </p>
+
+      <div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">01</span>
+          <div>
+            <p class="qo-principle__title">Classify</p>
+            <p class="qo-principle__body">Every ticket is scored against the existing category taxonomy the moment it lands — no new categories invented by the model.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">02</span>
+          <div>
+            <p class="qo-principle__title">Route</p>
+            <p class="qo-principle__body">High-confidence tickets go straight to the right queue. Nothing skips a human when confidence is low.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">03</span>
+          <div>
+            <p class="qo-principle__title">Escalate</p>
+            <p class="qo-principle__body">Anything flagged urgent or low-confidence pages the on-call agent directly, through the same bot covered on page 11.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">04</span>
+          <div>
+            <p class="qo-principle__title">Learn</p>
+            <p class="qo-principle__body">Every human override is logged as a training signal — the model that ships in Q3 is trained partly on its own Q2 mistakes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Problem &amp; Approach</span>
+    <span class="qo-page__num">04</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 05 — SYSTEM ARCHITECTURE -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">03 — System Architecture</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Data in, decision out.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Five stages between a ticket landing and a decision being acted on.
+        The accent marks the one stage a human is always in the loop.
+      </p>
+    </div>
+
+    <div class="qo-diagram" style="gap: var(--qo-space-md); align-items: center;">
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Ticket Queue</span>
+        <span class="qo-diagram__node-sub">Ingest</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Embedding Model</span>
+        <span class="qo-diagram__node-sub">Encode</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Classifier</span>
+        <span class="qo-diagram__node-sub">Score</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Router</span>
+        <span class="qo-diagram__node-sub">Decide</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node qo-diagram__node--accent">
+        <span class="qo-diagram__node-title">Human Review</span>
+        <span class="qo-diagram__node-sub">Low confidence only</span>
+      </div>
+    </div>
+
+    <div class="qo-spec">
+      <div class="qo-spec__row"><span class="qo-spec__key">Ticket Queue</span><span class="qo-spec__val">Existing helpdesk webhook, no new intake surface</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Embedding Model</span><span class="qo-spec__val">Frozen sentence encoder, 384-dim</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Classifier</span><span class="qo-spec__val">Fine-tuned head over the existing category taxonomy</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Router</span><span class="qo-spec__val">Confidence threshold decides auto-route vs. escalate</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Human Review</span><span class="qo-spec__val">Overrides feed back into the training set nightly</span></div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>System Architecture</span>
+    <span class="qo-page__num">05</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 06 — MODEL & METHOD -->
+<section class="qo-page">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">04 — Model &amp; Method</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Fine-tuned, not built from scratch.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        A pretrained encoder plus a small trained head beats a bespoke model
+        here — the taxonomy is stable and the label volume is modest. Train
+        from scratch only when a pretrained base genuinely can't represent
+        the problem.
+      </p>
+    </div>
+
+    <div class="qo-page__split qo-page__split--even" style="gap: var(--qo-space-2xl);">
+      <div class="qo-spec">
+        <div class="qo-spec__row"><span class="qo-spec__key">Base model</span><span class="qo-spec__val">Open-weight sentence encoder</span></div>
+        <div class="qo-spec__row"><span class="qo-spec__key">Fine-tuning method</span><span class="qo-spec__val">Linear classification head, full-parameter frozen</span></div>
+        <div class="qo-spec__row"><span class="qo-spec__key">Context window</span><span class="qo-spec__val">512 tokens</span></div>
+        <div class="qo-spec__row"><span class="qo-spec__key">Serving framework</span><span class="qo-spec__val">Managed inference endpoint, autoscaled</span></div>
+        <div class="qo-spec__row"><span class="qo-spec__key">Versioning</span><span class="qo-spec__val">Model registry, immutable tags per release</span></div>
+      </div>
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Why this shape</p>
+        <p class="qo-editorial" style="font-size:11pt; max-width:52ch;">
+          A frozen encoder means retraining is cheap — the head is the only
+          thing that moves when the taxonomy shifts or new labeled overrides
+          arrive. That trade-off matters more here than squeezing out the
+          last point of accuracy a full fine-tune might buy.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Model &amp; Method</span>
+    <span class="qo-page__num">06</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 07 — DATASET & TRAINING -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">05 — Dataset &amp; Training</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">18 months of resolved tickets.</h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--qo-space-md);">
+      <div class="qo-metric">
+        <span class="qo-metric__value">86K</span>
+        <span class="qo-metric__label">Training examples</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">22</span>
+        <span class="qo-metric__label">Categories</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">3.4h</span>
+        <span class="qo-metric__label">Training time</span>
+      </div>
+    </div>
+
+    <div class="qo-spec">
+      <div class="qo-spec__row"><span class="qo-spec__key">Label source</span><span class="qo-spec__val">Historical agent-assigned categories, deduplicated</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Class balance</span><span class="qo-spec__val">Rebalanced — top 3 categories capped at 15% each</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Validation split</span><span class="qo-spec__val">Time-based, last 6 weeks held out</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Hardware</span><span class="qo-spec__val">Single GPU, managed training job</span></div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Dataset &amp; Training</span>
+    <span class="qo-page__num">07</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 08 — EVALUATION METRICS -->
+<section class="qo-page">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">06 — Evaluation Metrics</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Metrics earn the claim.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Measured on the held-out validation split, described on page 07.
+        Every number below is what "results" on page 13 compares against.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--qo-space-md);">
+      <div class="qo-metric">
+        <span class="qo-metric__value">94.2%</span>
+        <span class="qo-metric__label">Accuracy</span>
+        <span class="qo-metric__delta">↑ 6.1pp vs. baseline</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">0.91</span>
+        <span class="qo-metric__label">F1 score</span>
+        <span class="qo-metric__delta">↑ 0.08 vs. baseline</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">180ms</span>
+        <span class="qo-metric__label">P95 latency</span>
+        <span class="qo-metric__delta qo-metric__delta--down">Within 250ms budget</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">$0.42</span>
+        <span class="qo-metric__label">Cost / 1,000 requests</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">6%</span>
+        <span class="qo-metric__label">Human override rate</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">0.97</span>
+        <span class="qo-metric__label">Confidence calibration</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Evaluation Metrics</span>
+    <span class="qo-page__num">08</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 09 — DEPLOYMENT PIPELINE -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">07 — Deployment Pipeline</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Ship behind a flag, promote on signal.</h2>
+    </div>
+
+    <div class="qo-diagram" style="gap: var(--qo-space-md); align-items: center;">
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Build</span>
+        <span class="qo-diagram__node-sub">CI</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Eval Gate</span>
+        <span class="qo-diagram__node-sub">Must beat prod</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node qo-diagram__node--accent">
+        <span class="qo-diagram__node-title">Canary</span>
+        <span class="qo-diagram__node-sub">5% of traffic</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Full Rollout</span>
+        <span class="qo-diagram__node-sub">24h soak</span>
+      </div>
+      <span class="qo-diagram__arrow">→</span>
+      <div class="qo-diagram__node">
+        <span class="qo-diagram__node-title">Rollback Watch</span>
+        <span class="qo-diagram__node-sub">Auto-revert on regression</span>
+      </div>
+    </div>
+
+    <div class="qo-spec">
+      <div class="qo-spec__row"><span class="qo-spec__key">CI</span><span class="qo-spec__val">Runs the full eval suite on every model artifact</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Registry</span><span class="qo-spec__val">Immutable, versioned; canary and prod always point at tags</span></div>
+      <div class="qo-spec__row"><span class="qo-spec__key">Rollback trigger</span><span class="qo-spec__val">Override rate &gt; 12% for 15 minutes, automatic</span></div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Deployment Pipeline</span>
+    <span class="qo-page__num">09</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 10 — AUTOMATION & MONITORING -->
+<section class="qo-page">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">08 — Automation &amp; Monitoring</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">The system watches itself.</h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--qo-space-lg);">
+      <div class="qo-panel" style="padding: var(--qo-space-md);">
+        <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-sm);">Drift detection</p>
+        <p class="qo-principle__body" style="font-size:9pt;">
+          Input embeddings are compared weekly against the training
+          distribution. A shift past threshold opens a ticket of its own —
+          on the team, not a customer's queue.
+        </p>
+      </div>
+      <div class="qo-panel" style="padding: var(--qo-space-md);">
+        <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-sm);">Alerting</p>
+        <p class="qo-principle__body" style="font-size:9pt;">
+          Latency, error rate, and override rate page on-call directly —
+          the same escalation bot shown on page 11, not a separate tool.
+        </p>
+      </div>
+      <div class="qo-panel" style="padding: var(--qo-space-md);">
+        <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-sm);">Auto-retrain</p>
+        <p class="qo-principle__body" style="font-size:9pt;">
+          Once 2,000 fresh overrides accumulate, a retraining job queues
+          automatically — it still ships through the same eval gate as
+          every other release.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Automation &amp; Monitoring</span>
+    <span class="qo-page__num">10</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 11 — BOT / AGENT — CONVERSATION -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">09 — Bot &amp; Agent Interaction</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Escalation, in Slack.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Low-confidence and urgent tickets page the on-call agent in the
+        channel they already work in.
+      </p>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-2xl); flex:1; align-items:center;">
+      <div class="qo-device qo-device--phone qo-view--front">
+        <div class="qo-device__frame"><div class="qo-screen"><div class="qo-chat">
+          <span class="qo-chat__bubble qo-chat__bubble--bot">Ticket #48213 flagged low-confidence (0.41). Category guess: billing. Route to you?</span>
+          <span class="qo-chat__bubble qo-chat__bubble--user">Yeah, route it — also relabel as billing/refund</span>
+          <span class="qo-chat__bubble qo-chat__bubble--bot">Routed and relabeled. Logged as a training override for the next cycle.</span>
+        </div></div></div>
+        <p class="qo-device__label">Front — escalation thread</p>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--left">
+        <div class="qo-device__frame"><div class="qo-screen"><div class="qo-chat">
+          <span class="qo-chat__bubble qo-chat__bubble--bot">Daily digest: 214 tickets auto-routed, 13 escalated, 2 drift warnings.</span>
+          <span class="qo-chat__bubble qo-chat__bubble--user">Show me the drift warnings</span>
+          <span class="qo-chat__bubble qo-chat__bubble--bot">Both from the new product line launch — expected, no action needed.</span>
+        </div></div></div>
+        <p class="qo-device__label">Three-quarter left — daily digest</p>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--right">
+        <div class="qo-device__frame"><div class="qo-screen"><div class="qo-chat">
+          <span class="qo-chat__bubble qo-chat__bubble--bot">Rollback triggered on v1.4.2 — override rate hit 14% at 03:12.</span>
+          <span class="qo-chat__bubble qo-chat__bubble--bot">Reverted to v1.4.1 automatically. No action required.</span>
+        </div></div></div>
+        <p class="qo-device__label">Three-quarter right — automated rollback</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Bot &amp; Agent Interaction — Conversation</span>
+    <span class="qo-page__num">11</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 12 — BOT / AGENT — DASHBOARD -->
+<section class="qo-page">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">09 — Bot &amp; Agent Interaction</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">The operator view.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        These frames ship empty — drop a real dashboard screenshot in.
+      </p>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-3xl); flex:1; align-items:center;">
+      <div class="qo-device qo-device--desktop qo-view--front">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="1920 × 1080"></div></div>
+        <div class="qo-device__neck"></div>
+        <div class="qo-device__foot"></div>
+        <p class="qo-device__label">Desktop — triage dashboard</p>
+      </div>
+
+      <div class="qo-device qo-device--phone qo-view--right" style="width:32mm;">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+        <p class="qo-device__label">Mobile — on-call alert</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Bot &amp; Agent Interaction — Dashboard</span>
+    <span class="qo-page__num">12</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 13 — RESULTS — BEFORE & AFTER -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">10 — Results — Before &amp; After</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Six weeks, then steady state.</h2>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap: var(--qo-space-lg); max-width:120mm;">
+      <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span class="qo-spec__key">Median resolution time</span>
+          <span class="qo-spec__val">4.2h → 38min</span>
+        </div>
+        <div style="height:8px; width:100%; background: var(--qo-slate-muted); border-radius:99px;"></div>
+        <div style="height:8px; width:15%; background: var(--qo-accent); border-radius:99px; margin-top:-8px;"></div>
+      </div>
+      <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span class="qo-spec__key">Manual triage hours / week</span>
+          <span class="qo-spec__val">40h → 15h</span>
+        </div>
+        <div style="height:8px; width:100%; background: var(--qo-slate-muted); border-radius:99px;"></div>
+        <div style="height:8px; width:38%; background: var(--qo-accent); border-radius:99px; margin-top:-8px;"></div>
+      </div>
+      <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+          <span class="qo-spec__key">Mis-routed tickets</span>
+          <span class="qo-spec__val">18% → 6%</span>
+        </div>
+        <div style="height:8px; width:100%; background: var(--qo-slate-muted); border-radius:99px;"></div>
+        <div style="height:8px; width:33%; background: var(--qo-accent); border-radius:99px; margin-top:-8px;"></div>
+      </div>
+    </div>
+
+    <p class="qo-page__lede" style="margin-top: var(--qo-space-lg);">
+      Bars show after as a share of before, on the same scale — a shorter
+      bar is the improvement. Measured against the baseline defined on
+      page 08.
+    </p>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Results — Before &amp; After</span>
+    <span class="qo-page__num">13</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 14 — IMPACT & OUTCOMES -->
+<section class="qo-page">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">11 — Impact &amp; Outcomes</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What shipped changed.</h2>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--qo-space-md);">
+      <div class="qo-metric">
+        <span class="qo-metric__value">$186K</span>
+        <span class="qo-metric__label">Annualized savings</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">88%</span>
+        <span class="qo-metric__label">Tickets auto-routed</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__value">+11pt</span>
+        <span class="qo-metric__label">CSAT change</span>
+      </div>
+    </div>
+
+    <p class="qo-editorial" style="font-size:13pt; max-width:62ch; margin-top: var(--qo-space-md);">
+      The triage role didn't disappear — it moved to the 12% of tickets that
+      genuinely needed judgment, which is the work that role wanted to be
+      doing in the first place.
+    </p>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Impact &amp; Outcomes</span>
+    <span class="qo-page__num">14</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 15 — USAGE -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">12 — Usage</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Swapping in your own project.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-2xs);">
+        Metric tiles, diagram nodes, and chat bubbles are plain text —
+        click any of them in the builder and type over the placeholder
+        content, exactly like every other text block in this document.
+      </p>
+    </div>
+
+    <div class="qo-page__split qo-page__split--even" style="gap: var(--qo-space-2xl);">
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-3xs);">Component classes</p>
+        <div class="qo-spec qo-spec--tight">
+          <div class="qo-spec__row"><span class="qo-spec__key">qo-metric</span><span class="qo-spec__val">Number / label / delta tile</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">qo-diagram__node</span><span class="qo-spec__val">A pipeline or architecture stage</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">qo-diagram__node--accent</span><span class="qo-spec__val">Highlights the one stage worth calling out</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">qo-chat__bubble</span><span class="qo-spec__val">One line of a conversation mockup</span></div>
+        </div>
+
+        <p class="qo-spec__key" style="margin:var(--qo-space-sm) 0 var(--qo-space-3xs);">Device slots</p>
+        <div class="qo-spec qo-spec--tight">
+          <div class="qo-spec__row"><span class="qo-spec__key">Phone + qo-chat</span><span class="qo-spec__val">Conversation / bot mockups</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Desktop / browser</span><span class="qo-spec__val">Real dashboard screenshots, dragged in</span></div>
+        </div>
+      </div>
+
+      <div class="qo-panel" style="padding: var(--qo-space-md);">
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Markup</p>
+        <pre style="font-family: var(--qo-font-mono); font-size:6.8pt; line-height:1.4; margin:0; white-space:pre-wrap; color: var(--qo-text-muted);">&lt;div class="qo-metric"&gt;
+  &lt;span class="qo-metric__value"&gt;94.2%&lt;/span&gt;
+  &lt;span class="qo-metric__label"&gt;Eval accuracy&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="qo-diagram__node qo-diagram__node--accent"&gt;
+  &lt;span class="qo-diagram__node-title"&gt;Canary&lt;/span&gt;
+  &lt;span class="qo-diagram__node-sub"&gt;5% of traffic&lt;/span&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Usage</span>
+    <span class="qo-page__num">15</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 16 — COLOPHON -->
+<section class="qo-page qo-cover">
+  <div class="qo-cover__mark">AIFOLIO</div>
+
+  <div>
+    <p class="qo-eyebrow">End of document</p>
+    <div class="qo-cover__rule"></div>
+    <h2 class="qo-cover__title" style="font-size:34pt;">Every value lives in tokens.css</h2>
+    <p class="qo-page__lede" style="margin-top: var(--qo-space-lg); max-width: 56ch;">
+      Change a token and the whole document — and every page built on it —
+      follows. New patterns either map onto what is documented here or
+      earn a new token.
+    </p>
+  </div>
+
+  <div class="qo-cover__meta">
+    <span>AI Project Portfolio — v1.0</span>
+    <span class="qo-page__num">16</span>
+  </div>
+</section>
+
+<script src="js/manifest.js"></script>
+<script src="js/token-derive.js?v=20260730-2"></script>
+<script src="js/project.js"></script>
+<script src="js/panel.js?v=20260730-15"></script>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASEFOLIO — Case Study Template</title>
+<meta name="description" content="Long-form case study template — brief, research, architecture, design language, screens, results.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css?v=20260730-4">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css?v=20260730-18">
+<link rel="stylesheet" href="css/devices.css?v=20260726-2">
+<link rel="stylesheet" href="css/pages.css?v=20260730-4">
+<link rel="stylesheet" href="css/backgrounds.css?v=20260727-4">
+<link rel="stylesheet" href="css/free-images.css?v=20260727-1">
+<link rel="stylesheet" href="css/panel.css?v=20260730-10">
+</head>
+<body>
+
+<!-- ============================================================ 01 — COVER -->
+<section class="qo-page qo-cover">
+  <div class="qo-cover__mark">CASEFOLIO</div>
+
+  <div>
+    <p class="qo-eyebrow">Case Study — 2026</p>
+    <div class="qo-cover__rule"></div>
+    <h1 class="qo-cover__title">Project Name</h1>
+    <p class="qo-page__lede" style="margin-top: var(--qo-space-lg); max-width: 38ch;">
+      One line on what was built, and who it was built for.
+    </p>
+  </div>
+
+  <div class="qo-cover__scene">
+    <div class="qo-device qo-device--tablet qo-view--3d-left" style="width:48mm; margin-right:-16mm; margin-bottom:12mm;">
+      <div class="qo-device__frame"><div class="qo-screen" data-spec="820 × 1180"></div></div>
+    </div>
+    <div class="qo-device qo-device--laptop qo-view--3d-right" style="width:104mm;">
+      <div class="qo-device__frame"><div class="qo-screen" data-spec="1440 × 900"></div></div>
+      <div class="qo-device__base"></div>
+    </div>
+    <div class="qo-device qo-device--phone qo-view--3d-float" style="width:32mm; margin-left:-26mm; margin-bottom:-3mm; position:relative; z-index:2;">
+      <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+    </div>
+  </div>
+
+  <div class="qo-cover__meta">
+    <span>Abrar Al Sayem — Visual Design &amp; Development</span>
+    <span>Issued July 2026</span>
+  </div>
+</section>
+
+<!-- ============================================================ 02 — AT A GLANCE -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">Summary</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">The whole project on one page.</h2>
+    </div>
+
+    <dl class="qo-case__meta">
+      <div><dt>Client</dt><dd>Client name</dd></div>
+      <div><dt>Sector</dt><dd>Sector</dd></div>
+      <div><dt>Role</dt><dd>Design &amp; build</dd></div>
+      <div><dt>Timeline</dt><dd>8 weeks</dd></div>
+      <div><dt>Stack</dt><dd>HTML · CSS · JS</dd></div>
+      <div><dt>Year</dt><dd>2026</dd></div>
+    </dl>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-3xl);">
+      <p class="qo-page__lede">
+        Three sentences: what the client needed, what got built, and what
+        changed as a result. Someone who reads only this page should be able
+        to describe the project accurately to a colleague.
+        <br><br>
+        Everything after this is evidence for these three sentences.
+      </p>
+
+      <div style="display:flex; flex-direction:column; gap: var(--qo-space-md);">
+        <div>
+          <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Client palette</p>
+          <div style="display:flex; gap: var(--qo-space-md); flex-wrap:wrap;">
+            <span class="qo-chip" style="--chip:#0A1830">#0A1830</span>
+            <span class="qo-chip" style="--chip:#0F2244">#0F2244</span>
+            <span class="qo-chip" style="--chip:#6B7A94">#6B7A94</span>
+            <span class="qo-chip" style="--chip:#2DD4BF">#2DD4BF</span>
+          </div>
+        </div>
+
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Scope</span><span class="qo-spec__val">00 views</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Breakpoints</span><span class="qo-spec__val">Mobile · tablet · desktop</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Headline result</span><span class="qo-spec__val">The one number</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>At a Glance</span>
+    <span class="qo-page__num">02</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 03 — CONTENTS -->
+<section class="qo-page qo-page--light">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">Table of contents</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Contents</h2>
+    </div>
+
+    <div class="qo-contents">
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">01</span>
+        <span class="qo-contents__name">At a Glance</span>
+        <span class="qo-contents__desc">Client, role, stack, and the project in three sentences</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">02</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">02</span>
+        <span class="qo-contents__name">Problem &amp; Research</span>
+        <span class="qo-contents__desc">What existed before, and what the findings ruled out</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">04</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">03</span>
+        <span class="qo-contents__name">Structure &amp; Flows</span>
+        <span class="qo-contents__desc">How the content was grouped, and the journey that mattered</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">06</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">04</span>
+        <span class="qo-contents__name">Design Language</span>
+        <span class="qo-contents__desc">Palette, typography, and the components built from them</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">08</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">05</span>
+        <span class="qo-contents__name">Key Screens</span>
+        <span class="qo-contents__desc">The shipped interface across desktop and mobile</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">11</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">06</span>
+        <span class="qo-contents__name">Interaction &amp; Admin</span>
+        <span class="qo-contents__desc">The signature moment, and what the client operates</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">13</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">07</span>
+        <span class="qo-contents__name">Accessibility &amp; Performance</span>
+        <span class="qo-contents__desc">The numbers the build was held to</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">15</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">08</span>
+        <span class="qo-contents__name">Tech Stack</span>
+        <span class="qo-contents__desc">What it was built with</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">16</span>
+      </div>
+      <div class="qo-contents__row">
+        <span class="qo-contents__num">09</span>
+        <span class="qo-contents__name">Results &amp; Reflection</span>
+        <span class="qo-contents__desc">Measured against the brief, and what I would change</span>
+        <span class="qo-contents__leader"></span>
+        <span class="qo-contents__folio">17</span>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Contents</span>
+    <span class="qo-page__num">03</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 04 — PROBLEM & CONTEXT -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">02 — Problem &amp; Context</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What wasn’t working.</h2>
+    </div>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-3xl);">
+      <p class="qo-page__lede">
+        The situation before the work started — who the audience was, what
+        already existed, and the specific point at which it stopped holding up.
+        <br><br>
+        Then the single sentence the whole project answers. Keep it concrete
+        enough that the Results page can be checked against it.
+      </p>
+
+      <div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">01</span>
+          <div>
+            <p class="qo-principle__title">Constraint</p>
+            <p class="qo-principle__body">The limit that shaped the work — a budget, a legacy system, the volume of content, or a date that ruled options out.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">02</span>
+          <div>
+            <p class="qo-principle__title">Audience</p>
+            <p class="qo-principle__body">Who actually uses this, on what device, and under what conditions — the detail that decided the layout.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">03</span>
+          <div>
+            <p class="qo-principle__title">Success</p>
+            <p class="qo-principle__body">What the client agreed would count as this having worked. Every number on the Results page traces back here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Problem &amp; Context</span>
+    <span class="qo-page__num">04</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 05 — RESEARCH & DISCOVERY -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">03 — Research &amp; Discovery</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What the findings ruled out.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Only the findings that changed a decision.
+      </p>
+    </div>
+
+    <div class="qo-page__split qo-page__split--even" style="gap: var(--qo-space-2xl); align-items:start;">
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Inputs</p>
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Stakeholder calls</span><span class="qo-spec__val">00</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Competitors reviewed</span><span class="qo-spec__val">00</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Existing analytics</span><span class="qo-spec__val">Date range</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Content audit</span><span class="qo-spec__val">00 items</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: var(--qo-space-md);">
+        <div class="qo-panel" style="padding: var(--qo-space-md);">
+          <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-2xs);">Finding 01</p>
+          <p class="qo-principle__body">What was observed, and the decision it forced.</p>
+        </div>
+        <div class="qo-panel" style="padding: var(--qo-space-md);">
+          <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-2xs);">Finding 02</p>
+          <p class="qo-principle__body">The assumption that turned out to be wrong.</p>
+        </div>
+        <div class="qo-panel" style="padding: var(--qo-space-md);">
+          <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-2xs);">Finding 03</p>
+          <p class="qo-principle__body">A late constraint, and how the plan absorbed it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Research &amp; Discovery</span>
+    <span class="qo-page__num">05</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 06 — INFORMATION ARCHITECTURE -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">04 — Information Architecture</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">How the content was grouped.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        The structure the navigation had to carry.
+      </p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap: var(--qo-space-sm); flex:1;">
+      <div class="qo-diagram">
+        <div class="qo-diagram__node qo-diagram__node--accent">
+          <span class="qo-diagram__node-title">Home</span>
+          <span class="qo-diagram__node-sub">Entry</span>
+        </div>
+      </div>
+
+      <div class="qo-diagram">
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Section one</span>
+          <span class="qo-diagram__node-sub">00 pages</span>
+        </div>
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Section two</span>
+          <span class="qo-diagram__node-sub">00 pages</span>
+        </div>
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Section three</span>
+          <span class="qo-diagram__node-sub">00 pages</span>
+        </div>
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Section four</span>
+          <span class="qo-diagram__node-sub">00 pages</span>
+        </div>
+      </div>
+
+      <div class="qo-diagram">
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Detail</span>
+          <span class="qo-diagram__node-sub">Template</span>
+        </div>
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Listing</span>
+          <span class="qo-diagram__node-sub">Template</span>
+        </div>
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Form</span>
+          <span class="qo-diagram__node-sub">Template</span>
+        </div>
+        <div class="qo-diagram__node">
+          <span class="qo-diagram__node-title">Utility</span>
+          <span class="qo-diagram__node-sub">Template</span>
+        </div>
+      </div>
+
+      <div class="qo-spec">
+        <div class="qo-spec__row"><span class="qo-spec__key">Top-level items</span><span class="qo-spec__val">00</span></div>
+        <div class="qo-spec__row"><span class="qo-spec__key">Merged from</span><span class="qo-spec__val">00 original categories</span></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Information Architecture</span>
+    <span class="qo-page__num">06</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 07 — USER FLOWS -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">05 — User Flows</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">The journey that mattered most.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        One primary flow, end to end. Secondary flows get a line in the spec
+        table rather than a diagram of their own.
+      </p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap: var(--qo-space-lg); flex:1;">
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-sm);">Primary flow</p>
+        <div class="qo-diagram">
+          <div class="qo-diagram__node">
+            <span class="qo-diagram__node-title">Arrive</span>
+            <span class="qo-diagram__node-sub">Entry point</span>
+          </div>
+          <span class="qo-diagram__arrow">→</span>
+          <div class="qo-diagram__node">
+            <span class="qo-diagram__node-title">Browse</span>
+            <span class="qo-diagram__node-sub">Orient</span>
+          </div>
+          <span class="qo-diagram__arrow">→</span>
+          <div class="qo-diagram__node">
+            <span class="qo-diagram__node-title">Choose</span>
+            <span class="qo-diagram__node-sub">Compare</span>
+          </div>
+          <span class="qo-diagram__arrow">→</span>
+          <div class="qo-diagram__node qo-diagram__node--accent">
+            <span class="qo-diagram__node-title">Act</span>
+            <span class="qo-diagram__node-sub">Conversion</span>
+          </div>
+          <span class="qo-diagram__arrow">→</span>
+          <div class="qo-diagram__node">
+            <span class="qo-diagram__node-title">Confirm</span>
+            <span class="qo-diagram__node-sub">Receipt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qo-page__split qo-page__split--even" style="gap: var(--qo-space-2xl); align-items:start;">
+        <div>
+          <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Where it used to break</p>
+          <div class="qo-spec">
+            <div class="qo-spec__row"><span class="qo-spec__key">Step</span><span class="qo-spec__val">Drop-off</span></div>
+            <div class="qo-spec__row"><span class="qo-spec__key">Browse → Choose</span><span class="qo-spec__val">00%</span></div>
+            <div class="qo-spec__row"><span class="qo-spec__key">Choose → Act</span><span class="qo-spec__val">00%</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Secondary flows</p>
+          <div class="qo-spec">
+            <div class="qo-spec__row"><span class="qo-spec__key">Search</span><span class="qo-spec__val">0 steps</span></div>
+            <div class="qo-spec__row"><span class="qo-spec__key">Contact</span><span class="qo-spec__val">0 steps</span></div>
+            <div class="qo-spec__row"><span class="qo-spec__key">Return visit</span><span class="qo-spec__val">0 steps</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>User Flows</span>
+    <span class="qo-page__num">07</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 08 — PALETTE -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">06 — Design Language</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Palette</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        The client’s colours, and the job each one does. Only one is permitted
+        to draw attention; the rest are structural.
+      </p>
+    </div>
+
+    <div class="qo-swatches">
+      <div class="qo-swatch" style="--qo-swatch-ink:#0A1830">
+        <span class="qo-swatch__fill" style="background:#0A1830;"></span>
+        <span class="qo-swatch__info">
+          <span class="qo-swatch__name">Deep Space</span>
+          <span class="qo-swatch__hex" data-copy-label>#0A1830</span>
+          <span class="qo-swatch__hex">Primary background</span>
+        </span>
+      </div>
+      <div class="qo-swatch" style="--qo-swatch-ink:#0F2244">
+        <span class="qo-swatch__fill" style="background:#0F2244;"></span>
+        <span class="qo-swatch__info">
+          <span class="qo-swatch__name">Oxford Navy</span>
+          <span class="qo-swatch__hex" data-copy-label>#0F2244</span>
+          <span class="qo-swatch__hex">Headings, filled shapes</span>
+        </span>
+      </div>
+      <div class="qo-swatch" style="--qo-swatch-ink:#6B7A94">
+        <span class="qo-swatch__fill" style="background:#6B7A94;"></span>
+        <span class="qo-swatch__info">
+          <span class="qo-swatch__name">Slate</span>
+          <span class="qo-swatch__hex" data-copy-label>#6B7A94</span>
+          <span class="qo-swatch__hex">Captions, rules, line art</span>
+        </span>
+      </div>
+      <div class="qo-swatch" style="--qo-swatch-ink:#F7F7F9">
+        <span class="qo-swatch__fill" style="background:#F7F7F9;"></span>
+        <span class="qo-swatch__info">
+          <span class="qo-swatch__name">Paper White</span>
+          <span class="qo-swatch__hex" data-copy-label>#F7F7F9</span>
+          <span class="qo-swatch__hex">Light surfaces, text on dark</span>
+        </span>
+      </div>
+      <div class="qo-swatch" style="--qo-swatch-ink:#2DD4BF">
+        <span class="qo-swatch__fill" style="background:#2DD4BF;"></span>
+        <span class="qo-swatch__info">
+          <span class="qo-swatch__name">Accent</span>
+          <span class="qo-swatch__hex" data-copy-label>#2DD4BF</span>
+          <span class="qo-swatch__hex">Accent — one per view</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Derived pairings. data-blend names the two swatches above by position,
+         so these follow whatever the hex labels are changed to. -->
+    <div class="qo-blends">
+      <span class="qo-blend" data-blend="1,2" style="background:linear-gradient(135deg,#0A1830,#0F2244);"></span>
+      <span class="qo-blend" data-blend="2,3" style="background:linear-gradient(135deg,#0F2244,#6B7A94);"></span>
+      <span class="qo-blend" data-blend="3,4" style="background:linear-gradient(135deg,#6B7A94,#F7F7F9);"></span>
+      <span class="qo-blend" data-blend="4,5" style="background:linear-gradient(135deg,#F7F7F9,#2DD4BF);"></span>
+      <span class="qo-blend" data-blend="5,1" style="background:linear-gradient(135deg,#2DD4BF,#0A1830);"></span>
+    </div>
+
+    <div class="qo-page__split qo-page__split--even" style="gap: var(--qo-space-2xl); align-items:start;">
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Derived states</p>
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Accent hover</span><span class="qo-spec__val">#5EE6D5</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Accent active</span><span class="qo-spec__val">#22A895</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Accent on paper</span><span class="qo-spec__val">#0E9E8B</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Contrast checks</p>
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Body on background</span><span class="qo-spec__val">0.0 : 1 · AA</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Accent on background</span><span class="qo-spec__val">0.0 : 1 · AA</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Caption on surface</span><span class="qo-spec__val">0.0 : 1 · AA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Design Language — Palette</span>
+    <span class="qo-page__num">08</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 09 — TYPOGRAPHY -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">06 — Design Language</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Typography</h2>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap: var(--qo-space-lg);">
+      <div class="qo-type qo-type--brand">
+        <div>
+          <p class="qo-type__name">Hanken Grotesk</p>
+          <span class="qo-spec__key qo-type__role">Brand · all UI</span>
+          <p class="qo-type__glyphs">AaBbGg 0123</p>
+        </div>
+        <div class="qo-type__rows">
+          <div class="qo-type__row" style="--qo-w:400">
+            <span class="qo-spec__key">400</span><span class="qo-spec__key">Regular</span>
+            <span class="qo-type__sample">Designing systems that scale.</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:500">
+            <span class="qo-spec__key">500</span><span class="qo-spec__key">Medium</span>
+            <span class="qo-type__sample">Designing systems that scale.</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:600">
+            <span class="qo-spec__key">600</span><span class="qo-spec__key">Semibold</span>
+            <span class="qo-type__sample">Designing systems that scale.</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:700">
+            <span class="qo-spec__key">700</span><span class="qo-spec__key">Bold</span>
+            <span class="qo-type__sample">Designing systems that scale.</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:800">
+            <span class="qo-spec__key">800</span><span class="qo-spec__key">Extrabold</span>
+            <span class="qo-type__sample">Designing systems that scale.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qo-type qo-type--mono">
+        <div>
+          <p class="qo-type__name">JetBrains Mono</p>
+          <span class="qo-spec__key qo-type__role">Technical · tracked 0.08em</span>
+          <p class="qo-type__glyphs">AaBbGg 0123</p>
+        </div>
+        <div class="qo-type__rows">
+          <div class="qo-type__row" style="--qo-w:400">
+            <span class="qo-spec__key">400</span><span class="qo-spec__key">Regular</span>
+            <span class="qo-type__sample">CASE STUDY / CLIENT / 2026</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:500">
+            <span class="qo-spec__key">500</span><span class="qo-spec__key">Medium</span>
+            <span class="qo-type__sample">CASE STUDY / CLIENT / 2026</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:600">
+            <span class="qo-spec__key">600</span><span class="qo-spec__key">Semibold</span>
+            <span class="qo-type__sample">CASE STUDY / CLIENT / 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qo-type qo-type--editorial">
+        <div>
+          <p class="qo-type__name">Fraunces</p>
+          <span class="qo-spec__key qo-type__role">Editorial · reading only</span>
+          <p class="qo-type__glyphs">AaBbGg 0123</p>
+        </div>
+        <div class="qo-type__rows">
+          <div class="qo-type__row" style="--qo-w:400">
+            <span class="qo-spec__key">400</span><span class="qo-spec__key">Regular</span>
+            <span class="qo-type__sample">Where someone is actually reading.</span>
+          </div>
+          <div class="qo-type__row qo-type__row--italic" style="--qo-w:400">
+            <span class="qo-spec__key">400</span><span class="qo-spec__key">Italic</span>
+            <span class="qo-type__sample">Where someone is actually reading.</span>
+          </div>
+          <div class="qo-type__row" style="--qo-w:500">
+            <span class="qo-spec__key">500</span><span class="qo-spec__key">Medium</span>
+            <span class="qo-type__sample">Where someone is actually reading.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Design Language — Typography</span>
+    <span class="qo-page__num">09</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 10 — COMPONENTS -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body qo-page__body--specimen">
+    <div>
+      <p class="qo-eyebrow">06 — Design Language</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Components</h2>
+    </div>
+
+    <div class="qo-specimen">
+      <span class="qo-spec__key"></span>
+      <span class="qo-spec__key">Default</span>
+      <span class="qo-spec__key">Hover</span>
+      <span class="qo-spec__key">Active</span>
+      <span class="qo-spec__key">Disabled</span>
+
+      <span class="qo-spec__key">Primary</span>
+      <span><button class="qo-btn qo-btn--primary">Primary action</button></span>
+      <span><button class="qo-btn qo-btn--primary is-hover">Primary action</button></span>
+      <span><button class="qo-btn qo-btn--primary is-active">Primary action</button></span>
+      <span><button class="qo-btn qo-btn--primary is-disabled">Primary action</button></span>
+
+      <span class="qo-spec__key">Secondary</span>
+      <span><button class="qo-btn qo-btn--secondary">Secondary</button></span>
+      <span><button class="qo-btn qo-btn--secondary is-hover">Secondary</button></span>
+      <span><button class="qo-btn qo-btn--secondary is-active">Secondary</button></span>
+      <span><button class="qo-btn qo-btn--secondary is-disabled">Secondary</button></span>
+
+      <span class="qo-spec__key">Accent</span>
+      <span><button class="qo-btn qo-btn--accent">Accent action</button></span>
+      <span><button class="qo-btn qo-btn--accent is-hover">Accent action</button></span>
+      <span><button class="qo-btn qo-btn--accent is-active">Accent action</button></span>
+      <span><button class="qo-btn qo-btn--accent is-disabled">Accent action</button></span>
+
+      <span class="qo-spec__key">Ghost</span>
+      <span><button class="qo-btn qo-btn--ghost">Tertiary</button></span>
+      <span><button class="qo-btn qo-btn--ghost is-hover">Tertiary</button></span>
+      <span><button class="qo-btn qo-btn--ghost is-active">Tertiary</button></span>
+      <span><button class="qo-btn qo-btn--ghost is-disabled">Tertiary</button></span>
+    </div>
+
+    <div class="qo-specimen">
+      <span class="qo-spec__key">Feedback</span>
+      <span><span class="qo-status qo-status--success">Success</span></span>
+      <span><span class="qo-status qo-status--warning">Warning</span></span>
+      <span><span class="qo-status qo-status--error">Error</span></span>
+      <span><span class="qo-status qo-status--info">Info</span></span>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Design Language — Components</span>
+    <span class="qo-page__num">10</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 11 — KEY SCREENS / DESKTOP -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">07 — Key Screens</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Desktop.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        The views that carry the most traffic. Each screen slot is cut to the
+        true device ratio, so a shot exported at 1920 × 1080 lands undistorted.
+      </p>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-2xl); flex:1; align-items:center;">
+      <div class="qo-device qo-device--desktop qo-view--front">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1920 × 1080"></div></div>
+        <div class="qo-device__neck"></div>
+        <div class="qo-device__foot"></div>
+        <p class="qo-device__label">Landing — above the fold</p>
+      </div>
+
+      <div class="qo-device qo-device--laptop qo-view--right" style="width:78mm;">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1440 × 900"></div></div>
+        <div class="qo-device__base"></div>
+        <p class="qo-device__label">Listing — filtered</p>
+      </div>
+
+      <div class="qo-device qo-device--tablet qo-device--tablet-landscape qo-view--left" style="width:62mm;">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1180 × 820"></div></div>
+        <p class="qo-device__label">Detail — tablet</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Key Screens — Desktop</span>
+    <span class="qo-page__num">11</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 12 — KEY SCREENS / MOBILE -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">07 — Key Screens</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">Mobile.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        One column, and the primary action within reach of a thumb.
+      </p>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-2xl); flex:1; align-items:center;">
+      <div class="qo-device qo-device--phone qo-view--front">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+        <p class="qo-device__label">Front — landing</p>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--left">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+        <p class="qo-device__label">Three-quarter left — listing</p>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--right">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+        <p class="qo-device__label">Three-quarter right — detail</p>
+      </div>
+      <div class="qo-device qo-device--phone qo-view--tilt">
+        <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+        <p class="qo-device__label">Tilted — navigation</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Key Screens — Mobile</span>
+    <span class="qo-page__num">12</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 13 — INTERACTION DEEP-DIVE -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">08 — Interaction Deep-Dive</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">One moment, taken apart.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        The signature interaction of the project, state by state. This is the
+        page that separates a case study from a screenshot gallery.
+      </p>
+    </div>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-2xl); align-items:center;">
+      <div class="qo-device-row" style="gap: var(--qo-space-lg); align-items:center;">
+        <div class="qo-device qo-device--phone qo-view--front" style="width:25mm;">
+          <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+          <p class="qo-device__label">Rest</p>
+        </div>
+        <div class="qo-device qo-device--phone qo-view--front" style="width:25mm;">
+          <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+          <p class="qo-device__label">Engaged</p>
+        </div>
+        <div class="qo-device qo-device--phone qo-view--front" style="width:25mm;">
+          <div class="qo-device__frame"><div class="qo-screen" data-spec="393 × 852"></div></div>
+          <p class="qo-device__label">Resolved</p>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap: var(--qo-space-md);">
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Trigger</span><span class="qo-spec__val">What starts it</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Duration</span><span class="qo-spec__val">000 ms</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Reduced motion</span><span class="qo-spec__val">Fallback behaviour</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Keyboard</span><span class="qo-spec__val">Focus and escape handling</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Interaction Deep-Dive</span>
+    <span class="qo-page__num">13</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 14 — ADMIN & BACKEND -->
+<section class="qo-page qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">09 — Admin &amp; Backend</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What the client operates.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        The half of the project the public never sees. If the client can’t
+        maintain it without you, the project isn’t finished.
+      </p>
+    </div>
+
+    <div class="qo-device-row" style="gap: var(--qo-space-2xl); flex:1; align-items:flex-end; justify-content:center;">
+      <div class="qo-device qo-device--desktop qo-view--front" style="width:118mm;">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1920 × 1080"></div></div>
+        <div class="qo-device__neck"></div>
+        <div class="qo-device__foot"></div>
+        <p class="qo-device__label">Dashboard</p>
+      </div>
+      <div class="qo-device qo-device--laptop qo-view--right" style="width:76mm;">
+        <div class="qo-device__frame"><div class="qo-screen qo-screen--fit-width" data-spec="1440 × 900"></div></div>
+        <div class="qo-device__base"></div>
+        <p class="qo-device__label">Record editor</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Admin &amp; Backend</span>
+    <span class="qo-page__num">14</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 15 — ACCESSIBILITY & PERFORMANCE -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">10 — Accessibility &amp; Performance</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">The numbers it was held to.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Stated as measurements, not intentions. Anything that can’t be sourced
+        should come off this page.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--qo-space-lg);">
+      <div class="qo-metric">
+        <span class="qo-metric__label">Performance</span>
+        <span class="qo-metric__value">00</span>
+        <span class="qo-metric__delta">Lighthouse</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Accessibility</span>
+        <span class="qo-metric__value">00</span>
+        <span class="qo-metric__delta">Lighthouse</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Largest paint</span>
+        <span class="qo-metric__value">0.0s</span>
+        <span class="qo-metric__delta">LCP</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Layout shift</span>
+        <span class="qo-metric__value">0.00</span>
+        <span class="qo-metric__delta">CLS</span>
+      </div>
+    </div>
+
+    <div class="qo-page__split qo-page__split--even" style="gap: var(--qo-space-2xl); align-items:start;">
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Accessibility</p>
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Contrast</span><span class="qo-spec__val">WCAG AA throughout</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Keyboard</span><span class="qo-spec__val">Full traversal, visible focus</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Landmarks</span><span class="qo-spec__val">Header, nav, main, footer</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Reduced motion</span><span class="qo-spec__val">Honoured</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Build</p>
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Page weight</span><span class="qo-spec__val">000 KB</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Images</span><span class="qo-spec__val">Responsive, lazy below fold</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Fonts</span><span class="qo-spec__val">Preconnected, swap</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Browsers</span><span class="qo-spec__val">Last 2 versions</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Accessibility &amp; Performance</span>
+    <span class="qo-page__num">15</span>
+  </footer>
+</section>
+
+<!-- ================================================== 16 — TECH STACK -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">08 — Tech Stack</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What it was built with.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Drop a logo into any well, then name the tool and the job it does.
+      </p>
+    </div>
+
+    <div class="qo-stack">
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+        <div class="qo-stack__item">
+          <div class="qo-logo"><span class="qo-logo__hint">Logo</span></div>
+          <p class="qo-stack__name">Tool name</p>
+          <p class="qo-stack__role">Role</p>
+        </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Tech Stack</span>
+    <span class="qo-page__num">16</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 16 — RESULTS & IMPACT -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">11 — Results &amp; Impact</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What changed.</h2>
+      <p class="qo-page__lede" style="margin-top: var(--qo-space-sm);">
+        Measured against the success criteria on the brief.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--qo-space-lg);">
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric one</span>
+        <span class="qo-metric__value">00%</span>
+        <span class="qo-metric__delta">↑ vs. baseline</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric two</span>
+        <span class="qo-metric__value">0.0×</span>
+        <span class="qo-metric__delta">↑ vs. baseline</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric three</span>
+        <span class="qo-metric__value">000</span>
+        <span class="qo-metric__delta qo-metric__delta--down">↓ vs. baseline</span>
+      </div>
+      <div class="qo-metric">
+        <span class="qo-metric__label">Metric four</span>
+        <span class="qo-metric__value">00</span>
+        <span class="qo-metric__delta">↑ vs. baseline</span>
+      </div>
+    </div>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-2xl); align-items:start;">
+      <div>
+        <p class="qo-spec__key" style="margin-bottom: var(--qo-space-2xs);">Against the brief</p>
+        <div class="qo-spec">
+          <div class="qo-spec__row"><span class="qo-spec__key">Criterion one</span><span class="qo-spec__val">Met</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Criterion two</span><span class="qo-spec__val">Met</span></div>
+          <div class="qo-spec__row"><span class="qo-spec__key">Criterion three</span><span class="qo-spec__val">Partially met</span></div>
+        </div>
+      </div>
+      <div class="qo-panel" style="padding: var(--qo-space-lg);">
+        <p class="qo-spec__key" style="color: var(--qo-accent); margin-bottom: var(--qo-space-2xs);">In the client’s words</p>
+        <p class="qo-editorial" style="font-size:12pt; max-width:46ch;">
+          A short quote from the client — one or two sentences, attributed to a
+          named person and role. Leave this out entirely rather than inventing it.
+        </p>
+        <p class="qo-spec__key" style="margin-top: var(--qo-space-sm);">Name — Role, Company</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Results &amp; Impact</span>
+    <span class="qo-page__num">17</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 17 — REFLECTION -->
+<section class="qo-page qo-page--light qo-page--case">
+  <div class="qo-page__body">
+    <div>
+      <p class="qo-eyebrow">12 — Reflection</p>
+      <h2 class="qo-page__title" style="margin-top: var(--qo-space-xs);">What I’d do differently.</h2>
+    </div>
+
+    <div class="qo-page__split" style="gap: var(--qo-space-3xl);">
+      <p class="qo-page__lede">
+        The honest read, written after enough time had passed to be useful.
+        Naming a real trade-off reads as judgement; claiming everything went to
+        plan reads as inexperience.
+        <br><br>
+        Close on what a second phase would tackle first.
+      </p>
+
+      <div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">01</span>
+          <div>
+            <p class="qo-principle__title">Kept</p>
+            <p class="qo-principle__body">The decision that held up best under real use, and why it did.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">02</span>
+          <div>
+            <p class="qo-principle__title">Changed</p>
+            <p class="qo-principle__body">What was revised after launch once real behaviour contradicted the plan.</p>
+          </div>
+        </div>
+        <div class="qo-principle">
+          <span class="qo-principle__num">03</span>
+          <div>
+            <p class="qo-principle__title">Next</p>
+            <p class="qo-principle__body">The first thing a second phase would take on, and the evidence that it matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="qo-page__foot">
+    <span>Reflection</span>
+    <span class="qo-page__num">18</span>
+  </footer>
+</section>
+
+<!-- ============================================================ 18 — COLOPHON -->
+<section class="qo-page qo-cover">
+  <div class="qo-cover__mark">CASEFOLIO</div>
+
+  <div>
+    <p class="qo-eyebrow">End of document</p>
+    <div class="qo-cover__rule"></div>
+    <h2 class="qo-cover__title" style="font-size:34pt;">Built on one system.</h2>
+    <p class="qo-page__lede" style="margin-top: var(--qo-space-lg); max-width: 56ch;">
+      Every value in this document resolves from
+      <code class="qo-badge">css/tokens.css</code>. Change a token and this
+      case study — and every other one built on the template — follows.
+    </p>
+  </div>
+
+  <div class="qo-cover__meta">
+    <span>Abrar Al Sayem — abraralsayem97@gmail.com</span>
+    <span class="qo-page__num">19</span>
+  </div>
+</section>
+
+<script src="js/styleguide.js?v=20260730-3"></script>
+<script src="js/manifest.js"></script>
+<script src="js/token-derive.js?v=20260730-2"></script>
+<script src="js/project.js"></script>
+<script src="js/panel.js?v=20260730-15"></script>
+</body>
+</html>

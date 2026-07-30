@@ -1,0 +1,106 @@
+/* ============================================================
+   AI PORTFOLIO — palette + font override
+   Loaded after tokens.css in ai-portfolio.html. Repoints the full
+   color chain plus the brand typeface onto an indigo/violet
+   system — same variable names tokens.css defines, so every
+   component in components.css/devices.css/pages.css/panel.css
+   works completely unchanged.
+   ============================================================ */
+
+:root {
+  /* ---- Color: brand ------------------------------------------------- */
+  --qo-deep-space:   #0B0B1E;  /* primary dark surface */
+  --qo-navy:         #1B1440;  /* headings, filled shapes on dark */
+  --qo-slate:        #7A7A9E;  /* captions, rules, line art */
+  --qo-paper:        #F5F4FA;  /* light surface, text on dark */
+  --qo-teal:         #8B5CF6; /* accent — Signal Violet, one per view */
+
+  /* ---- Color: derived states ------------------------------------------ */
+  --qo-teal-hover:      #A78BFA;
+  --qo-teal-active:     #7C3AED;
+  --qo-teal-muted:      rgba(139, 92, 246, 0.14);
+  --qo-teal-glow:       rgba(139, 92, 246, 0.35);
+
+  --qo-navy-hover:      #2B2265;
+  --qo-slate-muted:     rgba(122, 122, 158, 0.35);
+  --qo-paper-muted:     rgba(245, 244, 250, 0.7);
+  --qo-paper-faint:     rgba(245, 244, 250, 0.08);
+
+  --qo-border-subtle:   rgba(245, 244, 250, 0.12);
+  --qo-border-strong:   rgba(245, 244, 250, 0.24);
+
+  /* ---- Elevation ladder -------------------------------------------------- */
+  --qo-elev-0:  #0B0B1E;
+  --qo-elev-1:  #14123A;
+  --qo-elev-2:  #1D1A52;
+  --qo-elev-3:  #27226C;
+
+  --qo-highlight-edge: inset 0 1px 0 rgba(245, 244, 250, 0.09);
+  --qo-highlight-edge-strong: inset 0 1px 0 rgba(245, 244, 250, 0.16);
+
+  --qo-wash-teal: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139, 92, 246, 0.14), transparent 70%);
+  --qo-wash-navy: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(43, 34, 101, 0.6), transparent 75%);
+
+  /* ---- Color: semantic roles --------------------------------------------- */
+  --qo-bg:              var(--qo-elev-0);
+  --qo-surface:         var(--qo-elev-1);
+  --qo-surface-raised:  var(--qo-elev-2);
+  --qo-surface-high:    var(--qo-elev-3);
+  --qo-text:            var(--qo-paper);
+  --qo-text-muted:      var(--qo-slate);
+  --qo-accent-base:     var(--qo-teal);
+  --qo-accent:          var(--qo-accent-base);
+  --qo-accent-contrast: var(--qo-deep-space);
+  --qo-border:          var(--qo-border-subtle);
+  --qo-focus-ring:      var(--qo-teal);
+
+  /* ---- Typography: brand face --------------------------------------------
+     Space Grotesk reads more overtly technical than Hanken Grotesk — the
+     right register for model/infra/automation content. Technical (mono)
+     and editorial (serif) stay the same faces as the Web Portfolio template. */
+  --qo-font-brand: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ============================================================
+   LIGHT THEME SCOPE — same repoint pattern as tokens.css
+   ============================================================ */
+
+.qo-page--light {
+  --qo-bg:              var(--qo-paper);
+  --qo-surface:         #FFFFFF;
+  --qo-surface-raised:  #FFFFFF;
+  --qo-surface-high:    #FFFFFF;
+
+  --qo-text:            var(--qo-navy);
+  --qo-text-muted:      #5C5C82;
+  --qo-accent-contrast: var(--qo-deep-space);
+
+  /* Violet on white needs darkening to stay legible as text or a rule —
+     #8B5CF6 passes on dark surfaces but not against paper. */
+  --qo-accent-base:     #6D28D9;
+  --qo-accent:          var(--qo-accent-base);
+  /* Stepped off the darkened accent, so hover lifts and active presses —
+     see the note in tokens.css's light block. */
+  --qo-accent-hover:    #8B47E8;
+  --qo-accent-active:   #551FA8;
+
+  --qo-border-subtle:   rgba(27, 20, 64, 0.12);
+  --qo-border-strong:   rgba(27, 20, 64, 0.26);
+  --qo-border:          var(--qo-border-subtle);
+  --qo-paper-faint:     rgba(27, 20, 64, 0.05);
+  --qo-slate-muted:     rgba(122, 122, 158, 0.4);
+  --qo-teal-muted:      rgba(109, 40, 217, 0.12);
+  --qo-focus-ring:      #6D28D9;
+
+  --qo-shadow-sm:     0 1px 2px rgba(27, 20, 64, 0.08);
+  --qo-shadow-raised: 0 1px 2px rgba(27, 20, 64, 0.06),
+                      0 8px 24px -10px rgba(27, 20, 64, 0.18);
+  --qo-shadow-float:  0 2px 4px rgba(27, 20, 64, 0.06),
+                      0 20px 44px -16px rgba(27, 20, 64, 0.24);
+  --qo-shadow-accent-float:
+                      0 2px 4px rgba(27, 20, 64, 0.06),
+                      0 20px 44px -16px rgba(27, 20, 64, 0.24),
+                      0 0 32px -14px rgba(109, 40, 217, 0.5);
+  --qo-highlight-edge:        none;
+  --qo-highlight-edge-strong: none;
+}

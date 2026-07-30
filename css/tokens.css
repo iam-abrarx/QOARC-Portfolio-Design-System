@@ -1,0 +1,325 @@
+/* ============================================================
+   QOARC DESIGN TOKENS
+   Single source of truth for the portfolio design system.
+   Every other stylesheet reads from these custom properties —
+   never hardcode a color, size, or spacing value elsewhere.
+   ============================================================ */
+
+:root {
+
+  /* ---- Color: brand ------------------------------------------------- */
+  --qo-deep-space:   #0A1830;  /* primary dark surface */
+  --qo-navy:         #0F2244;  /* logo, headings, filled shapes on dark */
+  --qo-slate:        #6B7A94;  /* captions, rules, line art */
+  --qo-paper:        #F7F7F9;  /* light surface, text on dark */
+  --qo-teal:         #2DD4BF; /* accent — one per view, no exceptions */
+
+  /* ---- Color: derived states ----------------------------------------
+     Generated off the brand colors so hover/active states never need
+     an ad-hoc hex value. */
+  --qo-teal-hover:      #5EE6D5;
+  --qo-teal-active:     #22A895;
+  --qo-teal-muted:      rgba(45, 212, 191, 0.14);
+  --qo-teal-glow:       rgba(45, 212, 191, 0.35);
+
+  --qo-navy-hover:      #16305F;
+  --qo-slate-muted:     rgba(107, 122, 148, 0.35);
+  --qo-paper-muted:     rgba(247, 247, 249, 0.7);
+  --qo-paper-faint:     rgba(247, 247, 249, 0.08);
+
+  --qo-border-subtle:   rgba(247, 247, 249, 0.12);
+  --qo-border-strong:   rgba(247, 247, 249, 0.24);
+
+  /* ---- Elevation ladder ----------------------------------------------
+     Four rungs from the base background upward. Each step lightens the
+     surface AND adds a top highlight — depth reads as light falling from
+     above, not just a bigger shadow. */
+  --qo-elev-0:  #0A1830;  /* page background */
+  --qo-elev-1:  #101F3C;  /* resting cards, quiet panels */
+  --qo-elev-2:  #142A52;  /* raised cards, hover state */
+  --qo-elev-3:  #1B3564;  /* popovers, active/pressed surfaces */
+
+  /* Hairline of light along the top edge of a raised surface. */
+  --qo-highlight-edge: inset 0 1px 0 rgba(247, 247, 249, 0.09);
+  --qo-highlight-edge-strong: inset 0 1px 0 rgba(247, 247, 249, 0.16);
+
+  /* Ambient wash — a soft teal/navy bloom used sparingly behind hero
+     and section headers to keep large dark areas from going flat. */
+  --qo-wash-teal: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(45, 212, 191, 0.10), transparent 70%);
+  --qo-wash-navy: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(22, 48, 95, 0.55), transparent 75%);
+
+  /* ---- Color: semantic roles ------------------------------------------
+     Components reference these, not the raw palette above — swapping
+     a theme later only means repointing this block. */
+  --qo-bg:              var(--qo-elev-0);
+  --qo-surface:         var(--qo-elev-1);
+  --qo-surface-raised:  var(--qo-elev-2);
+  --qo-surface-high:    var(--qo-elev-3);
+  --qo-text:            var(--qo-paper);
+  --qo-text-muted:      var(--qo-slate);
+  /* The theme's accent before any per-project client colour is layered on.
+     Case pages resolve their accent through this (see .qo-page--case in
+     pages.css) rather than reaching past it to --qo-teal — otherwise a light
+     case page would fall back to the raw brand teal and lose the darkened,
+     paper-legible value the light block sets below. */
+  --qo-accent-base:     var(--qo-teal);
+  --qo-accent:          var(--qo-accent-base);
+  --qo-accent-contrast: var(--qo-deep-space); /* text placed ON teal fills */
+  /* The accent's interaction states, as semantic roles rather than raw brand
+     steps. Components must reach for these, never --qo-teal-hover/-active
+     directly: a light page repoints --qo-accent to a darkened teal, and a
+     component bound to the brand step would keep the dark theme's bright
+     hover — landing a hover that's lighter than its own resting state. Here
+     they alias the brand steps, so an accent swap in a theme override file
+     still flows through for free. */
+  --qo-accent-hover:    var(--qo-teal-hover);
+  --qo-accent-active:   var(--qo-teal-active);
+
+  /* ---- Filled shapes ------------------------------------------------------
+     The role --qo-navy is captioned for on the Palette sheet: "headings,
+     filled shapes". A primary button is a filled shape, so it wears the
+     brand navy — not the accent. Principle 02 is "one accent per view", and
+     a primary control appears in most views; filling it with the accent
+     spends that one permitted attention-grabber on furniture and leaves
+     nothing for whatever the page is actually pointing at.
+
+     On dark pages the navy sits only a few points off the deep-space
+     background, so the resting fill lifts to --qo-navy-hover to stay a
+     visible shape; the light block below can use the navy directly.
+
+     The two states are mixed off whatever --qo-fill resolves to rather than
+     hard-coded, so a theme that repoints navy — or a project palette typed
+     into the Palette sheet — gets a correct hover/active ladder for free
+     instead of needing a hand-tuned pair per theme. */
+  --qo-fill:            var(--qo-navy-hover);
+  --qo-fill-contrast:   var(--qo-paper);
+  --qo-fill-hover:      color-mix(in srgb, var(--qo-fill) 88%, #FFFFFF);
+  --qo-fill-active:     color-mix(in srgb, var(--qo-fill) 88%, #000000);
+
+  /* ---- Status ---------------------------------------------------------
+     Feedback colours sit OUTSIDE the brand palette on purpose. Green-means-go
+     and red-means-stop are conventions a reader brings with them; rendering a
+     failure in the brand accent would be on-brand and unreadable. They are
+     deliberately desaturated toward the system's own register so they never
+     out-shout the accent, which is still the only colour allowed to direct
+     attention (Principle 02).
+
+     There is deliberately no --qo-info token. Info borrows the accent rather
+     than inventing a fifth hue, and an alias declared here would be
+     substituted against :root's accent and inherit down already-computed —
+     landing the bright dark-theme teal on light and case pages, which repoint
+     the accent below. Components reach for var(--qo-accent) directly so it
+     resolves in whatever scope they actually sit in. */
+  --qo-success:         #34D399;
+  --qo-warning:         #FBBF24;
+  --qo-danger:          #F87171;
+
+  --qo-border:          var(--qo-border-subtle);
+  --qo-focus-ring:      var(--qo-teal);
+
+  /* ---- Typography: families ------------------------------------------ */
+  --qo-font-brand:      'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --qo-font-mono:       'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  --qo-font-editorial:  'Fraunces', Georgia, 'Times New Roman', serif; /* reading contexts only — never UI */
+
+  /* ---- Typography: fluid scale ----------------------------------------
+     Minor-third ratio (1.2). clamp() keeps headings from overflowing on
+     small viewports without a separate mobile stylesheet. */
+  --qo-text-xs:    0.75rem;                                   /* 12px */
+  --qo-text-sm:    0.875rem;                                  /* 14px */
+  --qo-text-base:  1rem;                                      /* 16px */
+  --qo-text-md:    1.125rem;                                  /* 18px */
+  --qo-text-lg:    clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);    /* 20-24px */
+  --qo-text-xl:    clamp(1.5rem, 1.3rem + 1vw, 1.875rem);      /* 24-30px */
+  --qo-text-2xl:   clamp(1.875rem, 1.6rem + 1.4vw, 2.5rem);    /* 30-40px */
+  --qo-text-3xl:   clamp(2.25rem, 1.8rem + 2.2vw, 3.25rem);    /* 36-52px */
+  --qo-text-4xl:   clamp(2.75rem, 2rem + 3.5vw, 4.5rem);       /* 44-72px */
+  --qo-text-5xl:   clamp(3.5rem, 2.4rem + 5.5vw, 6rem);        /* 56-96px */
+
+  --qo-leading-tight:   1.1;
+  --qo-leading-snug:    1.3;
+  --qo-leading-normal:  1.55;
+  --qo-leading-relaxed: 1.75;
+
+  --qo-tracking-tight:  -0.02em;
+  --qo-tracking-normal: 0;
+  --qo-tracking-wide:   0.04em;
+  --qo-tracking-mono:   0.08em; /* the JetBrains Mono "signature" tracking */
+
+  /* ---- Spacing: 4px base, t-shirt named ------------------------------- */
+  --qo-space-3xs:  0.25rem;  /* 4px */
+  --qo-space-2xs:  0.5rem;   /* 8px */
+  --qo-space-xs:   0.75rem;  /* 12px */
+  --qo-space-sm:   1rem;     /* 16px */
+  --qo-space-md:   1.5rem;   /* 24px */
+  --qo-space-lg:   2rem;     /* 32px */
+  --qo-space-xl:   3rem;     /* 48px */
+  --qo-space-2xl:  4rem;     /* 64px */
+  --qo-space-3xl:  6rem;     /* 96px */
+  --qo-space-4xl:  8rem;     /* 128px */
+  --qo-space-5xl:  10rem;    /* 160px */
+
+  /* ---- Radius ---------------------------------------------------------- */
+  --qo-radius-sm:   4px;
+  --qo-radius-md:   8px;
+  --qo-radius-lg:   16px;
+  --qo-radius-xl:   24px;
+  --qo-radius-full: 999px;
+
+  /* ---- Shadow & glow ----------------------------------------------------
+     Dark-surface shadows lean on black; the accent glow is the only
+     colored shadow in the system, reserved for the one teal element. */
+  --qo-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --qo-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --qo-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.45);
+  --qo-shadow-glow: 0 0 0 4px var(--qo-teal-glow);
+
+  /* Layered shadows — a tight contact shadow plus a wide ambient one.
+     Two layers read as real depth where a single blur reads as a smudge. */
+  --qo-shadow-raised:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --qo-shadow-float:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 24px 56px -16px rgba(0, 0, 0, 0.6);
+  --qo-shadow-accent-float:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 24px 56px -16px rgba(0, 0, 0, 0.6),
+    0 0 40px -12px var(--qo-teal-glow);
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --qo-ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --qo-ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --qo-duration-fast: 150ms;
+  --qo-duration-base: 250ms;
+  --qo-duration-slow: 400ms;
+
+  /* ---- Layout ------------------------------------------------------------
+     Breakpoint values are documented here for reference and read by
+     js/tokens.js at runtime; media queries below still need the literal
+     px value since CSS can't interpolate custom properties into @media. */
+  --qo-bp-sm:  480px;
+  --qo-bp-md:  768px;
+  --qo-bp-lg:  1024px;
+  --qo-bp-xl:  1280px;
+  --qo-bp-2xl: 1440px;
+
+  --qo-container-max: 1440px;
+  --qo-container-pad: clamp(1.25rem, 4vw, 3rem);
+  --qo-grid-columns: 12;
+  --qo-grid-gutter: var(--qo-space-md);
+
+  /* Vertical rhythm — sections breathe wider as the viewport grows, so
+     large screens get real whitespace instead of just longer line lengths. */
+  --qo-section-y:      clamp(4rem, 9vw, 9rem);
+  --qo-section-y-lg:   clamp(6rem, 13vw, 14rem);
+  --qo-block-gap:      clamp(2rem, 4vw, 4rem);
+  --qo-header-gap:     clamp(1.5rem, 3vw, 3rem);
+
+  /* Table of contents sidebar */
+  --qo-toc-width: 15rem;
+  --qo-nav-height: 4.5rem;
+
+  /* ---- Page geometry -------------------------------------------------
+     This document is paged, not scrolled. A4 landscape by default —
+     change these two values to reflow the whole document (e.g.
+     338mm x 190mm for 16:9 deck proportions). */
+  --qo-page-w: 297mm;
+  --qo-page-h: 210mm;
+  --qo-page-pad: 20mm;
+  --qo-page-gap: 12mm;
+  --qo-workspace: #05101F;   /* the surface pages float on, screen only */
+
+  /* Comfortable reading measure for body copy */
+  --qo-measure: 62ch;
+  --qo-measure-tight: 46ch;
+
+  /* ---- Z-index scale ------------------------------------------------------ */
+  --qo-z-base:     0;
+  --qo-z-raised:   10;
+  --qo-z-sticky:   100;
+  --qo-z-overlay:  1000;
+  --qo-z-modal:    1100;
+  --qo-z-toast:    1200;
+}
+
+/* ============================================================
+   LIGHT THEME SCOPE
+   Repoints the semantic roles only — the brand palette above is
+   untouched. Any component built on semantic tokens works on a
+   light page with no component-level overrides.
+   ============================================================ */
+
+.qo-page--light {
+  --qo-bg:              var(--qo-paper);
+  --qo-surface:         #FFFFFF;
+  --qo-surface-raised:  #FFFFFF;
+  --qo-surface-high:    #FFFFFF;
+
+  /* The ladder is repointed too, not just the semantic roles above it.
+     Anything that reaches for a rung directly — a card's media gradient, a
+     specimen panel — would otherwise stay deep-space blue on paper, which is
+     exactly the inconsistency a per-page theme switch has to avoid. */
+  --qo-elev-0:  #FFFFFF;
+  --qo-elev-1:  #F4F5F8;
+  --qo-elev-2:  #EBEDF2;
+  --qo-elev-3:  #E1E4EC;
+
+  --qo-text:            var(--qo-navy);
+  --qo-text-muted:      #5C6B85;
+  --qo-accent-contrast: var(--qo-deep-space);
+
+  /* Teal on white needs darkening to stay legible as text or a rule —
+     #2DD4BF passes on dark surfaces but not against paper. Set on the base
+     so case pages inherit the correction instead of reverting to raw teal. */
+  --qo-accent-base:     #0E9E8B;
+  --qo-accent:          var(--qo-accent-base);
+  /* Stepped off the darkened accent above, not off #2DD4BF, so a filled
+     control gets lighter on hover and darker when pressed — the same shape
+     the dark theme has. Inheriting the brand steps here would hover to
+     #5EE6D5, brighter than the resting fill and a different hue family. */
+  --qo-accent-hover:    #14BFA6;
+  --qo-accent-active:   #0A7A6B;
+
+  /* On paper the navy needs no lifting — it is already the darkest thing on
+     the page, so a filled shape reads at full strength.
+
+     The two states have to be restated here, not just --qo-fill. A custom
+     property is substituted at computed-value time on the element that
+     DECLARES it: the :root versions resolved their var(--qo-fill) against
+     the dark value and inherit down already-computed, so overriding only
+     --qo-fill would leave a light page with navy resting on a lifted
+     dark-page hover. Re-declaring them here re-runs the mix against the
+     navy above. */
+  --qo-fill:            var(--qo-navy);
+  --qo-fill-hover:      color-mix(in srgb, var(--qo-fill) 88%, #FFFFFF);
+  --qo-fill-active:     color-mix(in srgb, var(--qo-fill) 88%, #000000);
+
+  /* The dark-theme status colours are tuned to glow against deep space and
+     wash out to nothing on paper. These are their ink-on-white counterparts,
+     dark enough to pass as body text on the light surfaces. */
+  --qo-success:         #047857;
+  --qo-warning:         #B45309;
+  --qo-danger:          #B91C1C;
+
+  --qo-border-subtle:   rgba(15, 34, 68, 0.12);
+  --qo-border-strong:   rgba(15, 34, 68, 0.26);
+  --qo-border:          var(--qo-border-subtle);
+  --qo-paper-faint:     rgba(15, 34, 68, 0.05);
+  --qo-slate-muted:     rgba(107, 122, 148, 0.4);
+  --qo-teal-muted:      rgba(14, 158, 139, 0.12);
+  --qo-focus-ring:      #0E9E8B;
+
+  /* Shadows on paper are soft and neutral, never black. */
+  --qo-shadow-sm:     0 1px 2px rgba(15, 34, 68, 0.08);
+  --qo-shadow-raised: 0 1px 2px rgba(15, 34, 68, 0.06),
+                      0 8px 24px -10px rgba(15, 34, 68, 0.18);
+  --qo-shadow-float:  0 2px 4px rgba(15, 34, 68, 0.06),
+                      0 20px 44px -16px rgba(15, 34, 68, 0.24);
+  --qo-shadow-accent-float:
+                      0 2px 4px rgba(15, 34, 68, 0.06),
+                      0 20px 44px -16px rgba(15, 34, 68, 0.24),
+                      0 0 32px -14px rgba(14, 158, 139, 0.5);
+  --qo-highlight-edge:        none;
+  --qo-highlight-edge-strong: none;
+}

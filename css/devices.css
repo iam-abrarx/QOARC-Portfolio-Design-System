@@ -1,0 +1,701 @@
+/* ============================================================
+   DEVICE MOCKUPS
+   Blank frames sized to real device screen ratios. Each frame
+   holds a .qo-screen whose placeholder sits underneath — drop an
+   <img> inside and it covers the placeholder automatically, so
+   adding artwork never means touching the frame CSS.
+
+     <div class="qo-device qo-device--phone qo-view--left">
+       <div class="qo-device__frame">
+         <div class="qo-screen" data-spec="393 × 852">
+           <img src="../sites/Name/home-mobile.png" alt="">
+         </div>
+       </div>
+     </div>
+
+   Frames are sized in mm so they hold their physical dimensions
+   in the printed PDF.
+   ============================================================ */
+
+.qo-device {
+  /* Default targets a DARK page: the bezel must be lighter than the page
+     or the device dissolves into the background. Light pages invert this
+     at the bottom of the file. */
+  --qo-bezel:      #2B303A;
+  --qo-bezel-edge: #545C6C;
+  --qo-bezel-w:    1.8mm;
+  --qo-screen-bg:  #151E30;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: none;
+}
+
+.qo-device__frame {
+  position: relative;
+  background: var(--qo-bezel);
+  border: var(--qo-bezel-w) solid var(--qo-bezel);
+  box-shadow: inset 0 0 0 0 var(--qo-bezel-edge);
+}
+
+/* ---- The screen slot ------------------------------------------------------
+   Placeholder is painted on the element itself; any <img> inside is
+   absolutely positioned over it and cropped to fill. */
+
+.qo-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 3mm,
+      rgba(107, 122, 148, 0.10) 3mm 3.4mm
+    ),
+    var(--qo-screen-bg);
+  /* Ambient occlusion where the glass meets the bezel — a hairline of
+     shadow right at the seam, present regardless of what's on screen. */
+  box-shadow: inset 0 0 0.9mm rgba(0, 0, 0, 0.4);
+}
+
+/* Permanent, subtle glass glare — every screen is glass, not just the
+   angled 3D views. The stronger, angle-aware version further down
+   (.qo-view--3d-*) out-specifies this for those views. */
+.qo-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(255, 255, 255, 0.03) 16%,
+    transparent 30%
+  );
+}
+
+/* Ratio label, shown only while the slot is empty. */
+.qo-screen::after {
+  content: attr(data-spec);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: var(--qo-tracking-mono);
+  color: rgba(107, 122, 148, 0.85);
+  text-align: center;
+  padding: 2mm;
+}
+
+.qo-screen > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;                  /* covers the placeholder and its label */
+  /* Pan and zoom, driven by the visual builder. Defaults are a no-op, so
+     a slot that was never adjusted renders exactly as authored.
+     Panning moves the COVER CROP via object-position — that's where the
+     hidden parts of the image actually live. A translate would only slide
+     the element box, clipping one edge and opening a gap on the other. */
+  object-position: calc(50% + var(--sx, 0px)) var(--sy, 0px);
+  transform-origin: center;
+  transform: scale(var(--sz, 1));
+}
+
+/* ---- Phone ---------------------------------------------------------------
+   iPhone 15 logical resolution, 393 × 852. */
+
+/* Every device sets its width on the .qo-device wrapper and the frame fills
+   it, so `style="width:74mm"` on the wrapper scales the whole assembly —
+   frame, base, neck and foot together. */
+
+.qo-device--phone  { width: 42mm; }
+.qo-device--tablet { width: 66mm; }
+.qo-device--tablet-landscape { width: 95mm; }
+.qo-device--laptop  { width: 112mm; }
+.qo-device--desktop { width: 124mm; }
+
+.qo-device__frame { width: 100%; }
+
+.qo-device--phone .qo-device__frame {
+  aspect-ratio: 393 / 852;
+  border-radius: 5mm;
+}
+
+.qo-device--phone .qo-screen { border-radius: 4.2mm; }
+
+/* ---- Tablet ---------------------------------------------------------------
+   iPad-class portrait, 820 × 1180. */
+
+.qo-device--tablet .qo-device__frame {
+  aspect-ratio: 820 / 1180;
+  border-radius: 3mm;
+}
+
+.qo-device--tablet .qo-screen { border-radius: 1.6mm; }
+
+.qo-device--tablet-landscape .qo-device__frame {
+  aspect-ratio: 1180 / 820;
+}
+
+/* ---- Laptop ---------------------------------------------------------------
+   16:10 lid over a tapered base. */
+
+.qo-device--laptop .qo-device__frame {
+  aspect-ratio: 16 / 10;
+  border-radius: 1.6mm;
+}
+
+.qo-device--laptop .qo-screen { border-radius: 0.8mm; }
+
+.qo-device__base {
+  width: 110%;   /* the lip overhangs the lid on both sides */
+  height: 3.2mm;
+  background: linear-gradient(180deg, #2C3038 0%, #16181D 55%, #0D0E12 100%);
+  border-radius: 0 0 2mm 2mm;
+  box-shadow: inset 0 0.3mm 0 rgba(255, 255, 255, 0.14), var(--qo-shadow-raised);
+  position: relative;
+}
+
+/* Thumb notch on the front lip */
+.qo-device__base::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: 16mm;
+  height: 1mm;
+  background: #0D0E12;
+  border-radius: 0 0 1mm 1mm;
+}
+
+/* ---- Desktop monitor -------------------------------------------------------
+   16:9 panel on a neck and foot. */
+
+.qo-device--desktop .qo-device__frame {
+  aspect-ratio: 16 / 9;
+  border-radius: 1.6mm;
+}
+
+.qo-device--desktop .qo-screen { border-radius: 0.8mm; }
+
+.qo-device__neck {
+  width: 11%;
+  height: 9mm;
+  background: linear-gradient(180deg, #23262D, #16181D);
+}
+
+.qo-device__foot {
+  width: 37%;
+  height: 2.4mm;
+  background: linear-gradient(180deg, #2C3038, #0D0E12);
+  border-radius: 99px;
+  box-shadow: inset 0 0.3mm 0 rgba(255, 255, 255, 0.12), var(--qo-shadow-raised);
+}
+
+/* ---- Browser window --------------------------------------------------------
+   For section crops rather than whole-page captures. Real screenshots of a
+   section are rarely 16:9, so this frame takes its height from the image
+   (via .qo-screen--auto) instead of forcing a ratio and cropping the sides. */
+
+.qo-device--browser { width: 150mm; }
+
+.qo-device--browser .qo-device__frame {
+  border: 0;
+  border-radius: 2mm;
+  overflow: hidden;
+  background: var(--qo-bezel);
+}
+
+.qo-device__chrome {
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  height: 6mm;
+  padding-inline: 3mm;
+  background: linear-gradient(180deg, var(--qo-bezel-edge), var(--qo-bezel));
+}
+
+.qo-device__dots { display: flex; gap: 1.3mm; }
+
+.qo-device__dots i {
+  display: block;
+  width: 1.7mm;
+  height: 1.7mm;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.qo-device__url {
+  flex: 1;
+  height: 3.6mm;
+  display: flex;
+  align-items: center;
+  padding-inline: 2.2mm;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.3);
+  font-family: var(--qo-font-mono);
+  font-size: 5.2pt;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---- Fit-width: for section crops inside a fixed-ratio screen --------------
+   A wide, short section crop can't fill a 16:10 laptop screen. `cover` would
+   slice the sides off; this pins the shot to the top at full width and lets
+   the site's own paper colour fill whatever remains below — exactly what the
+   real browser shows when a page is shorter than the viewport. Set
+   --qo-shot-bg to the site's background if it isn't white. */
+
+.qo-screen--fit-width { background: var(--qo-shot-bg, #FFFFFF); }
+
+/* Fit-width pins the shot to the top at full width. A short-wide shot gets
+   min-height + cover, which crops horizontally — so X pans the crop via
+   object-position. A tall shot overflows the frame bottom instead — so Y
+   pans the element box via translate. Each axis uses whichever mechanism
+   actually has hidden content behind it. */
+.qo-screen--fit-width > img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: calc(50% + var(--sx, 0px)) 0;
+  transform-origin: top center;
+  transform: translateY(var(--sy, 0px)) scale(var(--sz, 1));
+}
+
+.qo-screen--auto > img {
+  transform-origin: top center;
+  transform: translate(var(--sx, 0px), var(--sy, 0px)) scale(var(--sz, 1));
+}
+
+/* Height comes from the image, so nothing is cropped. */
+.qo-screen--auto {
+  height: auto;
+  aspect-ratio: auto;
+  min-height: 12mm;
+}
+
+.qo-screen--auto > img {
+  position: static;
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+/* Placeholder teardown lives at the end of this file — it has to out-specify
+   the light-page overrides below. */
+
+/* ---- Views & angles ---------------------------------------------------------
+   Perspective lives on the wrapper so the frame itself stays a plain
+   rectangle — swapping the angle never affects the screen slot. */
+
+.qo-view--left,
+.qo-view--right,
+.qo-view--tilt,
+.qo-view--recline,
+.qo-view--iso {
+  perspective: 1400px;
+}
+
+/* The rotation is shared through --qo-tf and applied to the frame AND the
+   furniture below it (laptop base, monitor neck + foot). The frame pivots
+   about its bottom edge, the furniture about its top edge — the same line
+   in space — so lid and body stay seamed at any angle instead of the body
+   sitting flat under a rotated screen. */
+
+.qo-view--left    { --qo-tf: rotateY(30deg)  rotateX(4deg); }
+.qo-view--right   { --qo-tf: rotateY(-30deg) rotateX(4deg); }
+.qo-view--tilt    { --qo-tf: rotateX(14deg) rotateZ(-7deg); }
+.qo-view--recline { --qo-tf: rotateX(26deg); }
+.qo-view--iso     { --qo-tf: rotateX(38deg) rotateZ(-32deg); }
+
+[class*="qo-view--"] .qo-device__frame {
+  transform: var(--qo-tf, none);
+  transform-origin: 50% 100%;
+}
+
+[class*="qo-view--"] .qo-device__base,
+[class*="qo-view--"] .qo-device__neck,
+[class*="qo-view--"] .qo-device__foot {
+  transform: var(--qo-tf, none);
+  transform-origin: 50% 0%;
+}
+
+/* ---- True-3D views ----------------------------------------------------------
+   The flat angles above rotate the frame but leave it paper-thin. These add
+   the device's physical thickness — stacked hard shadows extrude the near
+   edge in local space, so they rotate with the frame — plus a glare sweep
+   across the glass. Box-shadow offsets follow the element's own axes, which
+   is what makes the extrusion track the angle for free. */
+
+.qo-view--3d-left,
+.qo-view--3d-right,
+.qo-view--3d-float {
+  perspective: 1200px;
+}
+
+.qo-view--3d-left  { --qo-tf: rotateY(32deg)  rotateX(7deg) rotateZ(-2deg); }
+.qo-view--3d-right { --qo-tf: rotateY(-32deg) rotateX(7deg) rotateZ(2deg); }
+.qo-view--3d-float { --qo-tf: rotateX(16deg) rotateY(-12deg) rotateZ(4deg); }
+
+/* Extrusion edge colors, darkest last. Overridden by the silver finish. */
+.qo-device {
+  --qo-e1: #1A1D24;
+  --qo-e2: #15181E;
+  --qo-e3: #111318;
+  --qo-e4: #0C0E11;
+}
+
+/* Backdrop cast shadow — the last layer in each 3D box-shadow below.
+   --qo-3d-shadow-scale scales its distance/blur/spread, --qo-3d-shadow
+   carries a JS-computed rgba() (color + strength baked into the alpha
+   channel together, same convention as the Depth effects further down).
+   Both fall back to the original fixed values, so a device the Angle
+   tab's Backdrop shadow slider never touched renders exactly as before. */
+
+.qo-view--3d-left .qo-device__frame {
+  box-shadow:
+    inset 0 0 0 0 var(--qo-bezel-edge),
+    -0.3mm 0.2mm 0 var(--qo-e1),
+    -0.6mm 0.4mm 0 var(--qo-e2),
+    -0.9mm 0.6mm 0 var(--qo-e3),
+    -1.2mm 0.8mm 0 var(--qo-e4);
+}
+
+.qo-view--3d-right .qo-device__frame {
+  box-shadow:
+    inset 0 0 0 0 var(--qo-bezel-edge),
+    0.3mm 0.2mm 0 var(--qo-e1),
+    0.6mm 0.4mm 0 var(--qo-e2),
+    0.9mm 0.6mm 0 var(--qo-e3),
+    1.2mm 0.8mm 0 var(--qo-e4);
+}
+
+.qo-view--3d-float .qo-device__frame {
+  box-shadow:
+    inset 0 0 0 0 var(--qo-bezel-edge),
+    0.25mm 0.3mm 0 var(--qo-e1),
+    0.5mm  0.6mm 0 var(--qo-e2),
+    0.75mm 0.9mm 0 var(--qo-e3),
+    1mm    1.2mm 0 var(--qo-e4);
+}
+
+/* Glass glare — sits above any artwork (img is z-index 1). */
+.qo-view--3d-left  .qo-screen::before,
+.qo-view--3d-right .qo-screen::before,
+.qo-view--3d-float .qo-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.05) 28%,
+    transparent 45%
+  );
+}
+
+/* ---- Hardware details -------------------------------------------------------
+   Side buttons on the phone. Painted as background layers on an oversized
+   ::after so they sit just proud of the frame edge and rotate with it. */
+
+.qo-device--phone .qo-device__frame::after {
+  content: "";
+  position: absolute;
+  inset: -1.5mm;
+  border-radius: 6mm;
+  pointer-events: none;
+  background:
+    /* power — right edge */
+    linear-gradient(var(--qo-bezel-edge), var(--qo-bezel-edge)) right 0 top 27% / 0.45mm 7mm no-repeat,
+    /* volume up / down — left edge */
+    linear-gradient(var(--qo-bezel-edge), var(--qo-bezel-edge)) left 0 top 22% / 0.45mm 4mm no-repeat,
+    linear-gradient(var(--qo-bezel-edge), var(--qo-bezel-edge)) left 0 top 32% / 0.45mm 4mm no-repeat;
+}
+
+/* ---- Depth effects ----------------------------------------------------------
+   One per device, set by the builder (Depth tab). drop-shadow follows the
+   painted silhouette — including the rotated frame and its extrusion — so
+   every effect tracks whatever angle the device is in. Reflection mirrors
+   the lid below itself with a fast fade.
+
+   Two knobs make every preset adjustable without forking it into more
+   presets: --qo-fx-scale grows or shrinks the preset's own distances
+   proportionally (so Soft and Deep keep their distinct shape at any
+   strength), while --qo-fx-glow/--qo-fx-shadow carry a JS-computed rgba
+   string (color AND strength baked into the alpha channel together).
+   Both fall back to the original fixed values, so a device the Color/
+   Strength controls never touched renders exactly as before. */
+
+.qo-fx-soft :is(.qo-device__frame, .qo-device__base, .qo-device__neck, .qo-device__foot) {
+  filter: drop-shadow(0 calc(4mm * var(--qo-fx-scale, 1)) calc(5mm * var(--qo-fx-scale, 1)) var(--qo-fx-shadow, rgba(0, 0, 0, 0.45)));
+}
+
+.qo-fx-deep :is(.qo-device__frame, .qo-device__base, .qo-device__neck, .qo-device__foot) {
+  filter:
+    drop-shadow(0 calc(2mm * var(--qo-fx-scale, 1)) calc(2mm * var(--qo-fx-scale, 1)) var(--qo-fx-shadow, rgba(0, 0, 0, 0.5)))
+    drop-shadow(0 calc(10mm * var(--qo-fx-scale, 1)) calc(10mm * var(--qo-fx-scale, 1)) var(--qo-fx-shadow, rgba(0, 0, 0, 0.55)));
+}
+
+.qo-fx-glow :is(.qo-device__frame, .qo-device__base, .qo-device__neck, .qo-device__foot) {
+  filter: drop-shadow(0 0 calc(5mm * var(--qo-fx-scale, 1)) var(--qo-fx-glow, rgba(45, 212, 191, 0.5)));
+}
+
+.qo-fx-glow-shadow :is(.qo-device__frame, .qo-device__base, .qo-device__neck, .qo-device__foot) {
+  filter:
+    drop-shadow(0 0 calc(4mm * var(--qo-fx-scale, 1)) var(--qo-fx-glow, rgba(45, 212, 191, 0.45)))
+    drop-shadow(0 calc(8mm * var(--qo-fx-scale, 1)) calc(9mm * var(--qo-fx-scale, 1)) var(--qo-fx-shadow, rgba(0, 0, 0, 0.55)));
+}
+
+.qo-fx-reflect .qo-device__frame {
+  -webkit-box-reflect: below 1.5mm linear-gradient(transparent 55%, var(--qo-fx-shadow, rgba(0, 0, 0, 0.28)));
+}
+
+/* Colored rim around the frame + furniture. outline (not box-shadow) so it
+   never collides with the 3D views' own box-shadow-based extrusion layers
+   — the two effects are independent properties and combine for free.
+   --qo-fx-stroke carries a higher baseline alpha than --qo-fx-glow (same
+   color, meant to read as a solid rim rather than a soft halo). */
+.qo-fx-stroke :is(.qo-device__frame, .qo-device__base, .qo-device__neck, .qo-device__foot) {
+  outline: calc(0.6mm * var(--qo-fx-scale, 1)) solid var(--qo-fx-stroke, rgba(45, 212, 191, 0.85));
+  outline-offset: 1mm;
+}
+
+/* ---- Text & block style effects ----------------------------------------------
+   The equivalent adjustable controls for everything that isn't a device —
+   text elements and repeatable components (principle items, contents rows,
+   spec rows, swatches). Unlike device Depth these are independently
+   combinable (glow AND shadow AND a background wash all at once), so each
+   is its own toggleable class rather than one-preset-at-a-time. text-shadow
+   and -webkit-text-stroke inherit to any nested text, so applying these to
+   a wrapper block colors its contents too, for free. */
+
+.qo-style-glow {
+  text-shadow:
+    0 0 var(--qo-style-glow-blur, 8px) var(--qo-style-glow-color, rgba(45, 212, 191, 0.65)),
+    0 0 calc(var(--qo-style-glow-blur, 8px) * 2.2) var(--qo-style-glow-color-soft, rgba(45, 212, 191, 0.32));
+}
+
+.qo-style-stroke {
+  -webkit-text-stroke: var(--qo-style-stroke-w, 0.6px) var(--qo-style-stroke-color, rgba(45, 212, 191, 0.85));
+  outline: max(1px, calc(var(--qo-style-stroke-w, 0.6px) * 1.6)) solid var(--qo-style-stroke-color, rgba(45, 212, 191, 0.5));
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* box-shadow, not filter: drop-shadow — Chrome's print/PDF path silently
+   drops `filter` entirely (a long-standing Chromium limitation, still
+   present in current stable builds), so the Depth/Style shadow would
+   render on screen but vanish from "Export PDF". box-shadow renders
+   identically for a plain rectangular text/paragraph box and DOES survive
+   print, so it's the safe choice here. */
+.qo-style-shadow {
+  box-shadow: 0 var(--qo-style-shadow-dist, 4px) var(--qo-style-shadow-blur, 8px) var(--qo-style-shadow-color, rgba(0, 0, 0, 0.4));
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.qo-style-bg {
+  background: var(--qo-style-bg-grad, linear-gradient(135deg, rgba(45, 212, 191, 0.18), rgba(45, 212, 191, 0.04)));
+  padding: 0.3em 0.55em;
+  border-radius: 6px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ---- Manual shadow ----------------------------------------------------------
+   A user-placed shadow behind the device. Rendered as a ::after on the
+   wrapper so it can be independently positioned, scaled, and blurred
+   without conflicting with the frame's own box-shadow (extrusion layers,
+   depth effects). Only active when .qo-manual-shadow is toggled on. */
+
+.qo-manual-shadow {
+  position: relative;  /* anchor the ::after */
+}
+
+.qo-manual-shadow::after {
+  content: "";
+  position: absolute;
+  /* Center horizontally under the frame, sit behind everything. */
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  /* Base size: match the frame footprint. scaleX/scaleY squash it. */
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(
+    var(--qo-ms-color, 0, 0, 0),
+    var(--qo-ms-opacity, 0.5)
+  );
+  filter: blur(var(--qo-ms-blur, 20mm));
+  transform:
+    translate(-50%, -50%)
+    translate(var(--qo-ms-x, 0mm), var(--qo-ms-y, 8mm))
+    scaleX(var(--qo-ms-sx, 1))
+    scaleY(var(--qo-ms-sy, 0.4));
+}
+
+/* ---- Scale modifiers --------------------------------------------------------
+   For compositions where one device should read as secondary. */
+
+.qo-scale-90 .qo-device__frame { width: 90%; }
+.qo-scale-75 .qo-device__frame { width: 75%; }
+
+/* ---- Caption ------------------------------------------------------------------ */
+
+.qo-device__label {
+  margin-top: var(--qo-space-2xs);
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+  text-align: center;
+}
+
+/* ---- Composition row ------------------------------------------------------------
+   Lays devices on a shared baseline so a phone next to a laptop reads as
+   one scene rather than two specimens. */
+
+.qo-device-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--qo-space-lg);
+  flex-wrap: nowrap;
+}
+
+.qo-device-row--overlap { gap: 0; }
+.qo-device-row--overlap > * + * { margin-left: -14mm; }
+
+/* On paper the relationship inverts — the bezel goes dark so the device
+   reads as an object sitting on the page rather than a pale cut-out. */
+.qo-page--light .qo-device {
+  --qo-bezel:      #1C1F26;
+  --qo-bezel-edge: #3A404C;
+  --qo-screen-bg:  #E9ECF2;
+}
+
+/* ---- Finish: silver ---------------------------------------------------------
+   Aluminum body. Doubled selectors so the finish also beats the light-page
+   bezel override above. Screen hardware (island, webcam) stays black. */
+
+.qo-device--silver,
+.qo-page--light .qo-device--silver {
+  --qo-bezel:      #C9CED6;
+  --qo-bezel-edge: #EEF1F5;
+  --qo-e1: #B9BFC9;
+  --qo-e2: #A7ADB8;
+  --qo-e3: #969CA7;
+  --qo-e4: #848A95;
+}
+
+.qo-device--silver .qo-device__base {
+  background: linear-gradient(180deg, #E8EBF0 0%, #C2C7D0 55%, #9AA1AC 100%);
+}
+.qo-device--silver .qo-device__base::after { background: #8F96A1; }
+
+.qo-device--silver .qo-device__neck {
+  background: linear-gradient(180deg, #D8DCE3, #ADB3BD);
+}
+.qo-device--silver .qo-device__foot {
+  background: linear-gradient(180deg, #E0E4EA, #9AA1AC);
+}
+
+/* ---- Finish: blue ------------------------------------------------------------
+   Muted, matte steel blue — same lightness family as silver so it reads
+   fine on both dark and light pages. */
+
+.qo-device--blue,
+.qo-page--light .qo-device--blue {
+  --qo-bezel:      #6E8CAE;
+  --qo-bezel-edge: #A9C2D9;
+  --qo-e1: #5F7C9C;
+  --qo-e2: #55708D;
+  --qo-e3: #4A637C;
+  --qo-e4: #3F566C;
+}
+
+.qo-device--blue .qo-device__base {
+  background: linear-gradient(180deg, #A9C2D9 0%, #6E8CAE 55%, #4A637C 100%);
+}
+.qo-device--blue .qo-device__base::after { background: #44596F; }
+
+.qo-device--blue .qo-device__neck {
+  background: linear-gradient(180deg, #8CA8C4, #5F7C9C);
+}
+.qo-device--blue .qo-device__foot {
+  background: linear-gradient(180deg, #A0BAD3, #4A637C);
+}
+
+/* ---- Finish: soft pink --------------------------------------------------------
+   Pastel rose, same treatment as blue — a tint swap, not a new recipe. */
+
+.qo-device--pink,
+.qo-page--light .qo-device--pink {
+  --qo-bezel:      #E3B8C4;
+  --qo-bezel-edge: #F5DCE3;
+  --qo-e1: #D6A3B2;
+  --qo-e2: #CB93A4;
+  --qo-e3: #BD8195;
+  --qo-e4: #AD7086;
+}
+
+.qo-device--pink .qo-device__base {
+  background: linear-gradient(180deg, #F5DCE3 0%, #E3B8C4 55%, #C68DA0 100%);
+}
+.qo-device--pink .qo-device__base::after { background: #BD8195; }
+
+.qo-device--pink .qo-device__neck {
+  background: linear-gradient(180deg, #EFCBD5, #D6A3B2);
+}
+.qo-device--pink .qo-device__foot {
+  background: linear-gradient(180deg, #F0D2DB, #C68DA0);
+}
+
+.qo-page--light .qo-screen {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 3mm,
+      rgba(15, 34, 68, 0.07) 3mm 3.4mm
+    ),
+    var(--qo-screen-bg);
+}
+
+.qo-page--light .qo-screen::after { color: rgba(15, 34, 68, 0.5); }
+
+/* ---- Placeholder teardown (must come last) -----------------------------------
+   Once a slot holds an image the hatch and ratio label go away. These carry
+   the .qo-page--light prefix as well, because the light-page rules above are
+   more specific than a bare .qo-screen:has(img) and would otherwise repaint
+   the hatch straight over the artwork. */
+
+.qo-screen:has(img),
+.qo-page--light .qo-screen:has(img) { background: none; }
+
+.qo-screen:has(img)::after,
+.qo-page--light .qo-screen:has(img)::after { display: none; }
+
+/* Fit-width keeps a paper fill so the area below a short crop reads as the
+   rest of the page, not a hole in the device. */
+.qo-screen--fit-width:has(img),
+.qo-page--light .qo-screen--fit-width:has(img) {
+  background: var(--qo-shot-bg, #FFFFFF);
+}

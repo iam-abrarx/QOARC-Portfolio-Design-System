@@ -1,0 +1,202 @@
+{
+  "$schema": "https://folio.app/schema/project/1.json",
+  "id": "proj_qoarc_v06",
+  "name": "QOARC Portfolio Project",
+  "version": "1.0.0",
+  "createdAt": "2026-07-21T20:39:26.330Z",
+  "updatedAt": "2026-07-21T20:39:26.331Z",
+  "systems": [
+    "systems/system.json"
+  ],
+  "documents": [
+    "documents/doc.doc.json"
+  ],
+  "assets": {
+    "sha256:3574101eb2c48f0b1d20d26141663a48f25ee82f2851d114faef95815e8fe700": {
+      "hash": "sha256:3574101eb2c48f0b1d20d26141663a48f25ee82f2851d114faef95815e8fe700",
+      "filename": "3574101eb2c48f0b1d20d26141663a48f25ee82f2851d114faef95815e8fe700.png",
+      "path": "assets/3574101eb2c48f0b1d20d26141663a48f25ee82f2851d114faef95815e8fe700.png",
+      "mimeType": "image/png"
+    },
+    "sha256:86692b28866f3a4a40776bd8b2ea611c1d6b4ad175f9397ce7554232575ce366": {
+      "hash": "sha256:86692b28866f3a4a40776bd8b2ea611c1d6b4ad175f9397ce7554232575ce366",
+      "filename": "86692b28866f3a4a40776bd8b2ea611c1d6b4ad175f9397ce7554232575ce366.png",
+      "path": "assets/86692b28866f3a4a40776bd8b2ea611c1d6b4ad175f9397ce7554232575ce366.png",
+      "mimeType": "image/png"
+    },
+    "sha256:580916a9b09cd0ff599f5988b0191ec6e7daf54e2ad64a3855441d08dc36f96d": {
+      "hash": "sha256:580916a9b09cd0ff599f5988b0191ec6e7daf54e2ad64a3855441d08dc36f96d",
+      "filename": "580916a9b09cd0ff599f5988b0191ec6e7daf54e2ad64a3855441d08dc36f96d.png",
+      "path": "assets/580916a9b09cd0ff599f5988b0191ec6e7daf54e2ad64a3855441d08dc36f96d.png",
+      "mimeType": "image/png"
+    },
+    "sha256:5a8032bf6fac0f507faa03982e05ba0ebaddf36eb661d98822472a1abaee1385": {
+      "hash": "sha256:5a8032bf6fac0f507faa03982e05ba0ebaddf36eb661d98822472a1abaee1385",
+      "filename": "5a8032bf6fac0f507faa03982e05ba0ebaddf36eb661d98822472a1abaee1385.png",
+      "path": "assets/5a8032bf6fac0f507faa03982e05ba0ebaddf36eb661d98822472a1abaee1385.png",
+      "mimeType": "image/png"
+    },
+    "sha256:c3b8def5e587bc28ce25d4c7975f206a50865b86671d18136044044208e9de89": {
+      "hash": "sha256:c3b8def5e587bc28ce25d4c7975f206a50865b86671d18136044044208e9de89",
+      "filename": "c3b8def5e587bc28ce25d4c7975f206a50865b86671d18136044044208e9de89.png",
+      "path": "assets/c3b8def5e587bc28ce25d4c7975f206a50865b86671d18136044044208e9de89.png",
+      "mimeType": "image/png"
+    },
+    "sha256:6a2ef4f2dbb36508b9d65a1b00d17ca10498f4ea46d6bc469cb8530c15a29128": {
+      "hash": "sha256:6a2ef4f2dbb36508b9d65a1b00d17ca10498f4ea46d6bc469cb8530c15a29128",
+      "filename": "6a2ef4f2dbb36508b9d65a1b00d17ca10498f4ea46d6bc469cb8530c15a29128.png",
+      "path": "assets/6a2ef4f2dbb36508b9d65a1b00d17ca10498f4ea46d6bc469cb8530c15a29128.png",
+      "mimeType": "image/png"
+    },
+    "sha256:9d267c74ea9b24c57ee17001a63cb3d66658a556dcb65cb14b0c8c3b067a95ae": {
+      "hash": "sha256:9d267c74ea9b24c57ee17001a63cb3d66658a556dcb65cb14b0c8c3b067a95ae",
+      "filename": "9d267c74ea9b24c57ee17001a63cb3d66658a556dcb65cb14b0c8c3b067a95ae.png",
+      "path": "assets/9d267c74ea9b24c57ee17001a63cb3d66658a556dcb65cb14b0c8c3b067a95ae.png",
+      "mimeType": "image/png"
+    },
+    "sha256:062d762494cc80f10b09c7c38bdc4d95dfcfb8ea64fe4787902397f53a53aea9": {
+      "hash": "sha256:062d762494cc80f10b09c7c38bdc4d95dfcfb8ea64fe4787902397f53a53aea9",
+      "filename": "062d762494cc80f10b09c7c38bdc4d95dfcfb8ea64fe4787902397f53a53aea9.png",
+      "path": "assets/062d762494cc80f10b09c7c38bdc4d95dfcfb8ea64fe4787902397f53a53aea9.png",
+      "mimeType": "image/png"
+    },
+    "sha256:07f2996470ce8bd127e6741ef3d543426e0527d796f9c4c2c7e7eedb34edd7dc": {
+      "hash": "sha256:07f2996470ce8bd127e6741ef3d543426e0527d796f9c4c2c7e7eedb34edd7dc",
+      "filename": "07f2996470ce8bd127e6741ef3d543426e0527d796f9c4c2c7e7eedb34edd7dc.png",
+      "path": "assets/07f2996470ce8bd127e6741ef3d543426e0527d796f9c4c2c7e7eedb34edd7dc.png",
+      "mimeType": "image/png"
+    },
+    "sha256:1ece2301727f7a2d0c58f14b2e7cde280be27b05ec904bd179f73af3a4645246": {
+      "hash": "sha256:1ece2301727f7a2d0c58f14b2e7cde280be27b05ec904bd179f73af3a4645246",
+      "filename": "1ece2301727f7a2d0c58f14b2e7cde280be27b05ec904bd179f73af3a4645246.png",
+      "path": "assets/1ece2301727f7a2d0c58f14b2e7cde280be27b05ec904bd179f73af3a4645246.png",
+      "mimeType": "image/png"
+    },
+    "sha256:64022ccec71201bb7bb7c76e6611c899873ea611cce5920e67750bdab1d0cf1b": {
+      "hash": "sha256:64022ccec71201bb7bb7c76e6611c899873ea611cce5920e67750bdab1d0cf1b",
+      "filename": "64022ccec71201bb7bb7c76e6611c899873ea611cce5920e67750bdab1d0cf1b.png",
+      "path": "assets/64022ccec71201bb7bb7c76e6611c899873ea611cce5920e67750bdab1d0cf1b.png",
+      "mimeType": "image/png"
+    },
+    "sha256:26ca465055baf8e9a0a87f0cc095689404d35520b6f5b30b567ebed5ae652b98": {
+      "hash": "sha256:26ca465055baf8e9a0a87f0cc095689404d35520b6f5b30b567ebed5ae652b98",
+      "filename": "26ca465055baf8e9a0a87f0cc095689404d35520b6f5b30b567ebed5ae652b98.png",
+      "path": "assets/26ca465055baf8e9a0a87f0cc095689404d35520b6f5b30b567ebed5ae652b98.png",
+      "mimeType": "image/png"
+    },
+    "sha256:0c345ef1ca06061ba82b8d638efcb7fe9541e86c4d708a2b2a6db9c41b31eb37": {
+      "hash": "sha256:0c345ef1ca06061ba82b8d638efcb7fe9541e86c4d708a2b2a6db9c41b31eb37",
+      "filename": "0c345ef1ca06061ba82b8d638efcb7fe9541e86c4d708a2b2a6db9c41b31eb37.png",
+      "path": "assets/0c345ef1ca06061ba82b8d638efcb7fe9541e86c4d708a2b2a6db9c41b31eb37.png",
+      "mimeType": "image/png"
+    },
+    "sha256:445deb8c0465591295ca1f7d13b8a9ce1d5e76cd8312a0d361113807c0711f2e": {
+      "hash": "sha256:445deb8c0465591295ca1f7d13b8a9ce1d5e76cd8312a0d361113807c0711f2e",
+      "filename": "445deb8c0465591295ca1f7d13b8a9ce1d5e76cd8312a0d361113807c0711f2e.png",
+      "path": "assets/445deb8c0465591295ca1f7d13b8a9ce1d5e76cd8312a0d361113807c0711f2e.png",
+      "mimeType": "image/png"
+    },
+    "sha256:de362185665330d28c42933fbd91986d4f123901768f5ec1ebfe7a5528097166": {
+      "hash": "sha256:de362185665330d28c42933fbd91986d4f123901768f5ec1ebfe7a5528097166",
+      "filename": "de362185665330d28c42933fbd91986d4f123901768f5ec1ebfe7a5528097166.png",
+      "path": "assets/de362185665330d28c42933fbd91986d4f123901768f5ec1ebfe7a5528097166.png",
+      "mimeType": "image/png"
+    },
+    "sha256:2b740cbba6e4b9c55cd1ad51f35516689cfd8923067c67ca1237a30b5d30052e": {
+      "hash": "sha256:2b740cbba6e4b9c55cd1ad51f35516689cfd8923067c67ca1237a30b5d30052e",
+      "filename": "2b740cbba6e4b9c55cd1ad51f35516689cfd8923067c67ca1237a30b5d30052e.png",
+      "path": "assets/2b740cbba6e4b9c55cd1ad51f35516689cfd8923067c67ca1237a30b5d30052e.png",
+      "mimeType": "image/png"
+    },
+    "sha256:ae9ead5503f180616163c494c5807a9cc567ed6ac31d5db4a53812edb1d7d893": {
+      "hash": "sha256:ae9ead5503f180616163c494c5807a9cc567ed6ac31d5db4a53812edb1d7d893",
+      "filename": "ae9ead5503f180616163c494c5807a9cc567ed6ac31d5db4a53812edb1d7d893.png",
+      "path": "assets/ae9ead5503f180616163c494c5807a9cc567ed6ac31d5db4a53812edb1d7d893.png",
+      "mimeType": "image/png"
+    },
+    "sha256:3dd34b3d429c83b22cf66ef20beee9e6f89583b1873b67c9f30e376263bb0179": {
+      "hash": "sha256:3dd34b3d429c83b22cf66ef20beee9e6f89583b1873b67c9f30e376263bb0179",
+      "filename": "3dd34b3d429c83b22cf66ef20beee9e6f89583b1873b67c9f30e376263bb0179.png",
+      "path": "assets/3dd34b3d429c83b22cf66ef20beee9e6f89583b1873b67c9f30e376263bb0179.png",
+      "mimeType": "image/png"
+    },
+    "sha256:2d6548585d5fb5f25e8659ba9b734c0fa695a4974fd084076a4e8ad0ecfd9aa1": {
+      "hash": "sha256:2d6548585d5fb5f25e8659ba9b734c0fa695a4974fd084076a4e8ad0ecfd9aa1",
+      "filename": "2d6548585d5fb5f25e8659ba9b734c0fa695a4974fd084076a4e8ad0ecfd9aa1.png",
+      "path": "assets/2d6548585d5fb5f25e8659ba9b734c0fa695a4974fd084076a4e8ad0ecfd9aa1.png",
+      "mimeType": "image/png"
+    },
+    "sha256:a3cd7e8b91dc92bf708c9603d4561357782847e36b46f2f21764368551aa5e93": {
+      "hash": "sha256:a3cd7e8b91dc92bf708c9603d4561357782847e36b46f2f21764368551aa5e93",
+      "filename": "a3cd7e8b91dc92bf708c9603d4561357782847e36b46f2f21764368551aa5e93.png",
+      "path": "assets/a3cd7e8b91dc92bf708c9603d4561357782847e36b46f2f21764368551aa5e93.png",
+      "mimeType": "image/png"
+    },
+    "sha256:64018cba0ed9e1dd398d1898707c9b0da82733b8c14d5834598d0d42b974aaa3": {
+      "hash": "sha256:64018cba0ed9e1dd398d1898707c9b0da82733b8c14d5834598d0d42b974aaa3",
+      "filename": "64018cba0ed9e1dd398d1898707c9b0da82733b8c14d5834598d0d42b974aaa3.png",
+      "path": "assets/64018cba0ed9e1dd398d1898707c9b0da82733b8c14d5834598d0d42b974aaa3.png",
+      "mimeType": "image/png"
+    },
+    "sha256:21202186c7dbec012d4db28d21f8ccae6518c6f31399a1cd7e3c8f969ef27779": {
+      "hash": "sha256:21202186c7dbec012d4db28d21f8ccae6518c6f31399a1cd7e3c8f969ef27779",
+      "filename": "21202186c7dbec012d4db28d21f8ccae6518c6f31399a1cd7e3c8f969ef27779.png",
+      "path": "assets/21202186c7dbec012d4db28d21f8ccae6518c6f31399a1cd7e3c8f969ef27779.png",
+      "mimeType": "image/png"
+    },
+    "sha256:0145de30a0e0b1628105f24fa614ab1fd64a79a8d16b28638ab89d5d0a6891e5": {
+      "hash": "sha256:0145de30a0e0b1628105f24fa614ab1fd64a79a8d16b28638ab89d5d0a6891e5",
+      "filename": "0145de30a0e0b1628105f24fa614ab1fd64a79a8d16b28638ab89d5d0a6891e5.png",
+      "path": "assets/0145de30a0e0b1628105f24fa614ab1fd64a79a8d16b28638ab89d5d0a6891e5.png",
+      "mimeType": "image/png"
+    },
+    "sha256:5153f0ecb72cc8f1350416d5a6ee614050c8c53f64e7c918ddb7af49851f9baf": {
+      "hash": "sha256:5153f0ecb72cc8f1350416d5a6ee614050c8c53f64e7c918ddb7af49851f9baf",
+      "filename": "5153f0ecb72cc8f1350416d5a6ee614050c8c53f64e7c918ddb7af49851f9baf.png",
+      "path": "assets/5153f0ecb72cc8f1350416d5a6ee614050c8c53f64e7c918ddb7af49851f9baf.png",
+      "mimeType": "image/png"
+    },
+    "sha256:26e756d0e1bd08927210e3b2761296d20b0a3e951a37bf81f59020dca34cb54e": {
+      "hash": "sha256:26e756d0e1bd08927210e3b2761296d20b0a3e951a37bf81f59020dca34cb54e",
+      "filename": "26e756d0e1bd08927210e3b2761296d20b0a3e951a37bf81f59020dca34cb54e.png",
+      "path": "assets/26e756d0e1bd08927210e3b2761296d20b0a3e951a37bf81f59020dca34cb54e.png",
+      "mimeType": "image/png"
+    },
+    "sha256:dbb1715432a5156cb081875ea548733d3ff185fd202555b54ff7c5cdbdf2a2d5": {
+      "hash": "sha256:dbb1715432a5156cb081875ea548733d3ff185fd202555b54ff7c5cdbdf2a2d5",
+      "filename": "dbb1715432a5156cb081875ea548733d3ff185fd202555b54ff7c5cdbdf2a2d5.png",
+      "path": "assets/dbb1715432a5156cb081875ea548733d3ff185fd202555b54ff7c5cdbdf2a2d5.png",
+      "mimeType": "image/png"
+    },
+    "sha256:1abecc6a021ba55d476555ce92c5dfe79f6135324ebc3e35a534db41da675e64": {
+      "hash": "sha256:1abecc6a021ba55d476555ce92c5dfe79f6135324ebc3e35a534db41da675e64",
+      "filename": "1abecc6a021ba55d476555ce92c5dfe79f6135324ebc3e35a534db41da675e64.png",
+      "path": "assets/1abecc6a021ba55d476555ce92c5dfe79f6135324ebc3e35a534db41da675e64.png",
+      "mimeType": "image/png"
+    },
+    "sha256:c8d1b65d336fce83ddef166bb7a8704b4e58d87f17272ca7ee63d4ab11220fbf": {
+      "hash": "sha256:c8d1b65d336fce83ddef166bb7a8704b4e58d87f17272ca7ee63d4ab11220fbf",
+      "filename": "c8d1b65d336fce83ddef166bb7a8704b4e58d87f17272ca7ee63d4ab11220fbf.png",
+      "path": "assets/c8d1b65d336fce83ddef166bb7a8704b4e58d87f17272ca7ee63d4ab11220fbf.png",
+      "mimeType": "image/png"
+    },
+    "sha256:4a27c8b02b829fbaf53702cf2b127b3dabe5f39ae1f7eb79f6e390646ba39df4": {
+      "hash": "sha256:4a27c8b02b829fbaf53702cf2b127b3dabe5f39ae1f7eb79f6e390646ba39df4",
+      "filename": "4a27c8b02b829fbaf53702cf2b127b3dabe5f39ae1f7eb79f6e390646ba39df4.png",
+      "path": "assets/4a27c8b02b829fbaf53702cf2b127b3dabe5f39ae1f7eb79f6e390646ba39df4.png",
+      "mimeType": "image/png"
+    },
+    "sha256:1757f84914c43a6f3e633dfc99692da65b64079814f508530193bb826caf5dc7": {
+      "hash": "sha256:1757f84914c43a6f3e633dfc99692da65b64079814f508530193bb826caf5dc7",
+      "filename": "1757f84914c43a6f3e633dfc99692da65b64079814f508530193bb826caf5dc7.png",
+      "path": "assets/1757f84914c43a6f3e633dfc99692da65b64079814f508530193bb826caf5dc7.png",
+      "mimeType": "image/png"
+    },
+    "sha256:bc6dbc6953bff10846e04002ff4f7b38e210abd3de67bb3bd6b9143464fc0559": {
+      "hash": "sha256:bc6dbc6953bff10846e04002ff4f7b38e210abd3de67bb3bd6b9143464fc0559",
+      "filename": "bc6dbc6953bff10846e04002ff4f7b38e210abd3de67bb3bd6b9143464fc0559.png",
+      "path": "assets/bc6dbc6953bff10846e04002ff4f7b38e210abd3de67bb3bd6b9143464fc0559.png",
+      "mimeType": "image/png"
+    }
+  }
+}

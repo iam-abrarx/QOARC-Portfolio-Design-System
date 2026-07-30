@@ -1,0 +1,33 @@
+/* ============================================================
+   AI + SOFTWARE PORTFOLIO — palette override
+   Loaded after tokens.css in hybrid-portfolio.html. Keeps the same
+   navy base the Web Portfolio template uses (this template is
+   structurally derived from it) and repoints only the accent
+   chain — teal to amber — so the document reads as its own
+   system without a second full palette to maintain.
+   ============================================================ */
+
+:root {
+  --qo-teal:            #F5A623; /* accent — Signal Amber, one per view */
+  --qo-teal-hover:      #FFC266;
+  --qo-teal-active:     #C97E0F;
+  --qo-teal-muted:      rgba(245, 166, 35, 0.14);
+  --qo-teal-glow:       rgba(245, 166, 35, 0.35);
+
+  --qo-accent-base:     var(--qo-teal);
+  --qo-accent:          var(--qo-accent-base);
+  --qo-focus-ring:      var(--qo-teal);
+}
+
+.qo-page--light {
+  /* Amber on white needs darkening to stay legible as text or a rule —
+     #F5A623 passes on dark surfaces but not against paper. */
+  --qo-accent-base:     #9A6412;
+  --qo-accent:          var(--qo-accent-base);
+  /* Stepped off the darkened accent, so hover lifts and active presses —
+     see the note in tokens.css's light block. */
+  --qo-accent-hover:    #BC7C18;
+  --qo-accent-active:   #774C0B;
+  --qo-teal-muted:      rgba(154, 100, 18, 0.12);
+  --qo-focus-ring:      #9A6412;
+}

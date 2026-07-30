@@ -1,0 +1,79 @@
+{
+  "$schema": "https://folio.app/schema/system/1.json",
+  "id": "sys_qoarc_starter",
+  "name": "QOARC Design System",
+  "version": "1.2.0",
+  "tokens": {
+    "color": {
+      "deepSpace": {
+        "$type": "color",
+        "$value": "#0A1830"
+      },
+      "oxfordNavy": {
+        "$type": "color",
+        "$value": "#0F2244"
+      },
+      "slate": {
+        "$type": "color",
+        "$value": "#6B7A94"
+      },
+      "paperWhite": {
+        "$type": "color",
+        "$value": "#F7F7F9"
+      },
+      "signalTeal": {
+        "$type": "color",
+        "$value": "#2DD4BF"
+      }
+    },
+    "font": {
+      "brand": {
+        "$type": "fontFamily",
+        "$value": [
+          "Hanken Grotesk",
+          "sans-serif"
+        ]
+      },
+      "technical": {
+        "$type": "fontFamily",
+        "$value": [
+          "JetBrains Mono",
+          "monospace"
+        ]
+      },
+      "editorial": {
+        "$type": "fontFamily",
+        "$value": [
+          "Fraunces",
+          "serif"
+        ]
+      }
+    }
+  },
+  "themes": {
+    "dark": {
+      "bg": "{color.deepSpace}",
+      "surface": "{color.oxfordNavy}",
+      "text": "{color.paperWhite}",
+      "accent": "{color.signalTeal}"
+    },
+    "light": {
+      "bg": "{color.paperWhite}",
+      "surface": "#FFFFFF",
+      "text": "{color.oxfordNavy}",
+      "accent": "#0E9E8B"
+    }
+  },
+  "rules": [
+    {
+      "id": "one-accent-per-view",
+      "severity": "warn",
+      "description": "At most one accent element per view",
+      "check": {
+        "type": "countRoleUsage",
+        "role": "accent",
+        "max": 1
+      }
+    }
+  ]
+}

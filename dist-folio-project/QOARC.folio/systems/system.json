@@ -1,0 +1,173 @@
+{
+  "$schema": "https://folio.app/schema/system/1.json",
+  "id": "sys_qoarc_v06",
+  "name": "QOARC Design System",
+  "version": "0.6.0",
+  "tokens": {
+    "color": {
+      "deepSpace": {
+        "$type": "color",
+        "$value": "#0A1830"
+      },
+      "oxfordNavy": {
+        "$type": "color",
+        "$value": "#0F2244"
+      },
+      "slate": {
+        "$type": "color",
+        "$value": "#6B7A94"
+      },
+      "paperWhite": {
+        "$type": "color",
+        "$value": "#F7F7F9"
+      },
+      "signalTeal": {
+        "$type": "color",
+        "$value": "#2DD4BF"
+      },
+      "navy": {
+        "$type": "color",
+        "$value": "#0F2244"
+      },
+      "paper": {
+        "$type": "color",
+        "$value": "#F7F7F9"
+      },
+      "teal": {
+        "$type": "color",
+        "$value": "#2DD4BF"
+      },
+      "tealHover": {
+        "$type": "color",
+        "$value": "#5EE6D5"
+      },
+      "tealActive": {
+        "$type": "color",
+        "$value": "#22A895"
+      },
+      "navyHover": {
+        "$type": "color",
+        "$value": "#16305F"
+      },
+      "elev-0": {
+        "$type": "color",
+        "$value": "#0A1830"
+      },
+      "elev-1": {
+        "$type": "color",
+        "$value": "#101F3C"
+      },
+      "elev-2": {
+        "$type": "color",
+        "$value": "#142A52"
+      },
+      "elev-3": {
+        "$type": "color",
+        "$value": "#1B3564"
+      },
+      "workspace": {
+        "$type": "color",
+        "$value": "#05101F"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "surfaceRaised": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "surfaceHigh": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "textMuted": {
+        "$type": "color",
+        "$value": "#5C6B85"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": "#0E9E8B"
+      },
+      "focusRing": {
+        "$type": "color",
+        "$value": "#0E9E8B"
+      }
+    },
+    "font": {
+      "brand": {
+        "$type": "fontFamily",
+        "$value": [
+          "Hanken Grotesk",
+          "sans-serif"
+        ]
+      },
+      "technical": {
+        "$type": "fontFamily",
+        "$value": [
+          "JetBrains Mono",
+          "monospace"
+        ]
+      },
+      "editorial": {
+        "$type": "fontFamily",
+        "$value": [
+          "Fraunces",
+          "serif"
+        ]
+      }
+    },
+    "scale": {
+      "type": {
+        "$type": "scale",
+        "$value": {
+          "ratio": 1.2,
+          "base": "16px",
+          "fluid": true
+        }
+      },
+      "space": {
+        "$type": "scale",
+        "$value": {
+          "base": "4px",
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            8,
+            12,
+            16
+          ]
+        }
+      }
+    }
+  },
+  "themes": {
+    "dark": {
+      "bg": "{color.deepSpace}",
+      "surface": "{color.oxfordNavy}",
+      "text": "{color.paperWhite}",
+      "accent": "{color.signalTeal}"
+    },
+    "light": {
+      "bg": "{color.paperWhite}",
+      "surface": "#FFFFFF",
+      "text": "{color.oxfordNavy}",
+      "accent": "#0E9E8B"
+    }
+  },
+  "rules": [
+    {
+      "id": "one-accent-per-view",
+      "severity": "warn",
+      "description": "At most one accent element per view",
+      "check": {
+        "type": "countRoleUsage",
+        "role": "accent",
+        "max": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "$schema": "https://folio.app/schema/document/1.json",
+  "id": "doc_qoarc_portfolio",
+  "schemaVersion": 1,
+  "title": "Portfolio Design System",
+  "system": {
+    "ref": "sys_qoarc",
+    "version": "1.2.0"
+  },
+  "page": {
+    "width": "297mm",
+    "height": "210mm",
+    "margin": "18mm",
+    "bleed": "0mm"
+  },
+  "pages": [
+    {
+      "id": "pg_1",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "COVER"
+      },
+      "blocks": [
+        {
+          "id": "bk_1_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "COVER",
+            "title": "COVER"
+          }
+        },
+        {
+          "id": "bk_1_row",
+          "type": "deviceRow",
+          "children": [
+            {
+              "id": "bk_1_dev_1",
+              "type": "device",
+              "props": {
+                "kind": "laptop",
+                "view": "left"
+              },
+              "slots": {
+                "screen": {
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_1_dev_2",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "left"
+              },
+              "slots": {
+                "screen": {
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pg_2",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "OVERVIEW"
+      },
+      "blocks": [
+        {
+          "id": "bk_2_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "OVERVIEW",
+            "title": "One system, every project."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_3",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "CONTENTS"
+      },
+      "blocks": [
+        {
+          "id": "bk_3_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "CONTENTS",
+            "title": "Contents"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_4",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "COLOR"
+      },
+      "blocks": [
+        {
+          "id": "bk_4_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "COLOR",
+            "title": "Palette"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_5",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "ACCENT RULE"
+      },
+      "blocks": [
+        {
+          "id": "bk_5_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "ACCENT RULE",
+            "title": "One accent per view."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_6",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "TYPE FAMILIES"
+      },
+      "blocks": [
+        {
+          "id": "bk_6_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "TYPE FAMILIES",
+            "title": "Three families, three jobs."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_7",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "TYPE SCALE"
+      },
+      "blocks": [
+        {
+          "id": "bk_7_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "TYPE SCALE",
+            "title": "Fluid scale"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_8",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "SPACE & GRID"
+      },
+      "blocks": [
+        {
+          "id": "bk_8_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "SPACE & GRID",
+            "title": "4px base, t-shirt named."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_9",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "ELEVATION"
+      },
+      "blocks": [
+        {
+          "id": "bk_9_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "ELEVATION",
+            "title": "Four rungs, light from above."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_10",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "BUTTONS"
+      },
+      "blocks": [
+        {
+          "id": "bk_10_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "BUTTONS",
+            "title": "Primary, secondary, ghost."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_11",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "PROJECT CARD"
+      },
+      "blocks": [
+        {
+          "id": "bk_11_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "PROJECT CARD",
+            "title": "The unit the grid is built from."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_12",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "DEVICES / PHONE"
+      },
+      "blocks": [
+        {
+          "id": "bk_12_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "DEVICES / PHONE",
+            "title": "Phone — four views."
+          }
+        },
+        {
+          "id": "bk_12_row",
+          "type": "deviceRow",
+          "children": [
+            {
+              "id": "bk_12_dev_1",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/mobile/categories_mobile.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_12_dev_2",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "left"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/mobile/product_mobile.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_12_dev_3",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "right"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/mobile/show_product_mobile.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_12_dev_4",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/mobile/Details_mobile.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pg_13",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "DEVICES / TABLET + LAPTOP"
+      },
+      "blocks": [
+        {
+          "id": "bk_13_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "DEVICES / TABLET + LAPTOP",
+            "title": "Tablet &amp; laptop."
+          }
+        },
+        {
+          "id": "bk_13_row",
+          "type": "deviceRow",
+          "children": [
+            {
+              "id": "bk_13_dev_1",
+              "type": "device",
+              "props": {
+                "kind": "tablet",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/mobile/categories_mobile.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_13_dev_2",
+              "type": "device",
+              "props": {
+                "kind": "tablet",
+                "view": "left"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/Desktop/company.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_13_dev_3",
+              "type": "device",
+              "props": {
+                "kind": "laptop",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/Desktop/thumbs.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pg_14",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "DEVICES / DESKTOP"
+      },
+      "blocks": [
+        {
+          "id": "bk_14_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "DEVICES / DESKTOP",
+            "title": "Desktop &amp; scene."
+          }
+        },
+        {
+          "id": "bk_14_row",
+          "type": "deviceRow",
+          "children": [
+            {
+              "id": "bk_14_dev_1",
+              "type": "device",
+              "props": {
+                "kind": "laptop",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/Desktop/Hero.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_14_dev_2",
+              "type": "device",
+              "props": {
+                "kind": "laptop",
+                "view": "right"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/Desktop/category.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_14_dev_3",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "right"
+              },
+              "slots": {
+                "screen": {
+                  "asset": "sites/ASialinkage/mobile/product_mobile.png",
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pg_15",
+      "theme": "light",
+      "folio": {
+        "show": true,
+        "label": "DEVICES / USAGE"
+      },
+      "blocks": [
+        {
+          "id": "bk_15_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "DEVICES / USAGE",
+            "title": "Dropping artwork in."
+          }
+        },
+        {
+          "id": "bk_15_row",
+          "type": "deviceRow",
+          "children": [
+            {
+              "id": "bk_15_dev_1",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "left"
+              },
+              "slots": {
+                "screen": {
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_15_dev_2",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_15_dev_3",
+              "type": "device",
+              "props": {
+                "kind": "phone",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            },
+            {
+              "id": "bk_15_dev_4",
+              "type": "device",
+              "props": {
+                "kind": "tablet",
+                "view": "front"
+              },
+              "slots": {
+                "screen": {
+                  "fit": "cover",
+                  "transform": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 1
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pg_16",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "COLOPHON"
+      },
+      "blocks": [
+        {
+          "id": "bk_16_head",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "COLOPHON",
+            "title": "Every value lives in tokens.css"
+          }
+        }
+      ]
+    }
+  ]
+}

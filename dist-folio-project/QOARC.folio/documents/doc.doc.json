@@ -1,0 +1,341 @@
+{
+  "$schema": "https://folio.app/schema/document/1.json",
+  "id": "doc_qoarc_v06",
+  "schemaVersion": 1,
+  "title": "Portfolio Design System",
+  "system": {
+    "ref": "sys_qoarc_v06",
+    "version": "0.6.0"
+  },
+  "page": {
+    "width": "297mm",
+    "height": "210mm",
+    "margin": "18mm",
+    "bleed": "0mm"
+  },
+  "pages": [
+    {
+      "id": "pg_1",
+      "theme": "dark",
+      "master": "qo-cover",
+      "folio": {
+        "show": false,
+        "label": "Page 1"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_1_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div class=\"qo-cover__mark\">QOARC</div>"
+          }
+        },
+        {
+          "id": "bk_html_1_1",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n    <p class=\"qo-eyebrow\">Design System — Version 0.6</p>\r\n    <div class=\"qo-cover__rule\"></div>\r\n    <h1 class=\"qo-cover__title\">Portfolio Design System</h1>\r\n    <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-lg); max-width: 52ch;\">\r\n      The visual language every case study in this portfolio is built from —\r\n      color, type, space, elevation, and the components assembled out of them.\r\n    </p>\r\n  </div>"
+          }
+        },
+        {
+          "id": "bk_html_1_2",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div class=\"qo-cover__scene\">\r\n    <div class=\"qo-device qo-device--laptop qo-view--left\" style=\"width:96mm;\">\r\n      <div class=\"qo-device__frame\"><div class=\"qo-screen\" data-spec=\"1440 × 900\"></div></div>\r\n      <div class=\"qo-device__base\"></div>\r\n    </div>\r\n    <div class=\"qo-device qo-device--phone qo-view--left\" style=\"width:34mm;\">\r\n      <div class=\"qo-device__frame\"><div class=\"qo-screen\" data-spec=\"393 × 852\"></div></div>\r\n    </div>\r\n  </div>"
+          }
+        },
+        {
+          "id": "bk_html_1_3",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div class=\"qo-cover__meta\">\r\n    <span>Abrar Al Sayem — Visual Design &amp; Development</span>\r\n    <span>Issued July 2026</span>\r\n  </div>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_2",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "Overview"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_2_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">About this document</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">One system, every project.</h2>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_3",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "Contents"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_3_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">Table of contents</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Contents</h2>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_4",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "02 — Color"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_4_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">02 — Color</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Palette</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        Five brand colors carry the entire system. Four of them are structural —\r\n        surfaces, text, and rules. Only Signal Teal is an accent.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_5",
+      "theme": "dark",
+      "master": "",
+      "folio": {
+        "show": true,
+        "label": "02 — Color"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_5_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">02 — Color</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">One accent per view.</h2>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_6",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "03 — Typography"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_6_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">03 — Typography</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Three families, three jobs.</h2>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_7",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "03 — Typography"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_7_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">03 — Typography</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Fluid scale</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        A minor-third ratio, clamped between a floor and ceiling so headings\r\n        shrink on small screens without a second stylesheet.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_8",
+      "theme": "dark",
+      "master": "",
+      "folio": {
+        "show": true,
+        "label": "04 — Space &amp; Grid"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_8_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">04 — Space &amp; Grid</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">4px base, t-shirt named.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        Every margin, padding, and gap pulls from this scale. A spacing need\r\n        that doesn't fit is a signal to reconsider the layout, not to reach for\r\n        an arbitrary value.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_9",
+      "theme": "dark",
+      "master": "",
+      "folio": {
+        "show": true,
+        "label": "05 — Elevation"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_9_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">05 — Elevation</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Four rungs, light from above.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        Depth comes from three things at once: the surface lightens as it rises,\r\n        a hairline highlight catches its top edge, and a two-layer shadow —\r\n        tight contact plus wide ambient — grounds it.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_10",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "06 — Buttons"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_10_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">06 — Buttons</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Primary, secondary, ghost.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        Only one primary button appears in a view. Secondary carries every\r\n        other real action; ghost is for tertiary controls in dense interfaces.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_11",
+      "theme": "dark",
+      "master": "",
+      "folio": {
+        "show": true,
+        "label": "07 — Project Card"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_11_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">07 — Project Card</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">The unit the grid is built from.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        On hover the surface climbs a rung, the border picks up the accent, and\r\n        the ambient shadow widens. Screenshots supply all the color.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_12",
+      "theme": "dark",
+      "master": "",
+      "folio": {
+        "show": true,
+        "label": "08 — Device Mockups"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_12_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">08 — Device Mockups</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Phone — four views.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        Carrying Asia Linkage, a garments accessories catalogue. Each screen\r\n        slot is cut to the true device ratio, so a shot exported at 393 × 852\r\n        lands without distortion.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_13",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "08 — Device Mockups"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_13_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">08 — Device Mockups</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Tablet &amp; laptop.</h2>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_14",
+      "theme": "dark",
+      "master": "",
+      "folio": {
+        "show": true,
+        "label": "08 — Device Mockups"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_14_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">08 — Device Mockups</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Desktop &amp; scene.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-sm);\">\r\n        The composition row sits devices on a shared baseline so a responsive\r\n        set reads as one scene rather than three separate specimens.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_15",
+      "theme": "light",
+      "master": "qo-page--light",
+      "folio": {
+        "show": true,
+        "label": "08 — Device Mockups"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_15_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n      <p class=\"qo-eyebrow\">08 — Device Mockups</p>\r\n      <h2 class=\"qo-page__title\" style=\"margin-top: var(--qo-space-xs);\">Dropping artwork in.</h2>\r\n      <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-2xs);\">\r\n        An <code class=\"qo-badge\">img</code> in the screen slot covers the\r\n        placeholder automatically — frame, angle and bezel never change.\r\n      </p>"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pg_16",
+      "theme": "dark",
+      "master": "qo-cover",
+      "folio": {
+        "show": false,
+        "label": "Page 16"
+      },
+      "blocks": [
+        {
+          "id": "bk_html_16_0",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div class=\"qo-cover__mark\">QOARC</div>"
+          }
+        },
+        {
+          "id": "bk_html_16_1",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div>\r\n    <p class=\"qo-eyebrow\">End of document</p>\r\n    <div class=\"qo-cover__rule\"></div>\r\n    <h2 class=\"qo-cover__title\" style=\"font-size:34pt;\">Every value lives in tokens.css</h2>\r\n    <p class=\"qo-page__lede\" style=\"margin-top: var(--qo-space-lg); max-width: 56ch;\">\r\n      Change a token and the whole document — and every page built on it —\r\n      follows. New patterns either map onto what is documented here or\r\n      earn a new token.\r\n    </p>\r\n  </div>"
+          }
+        },
+        {
+          "id": "bk_html_16_2",
+          "type": "htmlBlock",
+          "slots": {
+            "html": "<div class=\"qo-cover__meta\">\r\n    <span>Portfolio Design System — v0.6</span>\r\n    <span class=\"qo-page__num\">16</span>\r\n  </div>"
+          }
+        }
+      ]
+    }
+  ]
+}

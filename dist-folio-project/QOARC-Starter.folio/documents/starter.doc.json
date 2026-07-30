@@ -1,0 +1,43 @@
+{
+  "$schema": "https://folio.app/schema/document/1.json",
+  "id": "doc_starter",
+  "schemaVersion": 1,
+  "title": "Starter Case Study",
+  "system": {
+    "ref": "sys_qoarc_starter",
+    "version": "1.2.0"
+  },
+  "page": {
+    "width": "297mm",
+    "height": "210mm",
+    "margin": "18mm",
+    "bleed": "0mm"
+  },
+  "pages": [
+    {
+      "id": "pg_1",
+      "theme": "dark",
+      "folio": {
+        "show": true,
+        "label": "01 — Cover"
+      },
+      "blocks": [
+        {
+          "id": "bk_1",
+          "type": "sectionHeader",
+          "slots": {
+            "eyebrow": "FOLIO STARTER",
+            "title": "Starter Case Study"
+          }
+        },
+        {
+          "id": "bk_2",
+          "type": "textBlock",
+          "slots": {
+            "body": "Welcome to Folio — your design system is bound directly to this document."
+          }
+        }
+      ]
+    }
+  ]
+}

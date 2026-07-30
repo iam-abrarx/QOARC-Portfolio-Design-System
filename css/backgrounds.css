@@ -1,0 +1,332 @@
+/* ============================================================
+   PAGE BACKGROUNDS
+   Optional treatments for a single sheet, picked per page in the
+   builder's page popover (js/panel.js).
+
+   Every preset is composed from the theme variables below rather
+   than from literal colours, so one definition renders correctly
+   on a dark sheet and on a light one — the light block simply
+   repoints the same names at paper-appropriate values. Nothing
+   here is a pseudo-element: each preset is layers of `background`
+   on the sheet itself, which keeps content above it with no
+   stacking-context negotiation, and survives "Export Clean HTML"
+   as ordinary document CSS.
+
+   Contrast rule of thumb followed throughout: the busiest layer
+   sits under the page margin, and no layer exceeds ~16% alpha, so
+   body copy keeps its ratio against the base surface.
+
+   Each preset's class is doubled in its selector (.qo-bg--x.qo-bg--x).
+   That buys the weight needed to beat .qo-cover's own gradient without
+   tying the rule to .qo-page — so the builder's preview chips, which are
+   not sheets, can wear the same class and show the same thing.
+   ============================================================ */
+
+.qo-page {
+  --qo-bgfx-accent-strong: rgba(45, 212, 191, 0.16);
+  --qo-bgfx-accent-soft:   rgba(45, 212, 191, 0.09);
+  --qo-bgfx-cool-strong:   rgba(22, 48, 95, 0.70);
+  --qo-bgfx-cool-soft:     rgba(22, 48, 95, 0.38);
+  --qo-bgfx-warm:          rgba(214, 163, 102, 0.10);
+  --qo-bgfx-line:          rgba(247, 247, 249, 0.055);
+  --qo-bgfx-dot:           rgba(247, 247, 249, 0.10);
+  --qo-bgfx-shade:         rgba(3, 9, 20, 0.55);
+  --qo-bgfx-paper:         rgba(214, 163, 102, 0.07);
+  --qo-bgfx-ink:           rgba(140, 180, 255, 0.07);
+  --qo-bgfx-ink-major:     rgba(140, 180, 255, 0.12);
+  --qo-bgfx-blush:         rgba(227, 184, 196, 0.09);
+  /* Solid-block fills. The elevation ladder can't do this job on paper:
+     elev-1 there is #F4F5F8 against a #F7F7F9 sheet, a difference of about
+     one percent. A tint of the ink reads on both surfaces. */
+  --qo-bgfx-block:         rgba(247, 247, 249, 0.055);
+
+  /* Backgrounds are the point of these presets, so they go into the PDF
+     rather than being dropped as "decoration" by the print pipeline. */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Paper needs more of a mix than a dark surface does: a wash that reads as
+   "deliberate" against #0A1830 disappears against #F7F7F9, because the eye
+   judges these as tints of the base rather than as light added to it. These
+   run roughly 1.5–2× the dark values and still leave navy body copy well
+   clear of its contrast floor. */
+.qo-page--light {
+  --qo-bgfx-accent-strong: rgba(14, 158, 139, 0.22);
+  --qo-bgfx-accent-soft:   rgba(14, 158, 139, 0.13);
+  --qo-bgfx-cool-strong:   rgba(15, 34, 68, 0.17);
+  --qo-bgfx-cool-soft:     rgba(15, 34, 68, 0.09);
+  --qo-bgfx-warm:          rgba(198, 141, 74, 0.20);
+  --qo-bgfx-line:          rgba(15, 34, 68, 0.085);
+  --qo-bgfx-dot:           rgba(15, 34, 68, 0.16);
+  --qo-bgfx-shade:         rgba(15, 34, 68, 0.14);
+  --qo-bgfx-paper:         rgba(206, 158, 96, 0.16);
+  --qo-bgfx-ink:           rgba(24, 68, 138, 0.13);
+  --qo-bgfx-ink-major:     rgba(24, 68, 138, 0.20);
+  --qo-bgfx-blush:         rgba(198, 141, 160, 0.18);
+  --qo-bgfx-block:         rgba(15, 34, 68, 0.065);
+}
+
+/* ---- Lighting ------------------------------------------------------------ */
+
+/* Two blooms from opposite top corners — the default "there is depth here"
+   treatment, and the closest relative of the authored cover. */
+.qo-bg--aurora.qo-bg--aurora {
+  background:
+    radial-gradient(ellipse 62% 52% at 10% -4%, var(--qo-bgfx-accent-strong), transparent 62%),
+    radial-gradient(ellipse 72% 62% at 92% 8%, var(--qo-bgfx-cool-strong), transparent 68%),
+    var(--qo-bg);
+}
+
+/* A single soft source above the sheet, centred — quiet enough for a page of
+   running copy, and it pushes attention to the top third where titles sit. */
+.qo-bg--spotlight.qo-bg--spotlight {
+  background:
+    radial-gradient(ellipse 78% 52% at 50% -10%, var(--qo-bgfx-accent-soft), transparent 68%),
+    radial-gradient(ellipse 130% 95% at 50% -2%, var(--qo-bgfx-cool-soft), transparent 76%),
+    var(--qo-bg);
+}
+
+/* Corner halo, bleeding off the top-right — reads as light entering the
+   frame rather than sitting inside it. */
+.qo-bg--halo.qo-bg--halo {
+  background:
+    radial-gradient(ellipse 55% 75% at 104% -6%, var(--qo-bgfx-accent-strong), transparent 62%),
+    radial-gradient(ellipse 80% 70% at 88% 4%, var(--qo-bgfx-cool-strong), transparent 70%),
+    var(--qo-bg);
+}
+
+/* Glow rising from the bottom edge, with the top settling into shade. */
+.qo-bg--dusk.qo-bg--dusk {
+  background:
+    radial-gradient(ellipse 95% 42% at 50% 106%, var(--qo-bgfx-accent-soft), transparent 68%),
+    linear-gradient(180deg, var(--qo-bgfx-cool-soft), transparent 55%),
+    var(--qo-bg);
+}
+
+/* Four overlapping blooms — the mesh-gradient look, the most decorative of
+   the set. Good for a divider or a section opener, not for dense copy. */
+.qo-bg--mesh.qo-bg--mesh {
+  background:
+    radial-gradient(ellipse 46% 46% at 14% 18%, var(--qo-bgfx-accent-soft), transparent 60%),
+    radial-gradient(ellipse 42% 42% at 82% 12%, var(--qo-bgfx-cool-strong), transparent 62%),
+    radial-gradient(ellipse 52% 42% at 72% 88%, var(--qo-bgfx-warm), transparent 60%),
+    radial-gradient(ellipse 46% 46% at 22% 92%, var(--qo-bgfx-accent-soft), transparent 62%),
+    var(--qo-bg);
+}
+
+/* ---- Shaping -------------------------------------------------------------- */
+
+/* Diagonal wash, dark corner to clear corner. */
+.qo-bg--sweep.qo-bg--sweep {
+  background:
+    linear-gradient(135deg, var(--qo-bgfx-cool-strong), transparent 58%),
+    radial-gradient(ellipse 58% 58% at 92% 92%, var(--qo-bgfx-accent-soft), transparent 64%),
+    var(--qo-bg);
+}
+
+/* Edges settle, centre stays clear — pulls the eye inward on a page whose
+   content is one big specimen. */
+.qo-bg--vignette.qo-bg--vignette {
+  background:
+    radial-gradient(ellipse 76% 76% at 50% 46%, transparent 42%, var(--qo-bgfx-shade)),
+    var(--qo-bg);
+}
+
+/* A raised block down the outer third: the page reads as two columns before
+   a single word is set. Uses the elevation ladder, so it re-tints per theme. */
+.qo-bg--panel.qo-bg--panel {
+  background:
+    linear-gradient(90deg, transparent 0 62%, var(--qo-bgfx-block) 62% 100%),
+    radial-gradient(ellipse 60% 60% at 82% 6%, var(--qo-bgfx-accent-soft), transparent 66%),
+    var(--qo-bg);
+}
+
+/* Accent rule down the binding edge, with a bloom behind it. */
+.qo-bg--edge.qo-bg--edge {
+  background:
+    linear-gradient(90deg, var(--qo-accent) 0 2.5mm, transparent 2.5mm),
+    radial-gradient(ellipse 55% 80% at -4% 50%, var(--qo-bgfx-accent-soft), transparent 62%),
+    var(--qo-bg);
+}
+
+/* ---- Texture -------------------------------------------------------------- */
+
+/* Drafting grid on the document's own 10mm rhythm, under a soft top bloom. */
+.qo-bg--grid.qo-bg--grid {
+  background:
+    linear-gradient(var(--qo-bgfx-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--qo-bgfx-line) 1px, transparent 1px),
+    radial-gradient(ellipse 72% 50% at 50% -6%, var(--qo-bgfx-accent-soft), transparent 70%),
+    var(--qo-bg);
+  background-size: 10mm 10mm, 10mm 10mm, auto, auto;
+}
+
+/* Fine dot field — grain and detail without a texture file. */
+.qo-bg--dots.qo-bg--dots {
+  background:
+    radial-gradient(var(--qo-bgfx-dot) 0.8px, transparent 0.9px),
+    radial-gradient(ellipse 60% 52% at 84% 6%, var(--qo-bgfx-accent-soft), transparent 66%),
+    var(--qo-bg);
+  background-size: 5mm 5mm, auto, auto;
+}
+
+/* Raking light — thin diagonal bands, as if through a blind. */
+.qo-bg--beams.qo-bg--beams {
+  background:
+    repeating-linear-gradient(114deg, var(--qo-bgfx-line) 0 2px, transparent 2px 24px),
+    radial-gradient(ellipse 72% 60% at 18% -6%, var(--qo-bgfx-accent-soft), transparent 68%),
+    var(--qo-bg);
+}
+
+/* Hairline inset frame plus a whisper of lift — the most restrained option,
+   for pages that only need an edge to sit inside. */
+.qo-bg--frame.qo-bg--frame {
+  background:
+    linear-gradient(180deg, var(--qo-bgfx-cool-soft), transparent 30%),
+    var(--qo-bg);
+  box-shadow:
+    inset 0 0 0 1px var(--qo-border),
+    0 24px 64px -20px rgba(0, 0, 0, 0.7);
+}
+
+/* ---- More lighting -------------------------------------------------------- */
+
+/* Light pooling in the middle of the sheet — the inverse of Vignette, for a
+   page built around one centred specimen. */
+.qo-bg--bloom.qo-bg--bloom {
+  background:
+    radial-gradient(ellipse 58% 62% at 50% 48%, var(--qo-bgfx-accent-soft), transparent 66%),
+    radial-gradient(ellipse 110% 100% at 50% 50%, var(--qo-bgfx-cool-soft), transparent 72%),
+    var(--qo-bg);
+}
+
+/* Concentric rings spreading from the top-left, like ripples under the type. */
+.qo-bg--orbit.qo-bg--orbit {
+  background:
+    repeating-radial-gradient(circle at 8% -6%, transparent 0 16mm, var(--qo-bgfx-line) 16mm 16.6mm),
+    radial-gradient(ellipse 70% 60% at 10% 0%, var(--qo-bgfx-accent-soft), transparent 66%),
+    var(--qo-bg);
+}
+
+/* Topographic contours — the same idea at a finer pitch and off the corner. */
+.qo-bg--contour.qo-bg--contour {
+  background:
+    repeating-radial-gradient(circle at 105% 108%, transparent 0 7mm, var(--qo-bgfx-line) 7mm 7.4mm),
+    radial-gradient(ellipse 65% 55% at 92% 96%, var(--qo-bgfx-accent-soft), transparent 64%),
+    var(--qo-bg);
+}
+
+/* ---- More shaping --------------------------------------------------------- */
+
+/* Hard duotone: the sheet splits across the middle, no blend. */
+.qo-bg--split.qo-bg--split {
+  background:
+    linear-gradient(180deg, transparent 0 52%, var(--qo-bgfx-block) 52% 100%),
+    radial-gradient(ellipse 70% 40% at 50% 52%, var(--qo-bgfx-accent-soft), transparent 70%),
+    var(--qo-bg);
+}
+
+/* A band across the top third — the editorial masthead treatment. */
+.qo-bg--band.qo-bg--band {
+  background:
+    linear-gradient(180deg, var(--qo-bgfx-block) 0 34%, transparent 34%),
+    linear-gradient(180deg, transparent 33.6%, var(--qo-accent) 33.6% 33.9%, transparent 33.9%),
+    var(--qo-bg);
+}
+
+/* One oversized disc bleeding off the bottom-right — geometry rather than
+   light, and the only preset with a hard curved edge. */
+.qo-bg--arc.qo-bg--arc {
+  background:
+    radial-gradient(circle 120mm at 108% 118%, var(--qo-bgfx-cool-strong) 0 100%, transparent 100%),
+    radial-gradient(circle 120mm at 108% 118%, transparent 0 99%, var(--qo-accent) 99% 100%, transparent 100%),
+    var(--qo-bg);
+}
+
+/* Triangular wedge off the top-left corner. */
+.qo-bg--corner.qo-bg--corner {
+  background:
+    linear-gradient(135deg, var(--qo-bgfx-cool-strong) 0 26%, transparent 26%),
+    radial-gradient(ellipse 50% 60% at 6% 6%, var(--qo-bgfx-accent-soft), transparent 62%),
+    var(--qo-bg);
+}
+
+/* Wide, low-contrast vertical stripes — structure without a grid. */
+.qo-bg--stripe.qo-bg--stripe {
+  background:
+    repeating-linear-gradient(90deg, var(--qo-bgfx-line) 0 24mm, transparent 24mm 48mm),
+    radial-gradient(ellipse 70% 50% at 50% -6%, var(--qo-bgfx-accent-soft), transparent 68%),
+    var(--qo-bg);
+}
+
+/* ---- Paper-first ----------------------------------------------------------
+   Built for a light sheet, where added light does nothing and a tint does
+   everything. Each one still resolves on a dark page — the same variables
+   simply carry darker, cooler values there. */
+
+/* A flat wash of the accent across the whole sheet: the quietest way to make
+   one page in a run read as a different chapter. */
+.qo-bg--tint.qo-bg--tint {
+  background:
+    linear-gradient(180deg, var(--qo-bgfx-accent-soft), var(--qo-bgfx-accent-soft)),
+    var(--qo-bg);
+}
+
+/* Warm stock — an ivory cast with the grain suggested by a fine dot field.
+   The closest thing here to a printed paper. */
+.qo-bg--paper.qo-bg--paper {
+  background:
+    radial-gradient(var(--qo-bgfx-dot) 0.6px, transparent 0.7px),
+    radial-gradient(ellipse 90% 70% at 20% 0%, var(--qo-bgfx-paper), transparent 72%),
+    linear-gradient(180deg, var(--qo-bgfx-paper), transparent 60%),
+    var(--qo-bg);
+  background-size: 4mm 4mm, auto, auto, auto;
+}
+
+/* Engineering paper: a fine grid with every fifth line drawn heavier. */
+.qo-bg--blueprint.qo-bg--blueprint {
+  background:
+    linear-gradient(var(--qo-bgfx-ink-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--qo-bgfx-ink-major) 1px, transparent 1px),
+    linear-gradient(var(--qo-bgfx-ink) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--qo-bgfx-ink) 0.5px, transparent 0.5px),
+    linear-gradient(180deg, var(--qo-bgfx-ink), transparent 45%),
+    var(--qo-bg);
+  background-size: 20mm 20mm, 20mm 20mm, 4mm 4mm, 4mm 4mm, auto, auto;
+}
+
+/* Two tints meeting in a soft diagonal — colour without a hard edge. */
+.qo-bg--duotone.qo-bg--duotone {
+  background:
+    linear-gradient(160deg, var(--qo-bgfx-accent-soft) 0 30%, transparent 62%),
+    linear-gradient(340deg, var(--qo-bgfx-blush) 0 28%, transparent 60%),
+    var(--qo-bg);
+}
+
+/* Warm at one corner, cool at the other — a gentle temperature gradient that
+   gives a light sheet somewhere to sit without adding a shape. */
+.qo-bg--sunrise.qo-bg--sunrise {
+  background:
+    radial-gradient(ellipse 70% 60% at 4% 104%, var(--qo-bgfx-paper), transparent 66%),
+    radial-gradient(ellipse 70% 60% at 96% -4%, var(--qo-bgfx-accent-soft), transparent 66%),
+    var(--qo-bg);
+}
+
+/* Ruled writing paper, with the margin rule the accent. */
+.qo-bg--ruled.qo-bg--ruled {
+  background:
+    linear-gradient(90deg, transparent 0 26mm, var(--qo-bgfx-blush) 26mm 26.4mm, transparent 26.4mm),
+    linear-gradient(180deg, var(--qo-bgfx-ink) 0.5px, transparent 0.5px),
+    var(--qo-bg);
+  background-size: auto, 8mm 8mm;
+}
+
+/* Frosted glass: a soft diagonal sheen over a barely-there tint. */
+.qo-bg--frost.qo-bg--frost {
+  background:
+    linear-gradient(118deg, transparent 20%, var(--qo-bgfx-line) 42% 58%, transparent 80%),
+    radial-gradient(ellipse 80% 70% at 70% 10%, var(--qo-bgfx-accent-soft), transparent 70%),
+    linear-gradient(180deg, var(--qo-bgfx-cool-soft), transparent 40%),
+    var(--qo-bg);
+}

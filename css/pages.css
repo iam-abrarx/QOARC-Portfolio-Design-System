@@ -1,0 +1,577 @@
+/* ============================================================
+   PAGES
+   Document chrome. This file turns the system into a paged
+   artifact — fixed-size landscape sheets with running headers,
+   folios, and print rules — rather than a scrolling web page.
+   ============================================================ */
+
+body {
+  background: var(--qo-workspace);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--qo-page-gap);
+  padding: var(--qo-page-gap);
+}
+
+/* ---- The sheet ---------------------------------------------------------- */
+
+.qo-page {
+  position: relative;
+  flex: none;
+  width: var(--qo-page-w);
+  height: var(--qo-page-h);
+  padding: var(--qo-page-pad);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--qo-bg);
+  color: var(--qo-text);
+  box-shadow: 0 24px 64px -20px rgba(0, 0, 0, 0.7);
+}
+
+.qo-page--light {
+  background: var(--qo-bg);
+  color: var(--qo-text);
+}
+
+/* ---- Running header / folio --------------------------------------------- */
+
+.qo-page__head,
+.qo-page__foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+  opacity: 0.85;
+}
+
+.qo-page__head {
+  padding-bottom: var(--qo-space-xs);
+  border-bottom: 1px solid var(--qo-border);
+  margin-bottom: var(--qo-space-xl);
+}
+
+.qo-page__foot {
+  padding-top: var(--qo-space-xs);
+  border-top: 1px solid var(--qo-border);
+  margin-top: auto;
+}
+
+/* The folio is the one place a number is allowed to sit in the accent. */
+.qo-page__num { color: var(--qo-accent); }
+
+/* ---- Page body ----------------------------------------------------------- */
+
+.qo-page__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-md);
+  /* Hard stop: an over-long page clips rather than colliding with the
+     running foot. Overflow here means the page needs splitting, not
+     a smaller folio. */
+  overflow: hidden;
+}
+
+.qo-page__title {
+  font-size: 28pt;
+  line-height: 1.05;
+  letter-spacing: var(--qo-tracking-tight);
+  max-width: 20ch;
+}
+
+.qo-page__lede {
+  color: var(--qo-text-muted);
+  font-size: 10pt;
+  line-height: var(--qo-leading-relaxed);
+  max-width: 52ch;
+}
+
+/* Two-column body for pages that pair explanation with specimen. */
+.qo-page__split {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.45fr;
+  gap: var(--qo-space-2xl);
+  align-items: start;
+}
+
+.qo-page__split--even { grid-template-columns: 1fr 1fr; }
+
+/* ---- Cover --------------------------------------------------------------- */
+
+/* The cover's wash is built from the same variables the background presets
+   use, and its base is the surface token rather than the raw brand colour —
+   so a cover follows its page's chosen surface instead of being pinned to
+   deep space. With the defaults in place this renders as it always did. */
+.qo-cover {
+  justify-content: space-between;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, var(--qo-bgfx-accent-soft), transparent 70%),
+    radial-gradient(ellipse 90% 70% at 50% 0%, var(--qo-bgfx-cool-strong), transparent 75%),
+    var(--qo-bg);
+}
+
+/* A cover switched to light: the wash follows the paper surface instead of
+   deep space, so the title keeps its contrast and the sheet still reads as a
+   cover rather than a plain page. Needs both classes to out-specify the
+   gradient above. */
+.qo-cover.qo-page--light {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, var(--qo-bgfx-accent-soft), transparent 70%),
+    radial-gradient(ellipse 90% 70% at 50% 0%, var(--qo-bgfx-cool-soft), transparent 75%),
+    var(--qo-bg);
+}
+
+/* The mark and the meta line sit on slate, which reads as a caption on either
+   surface — but the rule under the meta comes from a paper-tinted token, so
+   it needs the light theme's border instead. */
+.qo-cover.qo-page--light .qo-cover__meta { border-top-color: var(--qo-border-subtle); }
+
+.qo-cover__mark {
+  font-family: var(--qo-font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--qo-slate);
+}
+
+.qo-cover__title {
+  font-size: 56pt;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  max-width: 13ch;
+}
+
+/* A short accent tick, not an underline — it marks the start of the
+   title block and leaves the rest of the line to breathe. */
+.qo-cover__rule {
+  width: 14mm;
+  height: 4px;
+  background: var(--qo-teal);
+  border-radius: var(--qo-radius-full);
+  margin-block: var(--qo-space-xl) var(--qo-space-lg);
+}
+
+/* Device scene bleeding off the cover's right edge. Sits behind the type,
+   which is why the cover's text blocks carry their own stacking context. */
+.qo-cover__scene {
+  position: absolute;
+  right: 2mm;
+  bottom: 24mm;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--qo-space-md);
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.qo-cover__scene .qo-device {
+  pointer-events: auto;
+}
+
+.qo-cover > *:not(.qo-cover__scene) { position: relative; z-index: 1; }
+
+.qo-cover__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--qo-slate);
+  padding-top: var(--qo-space-sm);
+  border-top: 1px solid var(--qo-border-subtle);
+}
+
+/* ---- Case study pages -------------------------------------------------------
+   Principle 04 in practice: the client's own brand colour becomes the single
+   accent on their pages, so the work supplies the colour and the QOARC chrome
+   stays neutral around it. Only the accent role is repointed — type, spacing
+   and elevation are untouched. */
+
+/* --qo-client is set per project. Until one is assigned it falls back to
+   --qo-accent-base — the theme's own accent — so a case page always has a
+   valid accent rather than silently inheriting an undefined custom property.
+
+   The fallback is the BASE, not --qo-teal. This rule and .qo-page--light have
+   equal specificity and both land on the same element, and pages.css loads
+   after tokens.css — so reaching straight for the raw brand colour here won
+   the cascade and handed every light case page the undarkened teal, exactly
+   the paper-legibility problem the light theme exists to fix. */
+.qo-page--case { --qo-accent: var(--qo-client, var(--qo-accent-base)); }
+
+/* Client / role / timeline as a banded strip rather than loose text: rules
+   top and bottom, each field carrying its own hairline divider, so the
+   facts read as one designed unit the eye can skim in a second. */
+.qo-case__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding-block: var(--qo-space-sm);
+  border-top: 1px solid var(--qo-border);
+  border-bottom: 1px solid var(--qo-border);
+}
+
+.qo-case__meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-inline: var(--qo-space-lg);
+  border-left: 1px solid var(--qo-border);
+}
+
+/* The first field aligns to the page margin — no rule, no indent. */
+.qo-case__meta div:first-child { padding-left: 0; border-left: none; }
+
+.qo-case__meta dt {
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}
+
+.qo-case__meta dd {
+  margin: 0;
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: var(--qo-tracking-tight);
+}
+
+/* Small colour chips for documenting a client palette inline. */
+.qo-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--qo-space-2xs);
+  font-family: var(--qo-font-mono);
+  font-size: 7pt;
+  letter-spacing: var(--qo-tracking-mono);
+  color: var(--qo-text-muted);
+}
+
+.qo-chip::before {
+  content: "";
+  width: 5mm;
+  height: 5mm;
+  border-radius: var(--qo-radius-sm);
+  background: var(--chip);
+  border: 1px solid var(--qo-border);
+}
+
+/* ---- Contents page -------------------------------------------------------- */
+
+.qo-contents {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-3xs);
+}
+
+.qo-contents__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--qo-space-md);
+  padding-block: var(--qo-space-2xs);
+  color: var(--qo-text);
+}
+
+.qo-contents__num {
+  font-family: var(--qo-font-mono);
+  font-size: 8pt;
+  letter-spacing: var(--qo-tracking-mono);
+  color: var(--qo-accent);
+  min-width: 5ch;
+}
+
+.qo-contents__name {
+  font-size: 12pt;
+  font-weight: 600;
+  letter-spacing: var(--qo-tracking-tight);
+}
+
+.qo-contents__desc {
+  font-size: 8.5pt;
+  color: var(--qo-text-muted);
+}
+
+/* Long documents (12+ entries) trade a little row air for fitting the
+   sheet — same anatomy, tighter vertical rhythm. */
+.qo-contents--dense { gap: 0; }
+.qo-contents--dense .qo-contents__row { padding-block: var(--qo-space-3xs); }
+.qo-contents--dense .qo-contents__name { font-size: 11pt; }
+
+/* Dot leader — grows to fill whatever space is left in the row. */
+.qo-contents__leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--qo-slate-muted);
+  translate: 0 -3px;
+}
+
+.qo-contents__folio {
+  font-family: var(--qo-font-mono);
+  font-size: 9pt;
+  letter-spacing: var(--qo-tracking-mono);
+  color: var(--qo-text-muted);
+}
+
+/* ---- Principle list (overview page) ---------------------------------------- */
+
+.qo-principle {
+  display: flex;
+  gap: var(--qo-space-md);
+  padding-block: var(--qo-space-sm);
+  border-top: 1px solid var(--qo-border);
+}
+
+.qo-principle__num {
+  font-family: var(--qo-font-mono);
+  font-size: 8pt;
+  letter-spacing: var(--qo-tracking-mono);
+  color: var(--qo-accent);
+  padding-top: 3px;
+  min-width: 4ch;
+}
+
+.qo-principle__title {
+  font-size: 12pt;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.qo-principle__body {
+  font-size: 9pt;
+  color: var(--qo-text-muted);
+  line-height: var(--qo-leading-relaxed);
+  max-width: 52ch;
+}
+
+/* ---- Type specimen ----------------------------------------------------------
+   One block per family: the family named in its own letterforms, then every
+   weight the document actually loads, each one labelled and set against a
+   constant string. Holding the string still is the whole point — it is the
+   only way the eye reads the weights as a series rather than as five
+   unrelated lines.
+
+   Family and weight are declared here, never inherited. A sample that inherits
+   the page's face is a specimen of whatever the page happened to be set in,
+   which is the one thing a type page exists to rule out. */
+
+.qo-type {
+  display: grid;
+  grid-template-columns: 30ch 1fr;
+  column-gap: var(--qo-space-2xl);
+  padding-top: var(--qo-space-sm);
+  border-top: 1px solid var(--qo-border);
+}
+
+.qo-type__name {
+  font-size: 15pt;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: var(--qo-tracking-tight);
+}
+
+.qo-type__role { display: block; margin-top: var(--qo-space-2xs); }
+
+/* Mixed case and figures — the shapes a row of weights doesn't reach. Numerals
+   earn their place here: every folio, spec value and swatch hex on these pages
+   is set in one of these three families. */
+.qo-type__glyphs {
+  margin-top: var(--qo-space-2xs);
+  font-size: 12pt;
+  color: var(--qo-text-muted);
+}
+
+.qo-type__rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-2xs);
+}
+
+/* Weight number, weight name, sample. The row carries the weight so the
+   label and the sample can never disagree — set --qo-w once and both the
+   "600" and the letterforms beside it move together. */
+.qo-type__row {
+  display: grid;
+  /* 9ch clears "Extrabold", the longest name in any of the three families.
+     Wider and the number drifts away from the sample it labels. */
+  grid-template-columns: 4ch 9ch 1fr;
+  column-gap: var(--qo-space-md);
+  align-items: baseline;
+  font-weight: var(--qo-w, 400);
+}
+
+.qo-type__row--italic { font-style: italic; }
+
+.qo-type__sample {
+  font-size: 15pt;
+  line-height: 1.25;
+}
+
+/* The three roles. Each points the name, the glyph line and the samples at one
+   family; the weight still comes from the row. */
+.qo-type--brand .qo-type__name,
+.qo-type--brand .qo-type__glyphs,
+.qo-type--brand .qo-type__sample { font-family: var(--qo-font-brand); }
+
+.qo-type--mono .qo-type__name,
+.qo-type--mono .qo-type__glyphs,
+.qo-type--mono .qo-type__sample { font-family: var(--qo-font-mono); }
+
+.qo-type--editorial .qo-type__name,
+.qo-type--editorial .qo-type__glyphs,
+.qo-type--editorial .qo-type__sample {
+  font-family: var(--qo-font-editorial);
+  /* The same opsz pin as .qo-editorial. Left to itself Fraunces thickens at
+     these sizes and the 400 row stops reading as 400 — which would make the
+     weight labels beside it wrong. */
+  font-variation-settings: 'opsz' 14, 'SOFT' 0, 'WONK' 0;
+}
+
+/* Mono sets wider than the other two: a string that fits Hanken at 15pt runs
+   past the column here. It also gets its signature tracking, since tracked
+   uppercase is the only way this family is ever used in the system. */
+.qo-type--mono .qo-type__sample {
+  font-size: 12.5pt;
+  letter-spacing: var(--qo-tracking-mono);
+}
+
+.qo-type--mono .qo-type__glyphs { letter-spacing: var(--qo-tracking-mono); }
+
+/* ---- Spec list — label/value pairs for documenting values ------------------- */
+
+.qo-spec {
+  display: flex;
+  flex-direction: column;
+}
+
+.qo-spec__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--qo-space-md);
+  padding-block: var(--qo-space-2xs);
+  border-bottom: 1px solid var(--qo-border);
+  font-size: 9.5pt;
+}
+
+/* Denser rows for pages carrying two lists in one column. */
+.qo-spec--tight .qo-spec__row {
+  padding-block: 2px;
+  font-size: 8.5pt;
+}
+
+.qo-spec__key {
+  font-family: var(--qo-font-mono);
+  font-size: 8pt;
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}
+
+.qo-spec__val { color: var(--qo-text); }
+
+/* ---- Component specimen pages -----------------------------------------------
+   A component page is read one row at a time — a variant set held against its
+   states — so it wants a looser rhythm than a page of prose. That rhythm lives
+   here rather than in inline grid values on each page, so every document stays
+   in step and a change lands in one edit.
+
+   The sheet is a fixed height, so the air below is spent out of the slack these
+   pages already carried between the last specimen and the folio. Adding a row
+   to a specimen grid now costs more than it used to — check the page still
+   clears its footer. */
+
+.qo-page__body--specimen { gap: var(--qo-space-xl); }
+
+/* The variant × state matrix: a mono label gutter, then one column per state. */
+.qo-specimen {
+  display: grid;
+  grid-template-columns: 14ch repeat(4, 1fr);
+  column-gap: var(--qo-space-lg);
+  row-gap: var(--qo-space-lg);
+  align-items: center;
+}
+
+/* Card specimens drop the label gutter — a card carries its own caption — and
+   take a wider gutter between columns, since each one is a filled surface and
+   needs the page showing through to read as separate. */
+.qo-specimen--cards {
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--qo-space-2xl);
+  row-gap: var(--qo-space-2xl);
+  align-items: start;
+}
+
+/* Facts strip. Stacked, .qo-spec reads as a list in its own right and spends a
+   sixth of the page on three short values; laid out in a row it becomes one
+   band of small print beneath the specimens, and the height it gives back is
+   what pays for the air between the rows above. */
+.qo-spec--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--qo-space-2xl);
+  padding-top: var(--qo-space-sm);
+  border-top: 1px solid var(--qo-border);
+}
+
+.qo-spec--inline .qo-spec__row {
+  flex: 0 1 auto;
+  gap: var(--qo-space-sm);
+  padding-block: 0;
+  border-bottom: 0;
+}
+
+/* ---- Screen-only fitting ----------------------------------------------------
+   Pages are a fixed physical size. On viewports too narrow to show one at
+   100%, scale the whole document down rather than reflowing it — the point
+   of a paged artifact is that the layout never changes. */
+
+@media screen and (max-width: 1180px) { body { zoom: 0.78; } }
+@media screen and (max-width: 920px)  { body { zoom: 0.6; } }
+@media screen and (max-width: 700px)  { body { zoom: 0.45; } }
+
+/* ---- Print ------------------------------------------------------------------ */
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background: #FFFFFF;
+    padding: 0;
+    gap: 0;
+    zoom: 1;
+  }
+
+  .qo-page {
+    box-shadow: none;
+    margin: 0;
+    /* Belt and braces: some engines honour one property but not the other. */
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* A break after the last page would emit a trailing blank sheet. */
+  .qo-page:not(:last-child) {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* Dark pages must keep their fill when printed. */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -1,0 +1,2189 @@
+/* ============================================================
+   VISUAL BUILDER  (screen only — never printed)
+   A drawer for assigning screenshots to device slots and
+   adjusting them directly on the page. Everything here is
+   prefixed .qb- so it can never collide with document styles.
+   ============================================================ */
+
+/* ---- Toggle Buttons -------------------------------------------------------- */
+
+.qb-toggle--left {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: #0D1B33;
+  color: #2DD4BF;
+  border: 1px solid rgba(45, 212, 191, 0.4);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  transition: left 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qb-toggle--left:hover { background: #142A52; border-color: #2DD4BF; }
+
+.qb-toggle--right {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: #2DD4BF;
+  color: #0A1830;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  transition: right 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qb-toggle--right:hover { background: #5EE6D5; }
+
+/* ---- Layout: body, top navbar and drawers --------------------------------------- */
+
+body {
+  padding-top: 46px;
+}
+
+.qb-drawer--left {
+  position: fixed;
+  top: 46px;
+  left: 0;
+  z-index: 2999;
+  width: 320px;
+  height: calc(100vh - 46px);
+  display: flex;
+  flex-direction: column;
+  background: #0D1B33;
+  border-right: 1px solid rgba(247, 247, 249, 0.14);
+  box-shadow: 18px 0 48px rgba(0, 0, 0, 0.5);
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #F7F7F9;
+  translate: -100% 0;
+  transition: translate 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qb-text-open .qb-drawer--left { translate: 0 0; }
+.qb-text-open .qb-toggle--left { left: 338px; }
+
+/* ---- Right Visual Builder Drawer (Device Controls Only) -------------------- */
+
+.qb-drawer--right {
+  position: fixed;
+  top: 46px;
+  right: 0;
+  z-index: 2999;
+  width: var(--qb-drawer-width, 340px);
+  height: calc(100vh - 46px);
+  display: flex;
+  flex-direction: column;
+  background: #0D1B33;
+  border-left: 1px solid rgba(247, 247, 249, 0.14);
+  box-shadow: -18px 0 48px rgba(0, 0, 0, 0.5);
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #F7F7F9;
+  translate: 100% 0;
+  transition: translate 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.qb-drawer-resize-handle {
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 12px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qb-drawer-resize-handle::before {
+  content: '';
+  width: 3px;
+  height: 100%;
+  margin-left: 3px;
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+.qb-drawer-resize-handle:hover::before,
+.qb-drawer-resize-handle.is-resizing::before {
+  background-color: rgba(45, 212, 191, 0.5);
+}
+/* Grip dots — a hairline drag boundary alone doesn't read as draggable;
+   these mark it as a handle the way a splitter usually looks. */
+.qb-drawer-resize-handle::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 28px;
+  border-radius: 2px;
+  background: rgba(247, 247, 249, 0.16);
+  box-shadow: 0 6px 0 rgba(247, 247, 249, 0.16), 0 -6px 0 rgba(247, 247, 249, 0.16);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.qb-drawer-resize-handle:hover::after,
+.qb-drawer-resize-handle.is-resizing::after {
+  background: #2DD4BF;
+  box-shadow: 0 6px 0 #2DD4BF, 0 -6px 0 #2DD4BF;
+}
+
+.qb-open .qb-drawer--right { translate: 0 0; }
+.qb-open .qb-toggle--right { right: calc(var(--qb-drawer-width, 340px) + 18px); }
+
+/* ---- Top Navbar ----------------------------------------------------------------- */
+
+.qb-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 46px;
+  z-index: 5000;
+  background: #0A1830;
+  border-bottom: 1px solid rgba(45, 212, 191, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.qb-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #F7F7F9;
+  letter-spacing: -0.01em;
+}
+
+.qb-navbar__group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qb-nav-btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: transparent;
+  color: #F7F7F9;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.qb-nav-btn:hover {
+  background: rgba(247, 247, 249, 0.1);
+  border-color: rgba(247, 247, 249, 0.3);
+}
+
+.qb-nav-btn.qb-on {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2DD4BF;
+  color: #2DD4BF;
+}
+
+.qb-nav-btn--primary {
+  background: #2DD4BF;
+  color: #0A1830;
+  border-color: #2DD4BF;
+}
+
+.qb-nav-btn--primary:hover {
+  background: #5EE6D5;
+}
+
+.qb-nav-btn--accent {
+  border-color: rgba(45, 212, 191, 0.4);
+  color: #2DD4BF;
+}
+
+.qb-nav-btn--accent:hover {
+  background: rgba(45, 212, 191, 0.12);
+}
+
+/* Dropdown menus in simplified navbar */
+.qb-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.qb-dropdown__menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 4px;
+  background: #0A1830;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 6px;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 5100;
+}
+
+.qb-dropdown__menu[hidden] {
+  display: none;
+}
+
+.qb-dropdown__menu button {
+  background: transparent;
+  border: none;
+  color: #F7F7F9;
+  padding: 6px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.qb-dropdown__menu button:hover {
+  background: rgba(45, 212, 191, 0.12);
+  color: #2DD4BF;
+}
+
+.qb-dropdown__primary {
+  color: #2DD4BF !important;
+}
+
+.qb-dropdown__sep {
+  height: 1px;
+  background: rgba(247, 247, 249, 0.15);
+  margin: 4px 0;
+}
+
+/* Popover Grab, Dock, and Footer/Collapse styles */
+.qb-pop__grab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 26px;
+  cursor: grab;
+  color: #6B7A94;
+  font-size: 15px;
+  user-select: none;
+  font-weight: bold;
+}
+.qb-pop__grab:active {
+  cursor: grabbing;
+}
+.qb-pop__dock {
+  width: 26px;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: #6B7A94;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s;
+}
+.qb-pop__dock:hover {
+  color: #2DD4BF;
+}
+.qb-pop__footer {
+  padding: 6px 12px;
+  border-top: 1px solid rgba(247, 247, 249, 0.08);
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.qb-pop__toggle-collapse {
+  background: transparent;
+  border: none;
+  color: #6B7A94;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  transition: color 0.15s;
+}
+.qb-pop__toggle-collapse:hover {
+  color: #2DD4BF;
+}
+
+
+.qb-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid rgba(247, 247, 249, 0.12);
+}
+
+.qb-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2DD4BF;
+}
+
+.qb-x {
+  background: none;
+  border: none;
+  color: #6B7A94;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+.qb-x:hover { color: #F7F7F9; }
+
+.qb-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qb-section > h4 {
+  margin: 0 0 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #6B7A94;
+  font-weight: 500;
+}
+
+/* ---- Right drawer tabs ------------------------------------------------------ */
+/* Images and Mockup Settings used to be stacked in one long scroll, with the
+   tray shoved to the bottom. Splitting them into tabs gives each its own
+   full-height space instead. */
+
+.qb-drawer-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 16px 0;
+  border-bottom: 1px solid rgba(247, 247, 249, 0.12);
+}
+
+.qb-drawer-tab {
+  flex: 1;
+  padding: 9px 6px;
+  border: none;
+  border-radius: 7px 7px 0 0;
+  background: transparent;
+  color: #6B7A94;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qb-drawer-tab:hover { color: #F7F7F9; background: rgba(247, 247, 249, 0.06); }
+
+.qb-drawer-tab.qb-on {
+  color: #2DD4BF;
+  background: rgba(45, 212, 191, 0.1);
+  box-shadow: inset 0 -2px 0 #2DD4BF;
+}
+
+.qb-drawer-panel {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 16px;
+  gap: 20px;
+}
+
+.qb-drawer-panel[hidden] { display: none; }
+
+.qb-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.qb-section__head > h4 { margin: 0; }
+
+.qb-btn-add-img {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(45, 212, 191, 0.4);
+  background: rgba(45, 212, 191, 0.1);
+  color: #2DD4BF;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.qb-btn-add-img:hover { background: rgba(45, 212, 191, 0.2); }
+
+.qb-img-search {
+  width: 100%;
+  padding: 7px 10px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.14);
+  background: rgba(247, 247, 249, 0.04);
+  color: #F7F7F9;
+  font-size: 12px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.qb-img-search::placeholder { color: #6B7A94; }
+
+.qb-img-search:focus {
+  outline: none;
+  border-color: #2DD4BF;
+  background: rgba(247, 247, 249, 0.06);
+}
+
+/* ---- Image tray ------------------------------------------------------------ */
+
+.qb-tray {
+  padding-right: 4px;
+  position: relative;
+  transition: all 0.2s ease;
+  min-height: 200px;
+  border-radius: 8px;
+}
+
+.qb-tray.qb-dragover {
+  background: rgba(45, 212, 191, 0.08);
+  outline: 2px dashed #2DD4BF;
+  outline-offset: 4px;
+}
+
+.qb-upload-dropzone {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 16px;
+  background: rgba(247, 247, 249, 0.02);
+  border: 1px dashed rgba(247, 247, 249, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 4px;
+}
+
+.qb-upload-dropzone:hover {
+  background: rgba(45, 212, 191, 0.03);
+  border-color: rgba(45, 212, 191, 0.4);
+}
+
+.qb-upload-dropzone__icon {
+  font-size: 20px;
+  color: #2DD4BF;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.qb-upload-dropzone__text {
+  font-size: 11px;
+  font-weight: 600;
+  color: #F7F7F9;
+}
+
+.qb-upload-dropzone__sub {
+  font-size: 9.5px;
+  color: #6B7A94;
+}
+
+.qb-site + .qb-site {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(247, 247, 249, 0.08);
+}
+
+.qb-site > h5 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 9px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #F7F7F9;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.qb-site > h5 .qb-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #6B7A94;
+  background: rgba(247, 247, 249, 0.07);
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+.qb-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+  gap: 8px;
+}
+
+.qb-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(247, 247, 249, 0.14);
+  background: #142A52;
+  cursor: grab;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.qb-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+}
+
+.qb-thumb:hover { border-color: #2DD4BF; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); }
+.qb-thumb:active { cursor: grabbing; }
+.qb-thumb.qb-used { border-color: rgba(45, 212, 191, 0.6); }
+
+.qb-thumb__used-badge {
+  display: none;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #2DD4BF;
+  color: #0A1830;
+  font-size: 9px;
+  font-weight: 900;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.qb-thumb.qb-used .qb-thumb__used-badge { display: flex; }
+
+.qb-thumb__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 8px 5px 3px;
+  font-size: 8.5px;
+  line-height: 1.25;
+  color: #F7F7F9;
+  background: linear-gradient(to top, rgba(10, 24, 48, 0.95), rgba(10, 24, 48, 0));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  pointer-events: none;
+}
+
+.qb-thumb:hover .qb-thumb__label { opacity: 1; transform: translateY(0); }
+
+.qb-thumb__remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: rgba(10, 24, 48, 0.85);
+  color: #F7F7F9;
+  font-size: 10px;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+.qb-thumb__remove:hover { background: #E4536B; }
+
+.qb-site--hidden { display: none; }
+.qb-thumb--hidden { display: none; }
+
+/* ---- Inspector -------------------------------------------------------------- */
+
+.qb-empty {
+  padding: 14px;
+  border: 1px dashed rgba(247, 247, 249, 0.2);
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6B7A94;
+}
+
+.qb-slot-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.qb-slot-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  color: #6B7A94;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Groups related fields (Content / Presentation / Transform) into visually
+   distinct blocks instead of one long undifferentiated stack of labels. */
+.qb-card {
+  padding: 14px;
+  border: 1px solid rgba(247, 247, 249, 0.08);
+  border-radius: 10px;
+  background: rgba(247, 247, 249, 0.02);
+}
+
+.qb-card + .qb-card { margin-top: 12px; }
+
+.qb-card__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #6B7A94;
+}
+
+.qb-card__title::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 1px;
+  background: #2DD4BF;
+}
+
+.qb-card .qb-field:last-child { margin-bottom: 0; }
+
+.qb-field { margin-bottom: 12px; }
+
+.qb-field > label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #6B7A94;
+  margin-bottom: 5px;
+}
+
+.qb-field > label span { color: #2DD4BF; font-weight: 600; }
+
+/* auto-fit collapses tracks nothing was placed in, so a group that doesn't
+   fill its last row (e.g. one lone button after an even row of four) stays
+   left-aligned at its natural width instead of flex's old behavior of
+   stretching that leftover button across the entire row by itself. */
+.qb-seg { display: grid; grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); gap: 4px; }
+
+.qb-seg button {
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: transparent;
+  color: #6B7A94;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.qb-seg button:hover { color: #F7F7F9; border-color: rgba(247, 247, 249, 0.4); }
+
+.qb-seg button.qb-on {
+  background: #2DD4BF;
+  border-color: #2DD4BF;
+  color: #0A1830;
+}
+
+.qb-field input[type="range"] { width: 100%; accent-color: #2DD4BF; }
+
+/* ---- Slider + manual entry -------------------------------------------------
+   Every range in the builder is paired with a number box so a value can be
+   typed exactly rather than dragged at. The row is built at runtime (see
+   attachNumberField in panel.js), so these styles apply everywhere a slider
+   appears — inspectors, popovers, the shadow controls. */
+
+.qb-range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qb-range-row input[type="range"] {
+  flex: 1;
+  min-width: 0;   /* a flex item defaults to min-content — without this the
+                     slider refuses to shrink and pushes the box off the edge */
+}
+
+.qb-num {
+  flex: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: #142A52;
+}
+
+.qb-num:focus-within { border-color: #2DD4BF; }
+
+.qb-num input {
+  width: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #F7F7F9;
+  font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  font-size: 11px;
+  text-align: right;
+}
+
+.qb-num input:focus { outline: none; }
+.qb-num input:disabled { opacity: 0.4; }
+
+.qb-num i {
+  font-style: normal;
+  font-size: 9.5px;
+  color: rgba(247, 247, 249, 0.5);
+}
+
+.qb-inspector-actions {
+  padding-top: 12px;
+  margin-top: 2px;
+  border-top: 1px solid rgba(247, 247, 249, 0.08);
+}
+
+.qb-hint {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #6B7A94;
+  padding: 9px 11px;
+  background: rgba(45, 212, 191, 0.08);
+  border-radius: 6px;
+  border-left: 2px solid #2DD4BF;
+}
+
+/* ---- Footer actions ---------------------------------------------------------- */
+
+.qb-foot {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(247, 247, 249, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qb-btn {
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(247, 247, 249, 0.2);
+  background: transparent;
+  color: #F7F7F9;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qb-btn:hover { background: rgba(247, 247, 249, 0.08); }
+
+.qb-btn--primary {
+  background: #2DD4BF;
+  border-color: #2DD4BF;
+  color: #0A1830;
+}
+.qb-btn--primary:hover { background: #5EE6D5; }
+
+.qb-row { display: flex; gap: 8px; }
+.qb-row .qb-btn { flex: 1; }
+
+/* ---- Saves list --------------------------------------------------------------- */
+
+.qb-saves-list {
+  max-height: 26vh;
+  overflow-y: auto;
+  padding: 6px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 247, 249, 0.14);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.qb-save-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 7px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #F7F7F9;
+  cursor: pointer;
+}
+
+.qb-save-item + .qb-save-item { margin-top: 2px; }
+.qb-save-item:hover { background: rgba(45, 212, 191, 0.12); }
+.qb-save-item[data-load-default] { font-weight: 700; color: #2DD4BF; }
+
+.qb-save-item__sub {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  color: #6B7A94;
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+.qb-save-item__del {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #6B7A94;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qb-save-item__del:hover { background: rgba(255, 107, 107, 0.18); color: #FF6B6B; }
+
+.qb-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #6B7A94;
+  text-align: center;
+}
+
+/* ---- On-canvas affordances ------------------------------------------------------ */
+
+.qo-device { cursor: pointer; }
+
+.qo-device:hover .qo-device__frame {
+  outline: 2px dashed rgba(45, 212, 191, 0.6);
+  outline-offset: 3px;
+}
+
+.qo-device.qb-sel .qo-device__frame {
+  outline: 2px solid #2DD4BF !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 16px rgba(45, 212, 191, 0.3);
+}
+
+/* Empty slots get a faint teal wash while building so they're easy to spot. */
+.qo-screen:not(:has(img)) { box-shadow: inset 0 0 0 2px rgba(45, 212, 191, 0.25); }
+
+/* Clicking any blank area of a page (not a device, not text) selects the
+   page itself and opens the add/delete-page popover. Negative outline-offset
+   keeps the outline inside the page's own overflow:hidden box. */
+.qo-page { cursor: pointer; }
+
+.qo-page:hover {
+  outline: 2px dashed rgba(45, 212, 191, 0.3);
+  outline-offset: -2px;
+}
+
+.qo-page.qb-page-sel {
+  outline: 2px solid #2DD4BF !important;
+  outline-offset: -2px;
+}
+
+/* ---- Hover block controls (text blocks + repeatable components) ---------------- */
+
+.qb-block-hover {
+  outline: 1px dashed rgba(45, 212, 191, 0.6) !important;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.qb-block-tools {
+  position: fixed;
+  z-index: 3080;
+  display: flex;
+  gap: 3px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #0D1B33;
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.qb-block-tools button {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: #F7F7F9;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.qb-block-tools__edit:hover { background: rgba(45, 212, 191, 0.18); color: #2DD4BF; }
+.qb-block-tools__move:hover { background: rgba(45, 212, 191, 0.25); color: #2DD4BF; }
+.qb-block-tools__style:hover { background: rgba(227, 184, 196, 0.2); color: #E3B8C4; }
+.qb-block-tools__lock:hover { background: rgba(245, 158, 11, 0.2); color: #F59E0B; }
+.qb-block-tools__more:hover { background: rgba(247, 247, 249, 0.14); color: #F7F7F9; }
+.qb-block-tools__del:hover { background: rgba(255, 107, 107, 0.18); color: #FF6B6B; }
+
+/* ---- Context menu (Copy / Cut / Paste) ---------------------------------------
+   Opened via the ⋮ button in the hover block toolbar. A plain vertical
+   menu rather than .qb-pop's tabbed-popover chrome — that class carries a
+   fixed 322px width meant for tab bars and control panels, way wider than
+   three text actions need. */
+
+.qb-context-menu {
+  position: fixed;
+  z-index: 3090;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  padding: 4px;
+  gap: 1px;
+  border-radius: 8px;
+  background: #0D1B33;
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.qb-context-menu[hidden] { display: none; }
+
+.qb-context-menu button {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: #F7F7F9;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.qb-context-menu button:hover { background: rgba(45, 212, 191, 0.14); color: #2DD4BF; }
+
+.qb-context-menu button:disabled {
+  color: #6B7A94;
+  cursor: not-allowed;
+}
+.qb-context-menu button:disabled:hover { background: transparent; color: #6B7A94; }
+
+/* Locked element affordance */
+[data-locked="true"] {
+  cursor: not-allowed !important;
+}
+
+.qb-open [data-locked="true"] {
+  outline: 2px dashed #F59E0B !important;
+  outline-offset: 2px;
+}
+
+.qo-device.qb-sel .qo-screen { cursor: grab; }
+.qo-device.qb-sel .qo-screen:active { cursor: grabbing; }
+
+.qb-drop { outline: 3px dashed #2DD4BF !important; outline-offset: 3px; }
+
+/* ---- On-canvas text editing affordances ------------------------------------ */
+
+.qb-open [data-editable="true"] {
+  outline: 1px dashed rgba(45, 212, 191, 0.25);
+  outline-offset: 2px;
+  border-radius: 2px;
+  cursor: text;
+  transition: outline 0.15s ease, background 0.15s ease;
+}
+
+.qb-open [data-editable="true"]:hover {
+  outline: 1px dashed rgba(45, 212, 191, 0.7);
+  background-color: rgba(45, 212, 191, 0.05);
+}
+
+.qb-open [data-editable="true"]:focus,
+.qb-open [data-editable="true"].qb-text-sel {
+  outline: 2px solid #2DD4BF !important;
+  outline-offset: 3px;
+  background-color: rgba(45, 212, 191, 0.1);
+  box-shadow: 0 0 12px rgba(45, 212, 191, 0.2);
+}
+
+/* Dragging a text block's edge to resize it horizontally (see bindCanvas
+   in panel.js). The outline solidifies to mark which block is being
+   resized, and the whole page locks to the resize cursor + no text
+   selection so the drag doesn't get interrupted by selecting text
+   underneath the pointer. */
+.qb-text-resizing {
+  outline: 2px solid #2DD4BF !important;
+  outline-offset: 2px;
+  background-color: rgba(45, 212, 191, 0.08);
+  transition: none;
+}
+
+body.qb-resizing-text,
+body.qb-resizing-text * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* Middle-button canvas pan. The grab cursor has to win over every element's
+   own cursor (pages are `pointer`, screens are `grab`) or it flickers as the
+   drag crosses them, and text must stop selecting under the moving pointer. */
+body.qb-canvas-panning,
+body.qb-canvas-panning * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+.qb-textarea {
+  width: 100%;
+  min-height: 84px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.2);
+  background: #0A1830;
+  color: #F7F7F9;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.qb-textarea:focus {
+  outline: none;
+  border-color: #2DD4BF;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.25);
+}
+
+/* ---- Text List Tray ------------------------------------------------------- */
+
+.qb-text-search {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: #0A1830;
+  color: #F7F7F9;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.qb-text-search:focus {
+  outline: none;
+  border-color: #2DD4BF;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.25);
+}
+
+/* ---- Grid View Overlay (10mm alignment boxes) --------------------------- */
+
+body.qb-show-grid .qo-page {
+  background-image:
+    linear-gradient(to right, rgba(45, 212, 191, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(45, 212, 191, 0.12) 1px, transparent 1px) !important;
+  background-size: 10mm 10mm !important;
+}
+
+/* ---- X-Y Axis Points Overlay ------------------------------------------- */
+
+body.qb-show-axis .qo-page {
+  position: relative;
+}
+
+body.qb-show-axis .qo-page::after {
+  content: "X-Y ORIGIN (0,0)";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: #2DD4BF;
+  background: #0A1830;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(45, 212, 191, 0.4);
+  z-index: 1002;
+  pointer-events: none;
+}
+
+body.qb-show-axis .qo-page::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(45, 212, 191, 0.4);
+  z-index: 1001;
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(45, 212, 191, 0.3);
+}
+
+body.qb-show-axis .qo-page__body::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(45, 212, 191, 0.4);
+  z-index: 1001;
+  pointer-events: none;
+  box-shadow: 0 0 6px rgba(45, 212, 191, 0.3);
+}
+
+.qb-text-group + .qb-text-group { margin-top: 10px; }
+
+.qb-text-group__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #2DD4BF;
+  margin-bottom: 4px;
+  padding-left: 2px;
+}
+
+.qb-text-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 10px;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  background: rgba(247, 247, 249, 0.05);
+  border: 1px solid rgba(247, 247, 249, 0.1);
+  font-size: 11px;
+  color: #6B7A94;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.qb-text-item > span:first-child {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qb-text-item strong { font-family: monospace; color: #2DD4BF; }
+.qb-text-item.qb-text-sel strong { color: #0A1830; }
+
+.qb-text-item:hover {
+  background: rgba(45, 212, 191, 0.1);
+  border-color: #2DD4BF;
+  color: #F7F7F9;
+}
+
+.qb-text-item.qb-text-sel {
+  background: #2DD4BF;
+  border-color: #2DD4BF;
+  color: #0A1830;
+  font-weight: 600;
+}
+
+.qb-text-item.qb-text-removed {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.qb-text-item.qb-text-removed:hover { opacity: 0.85; }
+
+.qb-text-item__restore {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qb-text-item__restore:hover { background: rgba(0, 0, 0, 0.2); }
+
+/* ---- Device popover ---------------------------------------------------------
+   Quick actions anchored to the selected device: change mockup, angle,
+   resize, position. */
+
+.qb-pop {
+  position: fixed;
+  z-index: 3100;
+  width: 322px;
+  background: #0D1B33;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #F7F7F9;
+}
+
+.qb-pop__bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  border-bottom: 1px solid rgba(247, 247, 249, 0.12);
+}
+
+.qb-pop__tab {
+  flex: 1;
+  padding: 7px 4px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #6B7A94;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.qb-pop__tab:hover { color: #F7F7F9; background: rgba(247, 247, 249, 0.06); }
+.qb-pop__tab.qb-on { background: #2DD4BF; color: #0A1830; }
+
+.qb-pop__x {
+  width: 26px;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: #6B7A94;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+.qb-pop__x:hover { color: #F7F7F9; }
+
+.qb-pop__panel { padding: 12px; }
+
+.qb-pop__kinds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.qb-pop__kind {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 4px 7px;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: transparent;
+  color: #6B7A94;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qb-pop__kind:hover { color: #F7F7F9; border-color: rgba(45, 212, 191, 0.6); }
+.qb-pop__kind.qb-on { border-color: #2DD4BF; color: #2DD4BF; background: rgba(45, 212, 191, 0.08); }
+
+.qb-pop__glyph {
+  display: block;
+  height: 24px;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+}
+
+.qb-pop__group-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6B7A94;
+  margin: 0 0 6px;
+}
+
+.qb-pop__group-label + .qb-pop__seg { margin-bottom: 10px; }
+
+.qb-pop__group-label input[type="checkbox"] {
+  accent-color: #2DD4BF;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  vertical-align: -2px;
+}
+
+.qb-style-pop input[type="range"] { margin-bottom: 8px; }
+.qb-style-pop input[type="range"]:disabled { opacity: 0.35; }
+
+.qb-pop__seg { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.qb-pop__seg--wrap button { flex: 1 0 30%; }
+
+.qb-pop__seg button {
+  flex: 1 0 auto;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: transparent;
+  color: #6B7A94;
+  font-family: inherit;
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.qb-pop__seg button:hover { color: #F7F7F9; border-color: rgba(247, 247, 249, 0.4); }
+.qb-pop__seg button.qb-on { background: #2DD4BF; border-color: #2DD4BF; color: #0A1830; }
+
+.qb-pop__panel input[type="range"] { width: 100%; accent-color: #2DD4BF; }
+
+.qb-pop__pad {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  gap: 4px;
+  justify-content: center;
+}
+
+.qb-pop__pad button {
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: transparent;
+  color: #F7F7F9;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.qb-pop__pad button:hover { border-color: #2DD4BF; color: #2DD4BF; }
+
+.qb-pop__hint {
+  margin-top: 9px;
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: #6B7A94;
+  text-align: center;
+}
+
+.qb-pop__chip {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -2px;
+  border: 1px solid rgba(247, 247, 249, 0.25);
+}
+
+/* Default swatch for "Custom" before any hex has been typed yet. */
+.qb-pop__chip--custom {
+  background: conic-gradient(red, #ff0, lime, cyan, blue, magenta, red);
+}
+
+/* Custom-colour row under any swatch strip: system colour wheel on the left,
+   hex field taking the rest. Same shape as the page Surface picker's
+   .qb-tone-custom, kept as its own class because this one sits inside a
+   .qb-field/.qb-pop__panel rather than the tone grid. */
+.qb-color-custom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.qb-color-custom input[type="color"] {
+  flex: none;
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid rgba(247, 247, 249, 0.2);
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.qb-color-custom .qb-hex-input { flex: 1; margin: 0; }
+
+.qb-hex-input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: #0A1830;
+  color: #F7F7F9;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  box-sizing: border-box;
+}
+
+.qb-hex-input:focus {
+  outline: none;
+  border-color: #2DD4BF;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.25);
+}
+
+.qb-pop__delete {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  background: transparent;
+  color: #FF6B6B;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.qb-pop__delete:hover { background: rgba(255, 107, 107, 0.12); border-color: #FF6B6B; }
+.qb-pop__delete:disabled { opacity: 0.4; cursor: not-allowed; }
+.qb-pop__delete:disabled:hover { background: transparent; border-color: rgba(255, 107, 107, 0.4); }
+
+.qb-pop__row { display: flex; gap: 6px; margin-top: 10px; }
+.qb-pop__row .qb-pop__delete { margin-top: 0; flex: 1; }
+
+.qb-pop__add {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  background: transparent;
+  color: #2DD4BF;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.qb-pop__add:hover { background: rgba(45, 212, 191, 0.12); border-color: #2DD4BF; }
+
+/* ---- Print: the builder must leave no trace ---------------------------------------- */
+
+@media print {
+  .qb-navbar,
+  .qb-toggle--left,
+  .qb-toggle--right,
+  .qb-drawer--left,
+  .qb-drawer--right,
+  .qb-pdf-bar,
+  .qb-pop,
+  .qb-fi-overlay,
+  .qb-block-tools { display: none !important; }
+
+  /* Placed images print as document content — only their editing
+     affordances (hover outline, move cursor) come off. */
+  .qo-free-img { outline: none !important; cursor: default !important; }
+
+  /* .qb-navbar reserves 46px via body's own padding-top (not scoped to
+     print), so hiding the bar above without this leaves a blank strip at
+     the top of every printed sheet. */
+  body { padding-top: 0 !important; }
+
+  [data-editable="true"] { outline: none !important; background: none !important; }
+  .qo-device__frame { outline: none !important; }
+  .qo-screen { box-shadow: none !important; }
+  .qo-page { cursor: default; outline: none !important; }
+  .qb-block-hover { outline: none !important; }
+}
+
+/* ---- PDF Preview Mode ------------------------------------------------------------- */
+
+body.qb-pdf-preview {
+  background: #111827 !important;
+  padding-top: 56px !important;
+}
+
+body.qb-pdf-preview .qb-navbar,
+body.qb-pdf-preview .qb-toggle--left,
+body.qb-pdf-preview .qb-toggle--right,
+body.qb-pdf-preview .qb-drawer--left,
+body.qb-pdf-preview .qb-drawer--right,
+body.qb-pdf-preview .qb-fi-overlay,
+body.qb-pdf-preview .qb-pop {
+  display: none !important;
+}
+
+body.qb-pdf-preview .qo-free-img {
+  outline: none !important;
+  cursor: default !important;
+}
+
+body.qb-pdf-preview [data-editable="true"] {
+  outline: none !important;
+  background: transparent !important;
+  cursor: default !important;
+}
+
+body.qb-pdf-preview .qo-device {
+  cursor: default !important;
+}
+
+body.qb-pdf-preview .qo-device__frame {
+  outline: none !important;
+  box-shadow: none;
+}
+
+body.qb-pdf-preview .qo-screen {
+  box-shadow: none !important;
+}
+
+/* Top PDF Preview Floating Toolbar */
+.qb-pdf-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  z-index: 9999;
+  background: #0A1830;
+  border-bottom: 1px solid rgba(45, 212, 191, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.qb-pdf-bar__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #F7F7F9;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.qb-pdf-bar__badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(45, 212, 191, 0.15);
+  color: #2DD4BF;
+  padding: 3px 9px;
+  border-radius: 4px;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+
+.qb-pdf-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qb-pdf-bar__btn {
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid rgba(247, 247, 249, 0.2);
+  background: transparent;
+  color: #F7F7F9;
+  transition: all 0.15s ease;
+}
+
+.qb-pdf-bar__btn:hover {
+  background: rgba(247, 247, 249, 0.12);
+  border-color: rgba(247, 247, 249, 0.4);
+}
+
+.qb-pdf-bar__btn--primary {
+  background: #2DD4BF;
+  color: #0A1830;
+  border-color: #2DD4BF;
+}
+
+.qb-pdf-bar__btn--primary:hover {
+  background: #5EE6D5;
+}
+
+/* ---- Image Editor (left drawer, "🖼 Image" tab) --------------------------------
+   The document-facing half of a placed image lives in css/free-images.css so
+   it survives export; everything here is the editing layer — hover and
+   selection affordances, the drag handles, and the picker/list in the drawer. */
+
+.qo-free-img { cursor: move; }
+.qo-free-img.qb-fi-locked { cursor: default; }
+
+.qo-free-img:hover { outline: 1px dashed rgba(45, 212, 191, 0.75); outline-offset: 2px; }
+.qo-free-img.qb-fi-sel { outline: 1.5px solid #2DD4BF; outline-offset: 2px; }
+.qo-free-img.qb-fi-locked:hover { outline-color: rgba(107, 122, 148, 0.8); }
+
+/* Dragging must not start selecting the text the image is sitting on. Only
+   user-select is touched: taking pointer-events off the page's contents
+   would move the mouseup onto the sheet itself, and the browser resolves a
+   click against the common ancestor of its mousedown and mouseup targets —
+   so the click landing on the sheet would read as "clicked the page" and
+   drop the selection the drag just made. */
+body.qb-fi-dragging { user-select: none; }
+
+/* Handles ride in an overlay pinned over the image rather than inside it —
+   the image clips to its own frame, so handles parented there would be cut
+   in half at every corner. The tag is in the selector for the same reason
+   css/free-images.css carries one: sheet templates (the cover) set their own
+   `position` on direct children, and a bare class would lose to that and
+   drop the overlay into the page flow. */
+.qo-page > div.qb-fi-overlay,
+.qb-fi-overlay {
+  position: absolute;
+  z-index: 900;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+}
+
+.qb-fi-h {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 2px;
+  background: #0D1B33;
+  border: 1.5px solid #2DD4BF;
+  pointer-events: auto;
+}
+
+.qb-fi-h:hover { background: #2DD4BF; }
+
+.qb-fi-h--nw { top: 0;    left: 0;    cursor: nwse-resize; }
+.qb-fi-h--n  { top: 0;    left: 50%;  cursor: ns-resize; }
+.qb-fi-h--ne { top: 0;    left: 100%; cursor: nesw-resize; }
+.qb-fi-h--e  { top: 50%;  left: 100%; cursor: ew-resize; }
+.qb-fi-h--se { top: 100%; left: 100%; cursor: nwse-resize; }
+.qb-fi-h--s  { top: 100%; left: 50%;  cursor: ns-resize; }
+.qb-fi-h--sw { top: 100%; left: 0;    cursor: nesw-resize; }
+.qb-fi-h--w  { top: 50%;  left: 0;    cursor: ew-resize; }
+
+.qb-fi-rot {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
+  margin-left: -6.5px;
+  border-radius: 50%;
+  background: #2DD4BF;
+  border: 1.5px solid #0D1B33;
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.qb-fi-rot:active { cursor: grabbing; }
+
+/* Stem joining the rotate knob to the top edge, so it reads as attached
+   to the box rather than floating loose above it. */
+.qb-fi-rot::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 1.5px;
+  height: 14px;
+  margin-left: -0.75px;
+  background: #2DD4BF;
+}
+
+.qb-fi-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+  gap: 6px;
+  max-height: 216px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.qb-fi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.qb-fi-group + .qb-fi-group { margin-top: 10px; }
+
+.qb-fi-group__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6B7A94;
+  margin: 0 0 4px;
+}
+
+.qb-fi-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.1);
+  font-size: 11.5px;
+  color: #F7F7F9;
+  cursor: pointer;
+}
+
+.qb-fi-item + .qb-fi-item { margin-top: 3px; }
+.qb-fi-item:hover { background: rgba(45, 212, 191, 0.1); }
+.qb-fi-item.qb-on { border-color: #2DD4BF; background: rgba(45, 212, 191, 0.14); }
+
+.qb-fi-item img {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #142A52;
+}
+
+.qb-fi-item__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qb-fi-item__lock { font-size: 10px; opacity: 0.8; }
+
+.qb-fi-item__del {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #6B7A94;
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qb-fi-item__del:hover { background: rgba(255, 107, 107, 0.18); color: #FF6B6B; }
+
+.qb-select {
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+  background: #142A52;
+  color: #F7F7F9;
+  font-family: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.qb-select:focus { outline: none; border-color: #2DD4BF; }
+
+/* Same chrome as the dropdown, but this one is typed into — the font-name
+   box in the Font picker, which is an <input> with a datalist behind it. */
+input.qb-select { cursor: text; }
+
+/* ---- Logo wells (Tech Stack page) --------------------------------------------
+   The well itself is document markup (css/components.css); everything here is
+   the editing layer — the pointer affordance, the drag-over state, and the
+   clear button that only exists while there's a logo to clear. */
+
+.qo-logo { cursor: pointer; transition: border-color 0.15s ease, background-color 0.15s ease; }
+
+.qo-logo:hover {
+  border-color: var(--qo-accent);
+  background: var(--qo-teal-muted);
+}
+
+.qo-logo.qb-logo-drop {
+  border-color: #2DD4BF;
+  border-style: solid;
+  background: rgba(45, 212, 191, 0.12);
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.35);
+}
+
+.qb-logo-clear {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: rgba(10, 24, 48, 0.7);
+  color: #F7F7F9;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s ease, background-color 0.12s ease;
+}
+
+.qo-logo:hover .qb-logo-clear { opacity: 1; }
+.qb-logo-clear:hover { background: #E4536B; }
+
+@media print {
+  .qb-logo-clear { display: none !important; }
+  .qo-logo { cursor: default !important; }
+  .qo-logo:hover { border-color: var(--qo-border-strong); background: var(--qo-surface); }
+}
+
+body.qb-pdf-preview .qb-logo-clear { display: none !important; }
+body.qb-pdf-preview .qo-logo { cursor: default !important; }
+
+/* ---- Background picker (page popover) -----------------------------------------
+   Each option previews itself: the chip carries the same qo-bg--* class the
+   sheet will get. The grid is stamped with the page's own theme class so the
+   chips resolve their tokens the way that page will — a light page previews
+   light chips, not dark ones. */
+
+/* The picker scrolls as one column of labelled sets rather than one long
+   undifferentiated grid — thirty swatches need somewhere to breathe. */
+.qb-bg-picker {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 3px;
+}
+
+.qb-bg-set__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6B7A94;
+  margin: 10px 0 5px;
+}
+
+.qb-bg-picker > .qb-bg-set__label:first-child { margin-top: 0; }
+
+.qb-bg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.qb-bg-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.14);
+  background: transparent;
+  color: #6B7A94;
+  font-family: inherit;
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.qb-bg-opt:hover { color: #F7F7F9; border-color: rgba(247, 247, 249, 0.4); }
+
+.qb-bg-opt.qb-on {
+  border-color: #2DD4BF;
+  color: #2DD4BF;
+  background: rgba(45, 212, 191, 0.1);
+}
+
+/* The chip is a miniature sheet: same aspect as A4 landscape, same base
+   surface, so what it shows is what the page gets. */
+.qb-bg-chip {
+  display: block;
+  aspect-ratio: 297 / 210;
+  border-radius: 3px;
+  border: 1px solid rgba(247, 247, 249, 0.1);
+  background: var(--qo-bg, #0A1830);
+  overflow: hidden;
+}
+
+/* "None" reads as an empty slot rather than a flat swatch. */
+.qb-bg-chip--none {
+  background:
+    linear-gradient(135deg, transparent 46%, rgba(247, 247, 249, 0.22) 46% 54%, transparent 54%),
+    var(--qo-bg, #0A1830);
+}
+
+.qb-bg-opt__name {
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A chip is about a twentieth of a sheet, and the page treatments top out
+   around 16% alpha — at that scale they vanish. The preview renders the same
+   layers with the mix pushed up and the repeats shrunk to match, so the
+   picker is legible while the page itself stays restrained. */
+.qb-bg-chip {
+  --qo-bgfx-accent-strong: rgba(45, 212, 191, 0.55);
+  --qo-bgfx-accent-soft:   rgba(45, 212, 191, 0.34);
+  --qo-bgfx-cool-strong:   rgba(30, 66, 130, 0.95);
+  --qo-bgfx-cool-soft:     rgba(30, 66, 130, 0.6);
+  --qo-bgfx-warm:          rgba(214, 163, 102, 0.4);
+  --qo-bgfx-line:          rgba(247, 247, 249, 0.22);
+  --qo-bgfx-dot:           rgba(247, 247, 249, 0.35);
+  --qo-bgfx-shade:         rgba(3, 9, 20, 0.8);
+  --qo-bgfx-paper:         rgba(214, 163, 102, 0.34);
+  --qo-bgfx-ink:           rgba(140, 180, 255, 0.28);
+  --qo-bgfx-ink-major:     rgba(140, 180, 255, 0.45);
+  --qo-bgfx-blush:         rgba(227, 184, 196, 0.4);
+  --qo-bgfx-block:         rgba(247, 247, 249, 0.16);
+}
+
+.qo-page--light .qb-bg-chip {
+  --qo-bgfx-accent-strong: rgba(14, 158, 139, 0.5);
+  --qo-bgfx-accent-soft:   rgba(14, 158, 139, 0.3);
+  --qo-bgfx-cool-strong:   rgba(15, 34, 68, 0.38);
+  --qo-bgfx-cool-soft:     rgba(15, 34, 68, 0.2);
+  --qo-bgfx-warm:          rgba(198, 141, 74, 0.42);
+  --qo-bgfx-line:          rgba(15, 34, 68, 0.22);
+  --qo-bgfx-dot:           rgba(15, 34, 68, 0.4);
+  --qo-bgfx-shade:         rgba(15, 34, 68, 0.32);
+  --qo-elev-1:             rgba(15, 34, 68, 0.1);
+  --qo-bgfx-paper:         rgba(206, 158, 96, 0.5);
+  --qo-bgfx-ink:           rgba(24, 68, 138, 0.34);
+  --qo-bgfx-ink-major:     rgba(24, 68, 138, 0.5);
+  --qo-bgfx-blush:         rgba(198, 141, 160, 0.5);
+  --qo-bgfx-block:         rgba(15, 34, 68, 0.16);
+}
+
+/* Repeating layers are sized in mm for the sheet; the chip needs them in
+   chip-sized steps or a 10mm grid shows one and a half cells. */
+.qb-bg-chip.qo-bg--grid { background-size: 9px 9px, 9px 9px, auto, auto; }
+.qb-bg-chip.qo-bg--dots { background-size: 5px 5px, auto, auto; }
+.qb-bg-chip.qo-bg--edge { background-image:
+    linear-gradient(90deg, var(--qo-accent) 0 3px, transparent 3px),
+    radial-gradient(ellipse 55% 80% at -4% 50%, var(--qo-bgfx-accent-soft), transparent 62%),
+    linear-gradient(var(--qo-bg), var(--qo-bg)); }
+.qb-bg-chip.qo-bg--frame { box-shadow: inset 0 0 0 1px var(--qo-border-strong); }
+.qb-bg-chip.qo-bg--paper { background-size: 4px 4px, auto, auto, auto; }
+.qb-bg-chip.qo-bg--blueprint { background-size: 16px 16px, 16px 16px, 4px 4px, 4px 4px, auto, auto; }
+.qb-bg-chip.qo-bg--ruled { background-size: auto, 7px 7px; }
+.qb-bg-chip.qo-bg--stripe {
+  background-image:
+    repeating-linear-gradient(90deg, var(--qo-bgfx-line) 0 12px, transparent 12px 24px),
+    radial-gradient(ellipse 70% 50% at 50% -6%, var(--qo-bgfx-accent-soft), transparent 68%),
+    linear-gradient(var(--qo-bg), var(--qo-bg));
+}
+.qb-bg-chip.qo-bg--orbit {
+  background-image:
+    repeating-radial-gradient(circle at 8% -6%, transparent 0 9px, var(--qo-bgfx-line) 9px 10px),
+    radial-gradient(ellipse 70% 60% at 10% 0%, var(--qo-bgfx-accent-soft), transparent 66%),
+    linear-gradient(var(--qo-bg), var(--qo-bg));
+}
+.qb-bg-chip.qo-bg--contour {
+  background-image:
+    repeating-radial-gradient(circle at 105% 108%, transparent 0 5px, var(--qo-bgfx-line) 5px 5.8px),
+    radial-gradient(ellipse 65% 55% at 92% 96%, var(--qo-bgfx-accent-soft), transparent 64%),
+    linear-gradient(var(--qo-bg), var(--qo-bg));
+}
+.qb-bg-chip.qo-bg--arc {
+  background-image:
+    radial-gradient(circle 34px at 108% 118%, var(--qo-bgfx-cool-strong) 0 100%, transparent 100%),
+    radial-gradient(circle 34px at 108% 118%, transparent 0 96%, var(--qo-accent) 96% 100%, transparent 100%),
+    linear-gradient(var(--qo-bg), var(--qo-bg));
+}
+.qb-bg-chip.qo-bg--ruled {
+  background-image:
+    linear-gradient(90deg, transparent 0 14px, var(--qo-bgfx-blush) 14px 15px, transparent 15px),
+    linear-gradient(180deg, var(--qo-bgfx-ink) 0.5px, transparent 0.5px),
+    linear-gradient(var(--qo-bg), var(--qo-bg));
+}
+
+/* ---- Surface picker (page popover) --------------------------------------------
+   The colour the sheet is printed on, as distinct from the theme (which way it
+   reads) and the background (what is drawn on it). */
+
+.qb-tone-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.qb-tone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 2px;
+  border-radius: 6px;
+  border: 1px solid rgba(247, 247, 249, 0.14);
+  background: transparent;
+  color: #6B7A94;
+  font-family: inherit;
+  font-size: 8.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.qb-tone:hover { color: #F7F7F9; border-color: rgba(247, 247, 249, 0.4); }
+.qb-tone.qb-on { border-color: #2DD4BF; color: #2DD4BF; background: rgba(45, 212, 191, 0.1); }
+
+.qb-tone__chip {
+  width: 100%;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(247, 247, 249, 0.16);
+}
+
+/* Until a custom value is set the chip shows a spectrum, so it reads as
+   "any colour" rather than as one more preset. */
+.qb-tone__chip--custom {
+  background: conic-gradient(from 210deg, #2DD4BF, #6E8CAE, #C68DA0, #D6A366, #2DD4BF);
+}
+
+.qb-tone__name {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qb-tone-custom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.qb-tone-custom input[type="color"] {
+  flex: none;
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid rgba(247, 247, 249, 0.2);
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.qb-tone-custom .qb-hex-input { flex: 1; margin: 0; }
+
+/* ---- Drag to position (device popover, Position tab) --------------------------
+   On that tab the selected mockup becomes a thing you grab: the whole device,
+   bezel included, not just its screen. The dashed outline says "this is the
+   piece that moves" and distinguishes the mode from ordinary selection. */
+
+.qo-device.qb-pos-target { cursor: move; }
+
+.qo-device.qb-pos-target .qo-device__frame {
+  outline: 1px dashed rgba(45, 212, 191, 0.75);
+  outline-offset: 6px;
+}
+
+.qo-device.qb-pos-dragging { cursor: grabbing; }
+
+.qo-device.qb-pos-dragging .qo-device__frame {
+  outline-style: solid;
+  outline-color: #2DD4BF;
+}
+
+/* A drag that starts on a bezel must not turn into a text selection halfway
+   across the sheet. */
+body.qb-pos-dragging-on { user-select: none; }
+
+/* Live X/Y readout under the nudge pad. */
+.qb-pop__coords {
+  display: flex;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #6B7A94;
+  margin-bottom: 8px;
+}
+
+.qb-pop__coords b { color: #2DD4BF; font-weight: 600; }
+
+@media print {
+  .qo-device.qb-pos-target .qo-device__frame { outline: none !important; }
+}

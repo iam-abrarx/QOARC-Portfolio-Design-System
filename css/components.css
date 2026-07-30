@@ -1,0 +1,859 @@
+/* ============================================================
+   COMPONENTS
+   Reusable UI built entirely from tokens.css. Nothing in here
+   should contain a literal color, px value, or font name —
+   if it's not covered by a token yet, add the token first.
+
+   State classes: real :hover/:active/:focus-visible drive live
+   interaction. The .is-hover / .is-active variants exist only so
+   the style guide can display a state at rest for documentation —
+   do not ship them on production markup.
+   ============================================================ */
+
+/* ---- Buttons ------------------------------------------------------- */
+
+.qo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qo-space-2xs);
+  padding: var(--qo-space-xs) var(--qo-space-md);
+  border-radius: var(--qo-radius-full);
+  font-family: var(--qo-font-brand);
+  font-size: var(--qo-text-sm);
+  font-weight: 600;
+  letter-spacing: var(--qo-tracking-normal);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--qo-duration-base) var(--qo-ease),
+              color var(--qo-duration-base) var(--qo-ease),
+              border-color var(--qo-duration-base) var(--qo-ease),
+              box-shadow var(--qo-duration-base) var(--qo-ease),
+              transform var(--qo-duration-fast) var(--qo-ease-out);
+}
+
+/* The 1px press belongs to real interaction only. The .is-active demo class
+   deliberately does NOT take it: on a specimen sheet all four states sit in
+   one row, and dropping a single cell by a pixel reads as a layout defect
+   rather than as depth — and a transform never survives the PDF export the
+   sheet exists for. */
+.qo-btn:active { transform: translateY(1px); }
+
+.qo-btn:disabled,
+.qo-btn.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Primary — a filled shape, so it wears the brand navy (see --qo-fill in
+   tokens.css). The accent stays free for the one thing a view is pointing
+   at; the focus ring below is where this control borrows it. */
+.qo-btn--primary {
+  background: var(--qo-fill);
+  color: var(--qo-fill-contrast);
+}
+.qo-btn--primary:hover,
+.qo-btn--primary.is-hover { background: var(--qo-fill-hover); }
+.qo-btn--primary:active,
+.qo-btn--primary.is-active { background: var(--qo-fill-active); }
+.qo-btn--primary:focus-visible { box-shadow: var(--qo-shadow-glow); outline: none; }
+
+/* Secondary — outline, no accent color, for when primary is used elsewhere on the page */
+.qo-btn--secondary {
+  background: transparent;
+  border-color: var(--qo-border-strong);
+  color: var(--qo-text);
+}
+.qo-btn--secondary:hover,
+.qo-btn--secondary.is-hover { border-color: var(--qo-text); background: var(--qo-paper-faint); }
+.qo-btn--secondary:active,
+.qo-btn--secondary.is-active { background: var(--qo-border-subtle); }
+
+/* Accent — the one attention-drawing fill a view is allowed (Principle 02:
+   one accent per view). Reserved for the single action a page is actually
+   asking for; every other filled control takes the navy above. This is the
+   only button that spends the accent, which is what keeps the accent worth
+   spending. */
+.qo-btn--accent {
+  background: var(--qo-accent);
+  color: var(--qo-accent-contrast);
+}
+.qo-btn--accent:hover,
+.qo-btn--accent.is-hover { background: var(--qo-accent-hover); }
+.qo-btn--accent:active,
+.qo-btn--accent.is-active { background: var(--qo-accent-active); }
+.qo-btn--accent:focus-visible { box-shadow: var(--qo-shadow-glow); outline: none; }
+
+/* Ghost — text only, lowest emphasis, for tertiary actions in dense UI.
+   Inherits .qo-btn's horizontal padding rather than tightening it: with a
+   narrower inset the label sat 16px inboard of every filled button's label,
+   so a column of variants never lined up. The box is invisible either way,
+   so matching it costs nothing and buys a bigger hit target. */
+.qo-btn--ghost {
+  background: transparent;
+  color: var(--qo-text-muted);
+}
+.qo-btn--ghost:hover,
+.qo-btn--ghost.is-hover { color: var(--qo-text); }
+.qo-btn--ghost:active,
+.qo-btn--ghost.is-active { color: var(--qo-accent); }
+
+/* ---- Status pill ------------------------------------------------------
+   Success / warning / error / info as a compact state marker — the same pill
+   silhouette as .qo-btn so a status sits naturally in a row of controls.
+
+     <span class="qo-status qo-status--success">Success</span>
+
+   Every variant differs by ONE custom property, --qo-status-ink; the dot,
+   text, wash and hairline all mix off it, so a new status is a one-line
+   addition and can never drift out of step with itself.
+
+   The dot is a ::before rather than markup: a status is one word, and
+   requiring a nested span to render it would make the common case verbose
+   for no gain.
+
+   Status is never colour-only — the word carries the meaning and the hue
+   only reinforces it, so a reader who cannot separate the green from the red
+   can still tell a success from a failure. */
+
+.qo-status {
+  /* Reads the accent at the element, not through a :root alias: a light or
+     case page repoints --qo-accent, and an alias would have baked in the
+     dark-theme value before it ever reached here. */
+  --qo-status-ink: var(--qo-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qo-space-2xs);
+  padding: var(--qo-space-3xs) var(--qo-space-xs);
+  border-radius: var(--qo-radius-full);
+  font-family: var(--qo-font-mono);
+  font-size: var(--qo-text-xs);
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--qo-status-ink);
+  background: color-mix(in srgb, var(--qo-status-ink) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--qo-status-ink) 34%, transparent);
+}
+
+.qo-status::before {
+  content: "";
+  flex: none;
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: var(--qo-radius-full);
+  background: var(--qo-status-ink);
+}
+
+.qo-status--success { --qo-status-ink: var(--qo-success); }
+.qo-status--warning { --qo-status-ink: var(--qo-warning); }
+.qo-status--error   { --qo-status-ink: var(--qo-danger); }
+.qo-status--info    { --qo-status-ink: var(--qo-accent); }
+
+/* ---- Badge / tag (JetBrains Mono, the "signature") ------------------- */
+
+.qo-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--qo-space-3xs) var(--qo-space-xs);
+  border: 1px solid var(--qo-border);
+  border-radius: var(--qo-radius-sm);
+  font-family: var(--qo-font-mono);
+  font-size: var(--qo-text-xs);
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}
+
+/* ---- Card ------------------------------------------------------------- */
+
+.qo-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--qo-surface-raised);
+  border: 1px solid var(--qo-border);
+  border-radius: var(--qo-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--qo-shadow-raised), var(--qo-highlight-edge);
+  transition: border-color var(--qo-duration-base) var(--qo-ease),
+              background var(--qo-duration-base) var(--qo-ease),
+              transform var(--qo-duration-base) var(--qo-ease-out),
+              box-shadow var(--qo-duration-base) var(--qo-ease);
+}
+
+.qo-card:hover,
+.qo-card.is-hover {
+  border-color: var(--qo-accent);
+  background: var(--qo-surface-high);
+  transform: translateY(-6px);
+  box-shadow: var(--qo-shadow-accent-float), var(--qo-highlight-edge-strong);
+}
+
+.qo-card:active,
+.qo-card.is-active {
+  transform: translateY(-2px);
+  box-shadow: var(--qo-shadow-raised), var(--qo-highlight-edge);
+}
+
+.qo-card__media {
+  aspect-ratio: 16 / 10;
+  background: var(--qo-surface-raised);
+  overflow: hidden;
+}
+
+.qo-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--qo-duration-slow) var(--qo-ease-out);
+}
+
+.qo-card:hover .qo-card__media img,
+.qo-card.is-hover .qo-card__media img { transform: scale(1.04); }
+
+.qo-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-2xs);
+  padding: var(--qo-space-md);
+}
+
+.qo-card__meta {
+  display: flex;
+  gap: var(--qo-space-2xs);
+  flex-wrap: wrap;
+}
+
+.qo-card__title {
+  font-size: var(--qo-text-lg);
+  font-weight: 600;
+}
+
+.qo-card__desc {
+  color: var(--qo-text-muted);
+  font-size: var(--qo-text-sm);
+  line-height: var(--qo-leading-normal);
+}
+
+/* ---- Nav ---------------------------------------------------------------- */
+
+.qo-nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--qo-z-sticky);
+  display: flex;
+  align-items: center;
+  min-height: var(--qo-nav-height);
+  background: rgba(10, 24, 48, 0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--qo-border);
+  box-shadow: var(--qo-shadow-sm);
+}
+
+.qo-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.qo-nav__logo {
+  font-family: var(--qo-font-mono);
+  font-size: var(--qo-text-sm);
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.qo-nav__links {
+  display: flex;
+  gap: var(--qo-space-lg);
+}
+
+.qo-nav__link {
+  font-size: var(--qo-text-sm);
+  font-weight: 500;
+  color: var(--qo-text-muted);
+  transition: color var(--qo-duration-base) var(--qo-ease);
+}
+
+.qo-nav__link:hover,
+.qo-nav__link.is-hover,
+.qo-nav__link[aria-current="page"] { color: var(--qo-text); }
+
+/* ---- Footer --------------------------------------------------------------- */
+
+.qo-footer {
+  border-top: 1px solid var(--qo-border);
+  padding-block: var(--qo-space-2xl);
+}
+
+.qo-footer__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--qo-space-lg);
+}
+
+.qo-footer__meta {
+  font-family: var(--qo-font-mono);
+  font-size: var(--qo-text-xs);
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}
+
+/* ---- Table of contents -------------------------------------------------
+   Sticky rail on desktop, collapses above the content on narrow screens.
+   The active marker is this page's single accent use. */
+
+.qo-layout {
+  display: grid;
+  grid-template-columns: var(--qo-toc-width) minmax(0, 1fr);
+  gap: var(--qo-space-3xl);
+  align-items: start;
+}
+
+.qo-toc {
+  position: sticky;
+  top: calc(var(--qo-nav-height) + var(--qo-space-lg));
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-sm);
+}
+
+.qo-toc__label {
+  font-family: var(--qo-font-mono);
+  font-size: var(--qo-text-xs);
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+  padding-bottom: var(--qo-space-2xs);
+  border-bottom: 1px solid var(--qo-border);
+}
+
+.qo-toc__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-3xs);
+}
+
+.qo-toc__link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: var(--qo-space-2xs);
+  padding: var(--qo-space-2xs) var(--qo-space-xs);
+  border-radius: var(--qo-radius-sm);
+  font-size: var(--qo-text-sm);
+  color: var(--qo-text-muted);
+  transition: color var(--qo-duration-base) var(--qo-ease),
+              background var(--qo-duration-base) var(--qo-ease);
+}
+
+.qo-toc__link:hover {
+  color: var(--qo-text);
+  background: var(--qo-paper-faint);
+}
+
+.qo-toc__num {
+  font-family: var(--qo-font-mono);
+  font-size: var(--qo-text-xs);
+  letter-spacing: var(--qo-tracking-mono);
+  opacity: 0.7;
+}
+
+/* Active section — set by the IntersectionObserver in styleguide.js */
+.qo-toc__link.is-current {
+  color: var(--qo-text);
+  background: var(--qo-teal-muted);
+}
+
+.qo-toc__link.is-current::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  translate: -100% -50%;
+  width: 2px;
+  height: 1.1em;
+  background: var(--qo-accent);
+  border-radius: var(--qo-radius-full);
+}
+
+@media (max-width: 1024px) {
+  .qo-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--qo-space-lg);
+  }
+  .qo-toc {
+    position: static;
+    padding-bottom: var(--qo-space-md);
+    border-bottom: 1px solid var(--qo-border);
+  }
+  .qo-toc__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--qo-space-3xs);
+  }
+  .qo-toc__link.is-current::before { display: none; }
+}
+
+/* ---- Elevation demo tile (style guide only) ------------------------------ */
+
+.qo-elev {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* keeps the badge sized to its content */
+  justify-content: flex-end;
+  gap: var(--qo-space-3xs);
+  min-height: 9rem;
+  padding: var(--qo-space-lg);
+  border: 1px solid var(--qo-border);
+  border-radius: var(--qo-radius-lg);
+}
+
+.qo-elev--0 { background: var(--qo-elev-0); }
+.qo-elev--1 { background: var(--qo-elev-1); box-shadow: var(--qo-shadow-raised), var(--qo-highlight-edge); }
+.qo-elev--2 { background: var(--qo-elev-2); box-shadow: var(--qo-shadow-float),  var(--qo-highlight-edge); }
+.qo-elev--3 { background: var(--qo-elev-3); box-shadow: var(--qo-shadow-float),  var(--qo-highlight-edge-strong); }
+
+/* ---- Panel — a raised container for demo content ------------------------- */
+
+.qo-panel {
+  background: var(--qo-surface-raised);
+  border: 1px solid var(--qo-border);
+  border-radius: var(--qo-radius-lg);
+  box-shadow: var(--qo-shadow-raised), var(--qo-highlight-edge);
+  padding: clamp(var(--qo-space-md), 3vw, var(--qo-space-xl));
+}
+
+/* ---- Swatch (style guide only) ----------------------------------------------
+   Capsule chips: a tall pill of the colour with its hex underneath, set in
+   that same colour. Nothing here is authored twice — the hex label is the
+   single source, so a new code typed onto the page repaints the pill, the
+   caption and the blend row below it. */
+
+.qo-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* Tighter gap so all five chips plus the 30mm label margin fit inside the
+     page's 257mm content width without the last chip being clipped. */
+  gap: var(--qo-space-lg);
+  /* Two shared rows — chips, then captions. The swatches opt into these via
+     subgrid so one caption wrapping to an extra line shortens its own chip
+     rather than leaving the row ragged. */
+  grid-template-rows: 1fr auto;
+  /* No longer pulled up under the lede. That trick bought height for the chips
+     back when the sheet was full; the chips are capped now, so the space is
+     better spent as air above them. */
+  margin-top: var(--qo-space-sm);
+  /* Takes whatever height the rest of the sheet leaves rather than a fixed
+     one: the pills are as tall as the page allows, and can never grow enough
+     to push the specs underneath them past the page's clip.
+
+     The zero basis matters: the chips carry an aspect-ratio, so any other
+     basis lets their intrinsic height be derived from the column width and
+     the row asks for half again what the sheet has. Sizing it purely from
+     leftover space is what keeps the row honest. */
+  flex: 1;
+  min-height: 0;
+  /* …up to a point. With the spec tables off the sheet there is far more room
+     left over than a chip should take, so the row is capped and the surplus
+     stays as margin at the foot of the page. */
+  max-height: 58mm;
+}
+
+.qo-swatch {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  justify-items: center;
+  gap: var(--qo-space-3xs);
+  border: 0;
+  padding: 0;
+  background: none;
+  text-align: center;
+  cursor: default;
+  /* Prevent text labels from inflating the column's min-content width —
+     without this, longer descriptions (e.g. "Primary background") widen their
+     column track while the blend grid below keeps all 1fr columns equal,
+     causing a progressive left-drift of the circles. */
+  min-width: 0;
+  transition: transform var(--qo-duration-fast) var(--qo-ease-out);
+}
+
+.qo-swatch:hover { transform: none; }
+
+.qo-swatch__fill {
+  height: 100%;
+  min-height: 14mm;
+  /* Width follows the height rather than the column: on a landscape sheet the
+     row only ever gets ~85px of vertical room, and a chip that filled its
+     194px track would read as a wide bar instead of a capsule. Deriving the
+     width from whatever height is left keeps the proportion fixed however
+     much space the rest of the page leaves. */
+  aspect-ratio: 0.8;
+  width: auto;
+  /* Capped in its own right, not just by the track: once the row is tall
+     enough, the ratio asks for more width than a chip should have, and the
+     column would be the only thing stopping it. */
+  max-width: min(100%, 29mm);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(10, 24, 48, 0.06);
+}
+
+/* Every line the caption spends is a line the pill above it loses — the sheet
+   is landscape and the row only gets what the title and the specs leave. What
+   is left under the hex is set tight and small so the hex, and the chip, keep
+   the weight they have in the reference. */
+.qo-swatch__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  align-self: start;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Colour names are off the sheet: the hex and the job it does carry the page.
+   Hidden rather than deleted from the markup — text elements are identified by
+   their position, so removing one would renumber every element after it on
+   this page and detach the saved edits from it. */
+.qo-swatch__name { display: none; }
+
+.qo-swatch__hex {
+  font-family: var(--qo-font-mono);
+  font-size: 5.5pt;
+  color: var(--qo-text-muted);
+}
+
+/* The hex reads first and in its own colour. Pulled up with `order` instead
+   of being moved in the markup: text elements are identified by their
+   position on the page, so reordering the source would detach every saved
+   edit on this sheet from the element it belongs to. */
+.qo-swatch__hex[data-copy-label] {
+  order: -1;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 1px;
+  /* Pulled a little toward the page's own ink. Straight swatch colour would
+     leave the paper-white chip's caption invisible on a paper sheet — this
+     keeps every label in its own hue while guaranteeing it separates from
+     the background, and it follows the page theme in both directions. */
+  color: color-mix(in srgb, var(--qo-swatch-ink, currentColor) 70%, var(--qo-text));
+}
+
+/* Derived pairings — each circle is a gradient between two swatches above it,
+   named by position in data-blend. Baked into the markup so a plain export
+   still shows them, and recomputed by the builder whenever a hex changes. */
+.qo-blends {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--qo-space-lg);   /* matches the swatch grid above, column for column */
+  justify-items: center;
+  flex: none;
+  /* Given its own air rather than tucked under the captions: it reads as the
+     second section now that it carries a heading of its own. */
+  margin-top: var(--qo-space-sm);
+}
+
+/* The two rows are labelled sections. The labels sit in the left margin
+   rather than above their row: the sheet has ~37mm of unused width and no
+   spare height at all, so a stacked heading would have come straight out of
+   the chips. Set in CSS rather than as markup because text elements are
+   keyed by their position on the page — two new ones here would renumber
+   every element after them and detach their saved edits. */
+.qo-swatches,
+.qo-blends {
+  position: relative;
+  width: 100%;
+  padding-left: 30mm;
+}
+
+/* Set as the accent, since these are the only two headings the sheet has left
+   and the running header already owns the muted-grey register. The rule under
+   each one gives the margin column an edge to hang from, so the labels read as
+   section markers rather than stray words. */
+.qo-swatches::before,
+.qo-blends::before {
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  padding-bottom: var(--qo-space-3xs);
+  border-bottom: 1px solid var(--qo-accent);
+  font-family: var(--qo-font-mono);
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--qo-accent);
+}
+
+.qo-swatches::before { content: "Solids"; }
+.qo-blends::before   { content: "Gradients"; }
+
+/* The derived-states / contrast-checks tables that used to close this sheet
+   are off it — the page is the palette now. Hidden rather than cut from the
+   markup: they carry a dozen text elements, and text is keyed by position, so
+   deleting them would renumber the running footer beneath and drop its saved
+   edits. Everything they held is still in the file, and still exported. */
+.qo-blends + .qo-page__split {
+  display: none;
+}
+
+.qo-blend {
+  width: min(100%, 22mm);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(10, 24, 48, 0.06);
+}
+
+/* ---- Metric tile (AI/data specimens) --------------------------------------- */
+
+/* The number leads. Label sits above it in small mono as a caption, the
+   figure gets the size and the tightest tracking on the page, and the tile
+   itself stays quiet — a hairline and an accent tick rather than a heavy
+   card, so a row of four reads as data instead of four competing boxes. */
+.qo-metric {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-2xs);
+  padding: var(--qo-space-md);
+  background: var(--qo-surface-raised);
+  border: 1px solid var(--qo-border);
+  border-radius: var(--qo-radius-lg);
+  box-shadow: var(--qo-shadow-raised), var(--qo-highlight-edge);
+  overflow: hidden;
+}
+
+/* Accent tick along the top edge — the one piece of colour per tile. */
+.qo-metric::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12mm;
+  height: 2px;
+  background: var(--qo-accent);
+}
+
+.qo-metric__value {
+  font-family: var(--qo-font-brand);
+  font-size: 30pt;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--qo-text);
+}
+
+.qo-metric__label {
+  order: -1;               /* caption above the figure it describes */
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}
+
+.qo-metric__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  font-family: var(--qo-font-mono);
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: var(--qo-tracking-mono);
+  color: var(--qo-accent);
+}
+
+.qo-metric__delta--down { color: var(--qo-text-muted); }
+
+/* ---- Diagram — pipeline / architecture nodes ------------------------------- */
+
+.qo-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: var(--qo-space-sm);
+  flex-wrap: wrap;
+}
+
+.qo-diagram__node {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  min-width: 32mm;
+  padding: var(--qo-space-sm) var(--qo-space-md);
+  background: var(--qo-surface-raised);
+  border: 1px solid var(--qo-border);
+  border-radius: var(--qo-radius-md);
+  text-align: center;
+}
+
+.qo-diagram__node--accent {
+  border-color: var(--qo-accent);
+  background: var(--qo-teal-muted);
+}
+
+.qo-diagram__node-title {
+  font-size: 9.5pt;
+  font-weight: 600;
+}
+
+.qo-diagram__node-sub {
+  font-family: var(--qo-font-mono);
+  font-size: 7pt;
+  letter-spacing: var(--qo-tracking-mono);
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}
+
+.qo-diagram__arrow {
+  align-self: center;
+  color: var(--qo-text-muted);
+  font-family: var(--qo-font-mono);
+  font-size: 14pt;
+  line-height: 1;
+}
+
+/* ---- Chat / agent conversation mockup — sits inside a .qo-screen slot as the
+   authored placeholder, exactly like a screenshot would; dragging a real
+   screenshot onto the slot replaces it the same way it replaces any image. ---- */
+
+.qo-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 10px;
+  background: var(--qo-paper);
+  overflow: hidden;
+}
+
+.qo-chat__bubble {
+  max-width: 80%;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 7pt;
+  line-height: 1.4;
+}
+
+.qo-chat__bubble--bot {
+  align-self: flex-start;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--qo-navy);
+  border-bottom-left-radius: 2px;
+}
+
+.qo-chat__bubble--user {
+  align-self: flex-end;
+  background: var(--qo-accent);
+  color: var(--qo-accent-contrast);
+  border-bottom-right-radius: 2px;
+}
+
+/* ---- Grid spec (style guide only) ------------------------------------------ */
+
+.qo-grid-demo {
+  display: grid;
+  grid-template-columns: repeat(var(--qo-grid-columns), 1fr);
+  gap: var(--qo-grid-gutter);
+}
+
+.qo-grid-demo__col {
+  height: var(--qo-space-2xl);
+  background: var(--qo-teal-muted);
+  border: 1px dashed var(--qo-accent);
+  border-radius: var(--qo-radius-sm);
+}
+
+/* ---- Tech stack grid ---------------------------------------------------------
+   A tile per tool: a logo well, a name, and the job it does. The well is a
+   real drop target in the builder (js/panel.js assigns an image to it) and
+   stays a dashed placeholder until one is set, so an unfinished stack still
+   reads as deliberate rather than broken. Tiles are ordinary blocks — the
+   builder's hover 🗑 removes one and ⋮ → Duplicate adds another. */
+
+/* Rows share whatever height the sheet has left, and the wells flex inside
+   them — so adding an eleventh tile shortens every well instead of pushing
+   the last row off the page. The cap keeps two rows from ballooning into
+   letterbox slabs on a half-full stack. */
+.qo-stack {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+  gap: var(--qo-space-lg) var(--qo-space-md);
+}
+
+.qo-stack--compact { grid-template-columns: repeat(6, 1fr); }
+
+.qo-stack__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qo-space-2xs);
+  min-width: 0;
+  min-height: 0;
+}
+
+.qo-logo {
+  position: relative;
+  flex: 1;
+  min-height: 14mm;
+  max-height: 30mm;
+  display: grid;
+  place-items: center;
+  padding: var(--qo-space-2xs);
+  border: 1px dashed var(--qo-border-strong);
+  border-radius: var(--qo-radius-md);
+  background: var(--qo-surface);
+  overflow: hidden;
+}
+
+/* Once a logo is in, the well stops announcing itself: solid hairline,
+   no dashes, and the artwork sits on its own with room around it. */
+.qo-logo--filled {
+  border-style: solid;
+  border-color: var(--qo-border);
+}
+
+.qo-logo img {
+  max-width: 74%;
+  max-height: 68%;
+  object-fit: contain;
+}
+
+.qo-logo__hint {
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+  opacity: 0.7;
+  user-select: none;
+}
+
+.qo-logo--filled .qo-logo__hint { display: none; }
+
+.qo-stack__name {
+  font-size: 9.5pt;
+  font-weight: 600;
+  letter-spacing: var(--qo-tracking-tight);
+}
+
+.qo-stack__role {
+  font-family: var(--qo-font-mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--qo-text-muted);
+}

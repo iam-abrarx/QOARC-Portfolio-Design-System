@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — QOARC Design System</title>
+<meta name="description" content="Start a new case study from the QOARC template, or open an existing project.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/projects.css">
+</head>
+<body>
+
+<header class="qp-header">
+  <div class="qp-header__brand">
+    <span class="qp-header__mark">QOARC</span>
+    <span class="qp-header__sub">Projects</span>
+  </div>
+  <a class="qp-header__link" href="index.html">Open Design System →</a>
+</header>
+
+<main class="qp-main">
+  <div class="qp-intro">
+    <p class="qp-eyebrow">Project &amp; template management</p>
+    <h1 class="qp-title">Your case studies.</h1>
+    <p class="qp-lede">Every project below starts from one of five templates — its own colors, fonts, and
+      starting screenshots — then edits with the same builder you already know.</p>
+  </div>
+
+  <div class="qp-toolbar">
+    <button class="qp-btn qp-btn--primary" id="qp-new">+ New Project</button>
+  </div>
+
+  <div class="qp-grid" id="qp-grid"></div>
+</main>
+
+<div class="qp-modal-backdrop" id="qp-modal-backdrop" hidden>
+  <div class="qp-modal" role="dialog" aria-modal="true" aria-labelledby="qp-modal-title">
+    <div class="qp-modal__head">
+      <h2 id="qp-modal-title">New project</h2>
+      <button class="qp-modal__close" id="qp-modal-close" aria-label="Close">×</button>
+    </div>
+
+    <div class="qp-modal__body">
+      <div class="qp-modal__row-top">
+        <label class="qp-field">
+          <span>Name</span>
+          <input type="text" id="qp-f-name" placeholder="Client or project name" maxlength="60">
+        </label>
+
+        <label class="qp-field">
+          <span>Template</span>
+          <select id="qp-f-template"></select>
+        </label>
+
+        <label class="qp-field">
+          <span>Materials</span>
+          <select id="qp-f-site"></select>
+        </label>
+      </div>
+
+      <div class="qp-modal__main">
+        <div class="qp-modal__form">
+          <div class="qp-tabs">
+            <button type="button" class="qp-tab is-active" data-tab="style">Colors &amp; Fonts</button>
+            <button type="button" class="qp-tab" data-tab="pages">Pages</button>
+          </div>
+
+          <div class="qp-tab-panel" data-tab-panel="style">
+            <div class="qp-field">
+              <div class="qp-field__head">
+                <span>Colors</span>
+                <button type="button" class="qp-btn-add" id="qp-color-add">+ Add color</button>
+              </div>
+              <div class="qp-colors" id="qp-colors"></div>
+              <div class="qp-colors-extra" id="qp-colors-extra"></div>
+            </div>
+
+            <div class="qp-field">
+              <div class="qp-field__head">
+                <span>Fonts</span>
+                <button type="button" class="qp-btn-add" id="qp-font-add">+ Add font role</button>
+              </div>
+              <div class="qp-fonts" id="qp-fonts"></div>
+              <div class="qp-fonts-extra" id="qp-fonts-extra"></div>
+            </div>
+          </div>
+
+          <div class="qp-tab-panel" data-tab-panel="pages" hidden>
+            <p class="qp-pages-hint">Cover, contents, and colophon always ship with the project. Uncheck a
+              section to leave it out — the preview and the created project both update to match. You can
+              always add pages back later in the builder.</p>
+            <div class="qp-pages-list" id="qp-pages-list"></div>
+          </div>
+        </div>
+
+        <div class="qp-modal__preview">
+          <div class="qp-preview__swatches" id="qp-preview-swatches"></div>
+          <div class="qp-preview__frame-wrap">
+            <iframe id="qp-preview-frame" class="qp-preview__frame" title="Template live preview"></iframe>
+          </div>
+          <div class="qp-preview__nav">
+            <button type="button" class="qp-btn qp-btn--ghost" id="qp-preview-prev">‹ Prev</button>
+            <span class="qp-preview__page-label" id="qp-preview-page-label">Page 1</span>
+            <button type="button" class="qp-btn qp-btn--ghost" id="qp-preview-next">Next ›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qp-modal__foot">
+      <button class="qp-btn" id="qp-cancel">Cancel</button>
+      <button class="qp-btn qp-btn--primary" id="qp-create">Create project</button>
+    </div>
+  </div>
+</div>
+
+<datalist id="qp-google-fonts"></datalist>
+
+<script src="js/manifest.js"></script>
+<script src="js/token-derive.js?v=20260730-2"></script>
+<script src="js/projects.js"></script>
+</body>
+</html>
