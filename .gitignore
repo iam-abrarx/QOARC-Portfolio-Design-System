@@ -1,3 +1,6 @@
+# Launching / Builder script (Private)
+OPEN-BUILDER.cmd
+
 # Dependencies
 node_modules/
 /.pnp
